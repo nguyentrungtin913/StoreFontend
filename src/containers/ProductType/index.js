@@ -34,8 +34,7 @@ class ProductType extends Component {
   };
   showDeleteProductType = productType => {
     const { name, id } = productType;
-    if (confirm(`Bạn có muốn xóa loại sản phẩm \` ${name} \` không ?`)) {
-      //eslint-disable-line
+    if (confirm(`Bạn có muốn xóa loại sản phẩm \` ${name} \` không ?`)) { //eslint-disable-line
       const { productTypeActionCreators } = this.props;
       const { deleteProductType } = productTypeActionCreators;
       deleteProductType(id);

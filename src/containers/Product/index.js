@@ -39,8 +39,7 @@ class Product extends Component {
 
   showDeleteProduct = product => {
     const { name, id } = product;
-    if (confirm(`Bạn có muốn xóa sản phẩm \` ${name} \` không ?`)) {
-      //eslint-disable-line
+    if (confirm(`Bạn có muốn xóa sản phẩm \` ${name} \` không ?`)) { //eslint-disable-line
       const { productActionCreators } = this.props;
       const { deleteProduct } = productActionCreators;
       deleteProduct(id);
