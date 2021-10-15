@@ -8,7 +8,7 @@ class OrderItem extends Component {
     this.props.onClickDetail(id);
   };
   onDetele = id => {
-    if (confirm(`Bạn có muốn hóa đơn không ?`)) {//eslint-disable-line
+    if (confirm(`Bạn có muốn hóa đơn không ?`)) { //eslint-disable-line
       const { productTypeActionCreators } = this.props;
       const { deleteProductType } = productTypeActionCreators;
       deleteProductType(id);
