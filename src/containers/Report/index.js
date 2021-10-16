@@ -4,9 +4,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ReportList from "../../components/ReportList";
-import * as productActions from "./../../actions/product";
+import * as reportActions from "./../../actions/report";
 import styles from "./styles";
 import _ from "lodash";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import CachedIcon from '@mui/icons-material/Cached';
+import IconButton from '@mui/material/IconButton';
 
 class Report extends Component {
   constructor(props) {
@@ -14,14 +20,27 @@ class Report extends Component {
     this.state = {
       add: false,
       keyword: "",
-      filter: 0
+      filter: 0,
+      dateStart: "",
+      dateEnd: "",
+      anchorEl: null,
+
     };
   }
+
   componentDidMount() {
-    const { productActionCreators } = this.props;
-    const { fetchListProduct } = productActionCreators;
-    fetchListProduct();
+    const { reportActionsCreators } = this.props;
+    const { fetchListReport } = reportActionsCreators;
+    fetchListReport();
   }
+  onChange = e => {
+    var target = e.target;
+    var name = target.name;
+    var value = target.value;
+    this.setState({
+      [name]: value
+    });
+  };
   onFind = keyword => {
     this.setState({
       keyword: keyword
@@ -31,37 +50,155 @@ class Report extends Component {
     this.setState({
       filter: type
     });
+
   };
+  handleClick = event => {
+    this.setState({
+      anchorEl: event.currentTarget
+    });
+  };
+  handleClose = () => {
+    this.setState({
+      anchorEl: null
+    });
+  };
+  filterList = (type, popupState) => {
+    let { dateStart, dateEnd } = this.state;
+    this.setState({
+      filter: type
+    });
+    popupState.close();
+    let params = {
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      type: type
+    }
+    const { reportActionsCreators } = this.props;
+    console.log(params)
+    const { fetchListReport } = reportActionsCreators;
+    fetchListReport(params);
+  };
+  renderSort() {
+    let xhtml = null;
+    const { classes } = this.props;
+    xhtml = (
+      <div>
+        <PopupState variant="popover" popupId="demo-popup-menu">
+          {popupState => (
+            <React.Fragment>
+              <button
+                variant="contained"
+                {...bindTrigger(popupState)}
+                className={` btn btn-lg btn-outline-primary m-2 ${classes.myButton}`}
+              >
+                Sắp xếp <FilterAltIcon />
+              </button>
+              <Menu {...bindMenu(popupState)}>
+                <MenuItem
+                  onClick={() => this.filterList(0, popupState)}
+                  className={classes.myMenuItem}
+                >
+                  Bán chạy
+                </MenuItem>
+                <MenuItem
+                  onClick={() => this.filterList(1, popupState)}
+                  className={classes.myMenuItem}
+                >
+                  Bán chậm
+                </MenuItem>
+              </Menu>
+            </React.Fragment>
+          )}
+        </PopupState>
+      </div>
+    );
+    return xhtml;
+  }
+  onReset = () => {
+    this.setState({
+      dateStart: "",
+      dateEnd: "",
+    });
+    const { reportActionsCreators } = this.props;
+    const { fetchListReport } = reportActionsCreators;
+    fetchListReport();
+  }
   renderList() {
-    let { listProduct } = this.props;
-    let { keyword, filter } = this.state;
+    let { listProduct, classes } = this.props;
+    let { keyword, filter, dateStart, dateEnd } = this.state;
     let xhtmlList = null;
+    if (dateStart && dateEnd) {
+      let params = {
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        type: filter
+      }
+      const { reportActionsCreators } = this.props;
+      const { fetchListReport } = reportActionsCreators;
+      fetchListReport(params);
+    }
 
     if (keyword) {
-      listProduct = _.filter(listProduct, function(product) {
+      listProduct = _.filter(listProduct, function (product) {
         return product.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
       });
     }
-
-    if (filter !== 0) {
-      if (filter === 1) {
-        listProduct = _.filter(listProduct, function(product) {
-          return product.amount === 0;
-        });
-      } else if (filter === 2) {
-        listProduct = _.filter(listProduct, function(product) {
-          return product.amount > 0;
-        });
-      }
-    }
     xhtmlList = (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <ReportList
-          products={listProduct}
-          onShowForm={this.onShowForm}
-          onFind={this.onFind}
-          filterList={this.onfilterList}
-        />
+        {this.renderSort()}
+        <div className={`panel panel-success`}>
+          <div className="panel-heading">
+            <h3 className="panel-title">Danh sách sản phẩm </h3>
+          </div>
+          <div className={`${classes.filter}`}>
+            <form>
+              <span>Từ</span>
+              <input
+                type="date"
+                name="dateStart"
+                className={`form-control ${classes.date}`}
+                value={dateStart}
+                onChange={this.onChange}
+              />
+
+              <span>Đến</span>
+              <input
+                type="date"
+                name="dateEnd"
+                className={`form-control ${classes.date}`}
+                value={dateEnd}
+                onChange={this.onChange}
+              />
+              <IconButton onClick={this.onReset}>
+                <CachedIcon sx={{ fontSize: 40 }} />
+              </IconButton>
+            </form>
+          </div>
+          <div className={`panel-body  ${classes.myPanelProduct}`}>
+            <table className={`table table-hover ${classes.listProduct}`}>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Hình ảnh</th>
+                  <th className="name-product">Tên sản phẩm</th>
+                  <th>Giá nhập</th>
+                  <th>Giá bán</th>
+                  <th>Số lượng còn lại</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Loại</th>
+                </tr>
+              </thead>
+
+              <ReportList
+                products={listProduct}
+                onShowForm={this.onShowForm}
+                onFind={this.onFind}
+                filterList={this.onfilterList}
+              />
+            </table>
+          </div>
+        </div>
+
       </div>
     );
 
@@ -88,12 +225,12 @@ Report.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    listProduct: state.product.listProduct
+    listProduct: state.reportProduct.listProductReport
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    productActionCreators: bindActionCreators(productActions, dispatch)
+    reportActionsCreators: bindActionCreators(reportActions, dispatch)
   };
 };
 

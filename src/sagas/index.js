@@ -61,13 +61,17 @@ import * as authTypes from "./../constants/auth";
 //order
 import { fetchListOrderSuccess } from "../actions/order";
 import { getListOrder } from "./../apis/order";
-import * as reportTypes from "./../constants/order";
+import * as orderTypes from "./../constants/order";
 
 //orderDetail
 import { fetchListOrderDetailSuccess } from "../actions/orderDetail";
 import { getListOrderDetail } from "./../apis/orderDetail";
 import * as orderDetailTypes from "./../constants/orderDetail";
 
+//order
+import { fetchListReportSuccess } from "../actions/report";
+import { report } from "./../apis/report";
+import * as reportTypes from "./../constants/report";
 /////////////////////////////////////////////////////////////
 
 // product-type
@@ -271,7 +275,7 @@ function* deleteTaskSaga({ payload }) {
 // order
 function* watchFetchListOrderAction() {
   while (true) {
-    const action = yield take(reportTypes.FETCH_ORDER);
+    const action = yield take(orderTypes.FETCH_ORDER);
     yield put(showLoading());
     const { params } = action.payload;
     const resp = yield call(getListOrder, params);
@@ -295,6 +299,24 @@ function* watchFetchListOrderDetailAction() {
     if (resp) {
       const { data } = resp;
       yield put(fetchListOrderDetailSuccess(data.data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+// report
+
+function* watchFetchListReportAction() {
+  while (true) {
+    const action = yield take(reportTypes.FETCH_REPORT);
+    yield put(showLoading());
+    const { params } = action.payload;
+
+    const resp = yield call(report, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListReportSuccess(data.data));
     }
     yield delay(1000);
     yield put(hideLoading());
@@ -347,6 +369,8 @@ function* rootSaga() {
   yield fork(watchFetchListOrderAction);
   //orderdetail
   yield fork(watchFetchListOrderDetailAction);
+  //report
+  yield fork(watchFetchListReportAction);
   //auth
   yield takeEvery(authTypes.LOGIN, loginSaga);
   yield takeEvery(authTypes.LOGOUT, logoutSaga);

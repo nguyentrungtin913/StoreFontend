@@ -16,7 +16,7 @@ const styles = () => ({
     whiteSpace: "nowrap"
   },
   myPanelProduct: {
-    height: "500px",
+    height: "460px",
     overflow: "scroll",
     overflowX: "hidden"
   },

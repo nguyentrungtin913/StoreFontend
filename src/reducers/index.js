@@ -9,6 +9,7 @@ import productChooseReducer from "./productChoose";
 import authReducer from "./auth";
 import orderReducer from "./order";
 import orderDetailReducer from "./orderDetail";
+import reportProductReducer from "./report";
 
 const rootReducer = combineReducers({
   task: taskReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   productChoose: productChooseReducer,
   auth: authReducer,
   order: orderReducer,
-  orderDetail: orderDetailReducer
+  orderDetail: orderDetailReducer,
+  reportProduct: reportProductReducer,
 });
 
 export default rootReducer;
