@@ -15,13 +15,16 @@ const styles = () => ({
   myTd: {
     whiteSpace: "nowrap"
   },
+  myTr:{
+    height: '100px',
+  },
   myPanelProduct: {
-    height: "460px",
+    height: "524px",
     overflow: "scroll",
     overflowX: "hidden"
   },
   myPanelProductSellBody: {
-    height: "399px",
+    height: "430px",
     overflow: "scroll",
     overflowX: "hidden",
     fontSize: "13pt",

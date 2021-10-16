@@ -13,6 +13,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CachedIcon from '@mui/icons-material/Cached';
 import IconButton from '@mui/material/IconButton';
+import Empty from "./../../assets/images/emptyList.png";
 
 class Report extends Component {
   constructor(props) {
@@ -123,6 +124,33 @@ class Report extends Component {
     const { fetchListReport } = reportActionsCreators;
     fetchListReport();
   }
+
+  rederContent = (listProduct, classes) => {
+    let xhtml = null;
+    if (listProduct.length > 0) {
+      xhtml = (
+        <ReportList
+          products={listProduct}
+          onShowForm={this.onShowForm}
+          onFind={this.onFind}
+          filterList={this.onfilterList}
+        />
+      )
+    } else {
+      xhtml = (
+        <tbody >
+          <tr>
+            <td colSpan={8} style={{
+              backgroundImage: `url(${Empty})`
+            }} className={classes.backgroundEmpty}><div className={classes.textEmpty}></div></td>
+          </tr>
+        </tbody>
+
+      )
+    }
+
+    return xhtml;
+  }
   renderList() {
     let { listProduct, classes } = this.props;
     let { keyword, filter, dateStart, dateEnd } = this.state;
@@ -148,7 +176,7 @@ class Report extends Component {
         {this.renderSort()}
         <div className={`panel panel-success`}>
           <div className="panel-heading">
-            <h3 className="panel-title">Danh sách sản phẩm </h3>
+            <h3 className="panel-title">Danh sách sản phẩm bán</h3>
           </div>
           <div className={`${classes.filter}`}>
             <form>
@@ -188,13 +216,9 @@ class Report extends Component {
                   <th>Loại</th>
                 </tr>
               </thead>
-
-              <ReportList
-                products={listProduct}
-                onShowForm={this.onShowForm}
-                onFind={this.onFind}
-                filterList={this.onfilterList}
-              />
+              {
+                this.rederContent(listProduct, classes)
+              }
             </table>
           </div>
         </div>

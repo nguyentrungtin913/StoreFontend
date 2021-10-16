@@ -4,6 +4,7 @@ import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
 
 document.body.style.overflowY = "hidden";
+document.body.style.overflowX = "hidden";
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change

@@ -125,9 +125,13 @@ class ProductList extends Component {
 
     let classFilter = "";
     let show = "";
+    let hidden = classes.disable;
     if (filter) {
       classFilter = classes.disable;
       show = classes.show;
+    }
+    if(productsChoose.length > 0){
+      hidden = "";
     }
     return (
       <div>
@@ -236,13 +240,13 @@ class ProductList extends Component {
                 </div>
               </td>
             </tr>
-            <tr className={`disable`}>
+            <tr className={`disable ${classes.myTr}`}>
               <td className={`${classes.myTd} ${classes.disable} ${show} `}>
                 <form onSubmit={this.onSell}>
                   <table>
-                    <tr className="spaceUnder">
+                    <tr>
                       <td>
-                        <h4 className="ml-2">Họ tên: </h4>
+                        <h4 className="m-3">Họ tên: </h4>
                       </td>
                       <td>
                         <input
@@ -256,7 +260,7 @@ class ProductList extends Component {
                       <td rowSpan="2">
                         <button
                           type="submit"
-                          className={`btn btn-lg btn-outline-success  ${show}`}
+                          className={`btn btn-lg btn-outline-success ${hidden}`}
                         >
                           {labelButton}
                         </button>
@@ -264,7 +268,7 @@ class ProductList extends Component {
                     </tr>
                     <tr>
                       <td>
-                        <h4 className="ml-2">Tổng tiền: </h4>
+                        <h4 className="m-3">Tổng tiền: </h4>
                       </td>
                       <td>
                         <input

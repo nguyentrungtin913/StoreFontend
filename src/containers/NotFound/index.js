@@ -8,7 +8,7 @@ class TaskBoard extends Component {
     return (
       <div className={classes.backgroundImage}>
         <h2>404: Page Not Found</h2>
-        <img src={NotFound} alt="loading" className={classes.icon} disable />
+        <img src={NotFound} alt="loading" className={classes.icon} />
       </div>
     );
   }
