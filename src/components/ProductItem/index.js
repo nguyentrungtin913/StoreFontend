@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import { Link } from "react-router-dom";
 import { API_URL } from "./../../constants";
 
 class ProductItem extends Component {
@@ -12,7 +11,7 @@ class ProductItem extends Component {
   };
 
   render() {
-    let { classes, product, index, filter, onClickDelete, type } = this.props;
+    let { classes, product, index, filter, onClickDelete, type, onClickEdit } = this.props;
     let classFilter = "";
     let show = "";
     let priceImport = new Intl.NumberFormat("de-DE").format(
@@ -47,12 +46,12 @@ class ProductItem extends Component {
         <td className={classFilter}>{product.amountSell}</td>
         <td className={classFilter}>{product.productType.name}</td>
         <td>
-          <Link
-            to={`/admin/product/${product.id}/edit`}
-            className={`btn btn-lg btn-outline-warning m-2 ${classFilter}`}
+        <button
+            className={`btn btn-lg btn-outline-warning ${classFilter} m-2`}
+            onClick={onClickEdit}
           >
             Sửa
-          </Link>
+          </button>
           <button
             className={`btn btn-lg btn-outline-danger ${classFilter} m-2`}
             onClick={onClickDelete}

@@ -31,6 +31,13 @@ class Product extends Component {
       add: false
     });
   };
+
+  onClickEdit = product => {
+    const { productActionCreators } = this.props;
+    const { setProductEditing } = productActionCreators;
+    setProductEditing(product);
+  }
+
   componentDidMount() {
     const { productActionCreators } = this.props;
     const { fetchListProduct } = productActionCreators;
@@ -56,36 +63,39 @@ class Product extends Component {
     });
   };
   renderList() {
-    let { listProduct } = this.props;
+    let { listProduct, productEditting } = this.props;
     let { add, keyword, filter } = this.state;
     let xhtmlList,
       xhtmlAdd = null;
     let listProductChoose = [];
 
-    if (add) {
-      xhtmlAdd = <ProductActionPage onCloseForm={this.onCloseForm} />;
+    if (add || productEditting) {
+      xhtmlAdd = <ProductActionPage
+        productEditting={productEditting}
+        onCloseForm={this.onCloseForm}
+      />;
       return xhtmlAdd;
     }
 
     if (keyword) {
-      listProduct = _.filter(listProduct, function(product) {
+      listProduct = _.filter(listProduct, function (product) {
         return product.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
       });
     }
 
     if (filter !== 0) {
       if (filter === 1) {
-        listProduct = _.filter(listProduct, function(product) {
+        listProduct = _.filter(listProduct, function (product) {
           return product.amount === 0;
         });
       } else if (filter === 2) {
-        listProduct = _.filter(listProduct, function(product) {
+        listProduct = _.filter(listProduct, function (product) {
           return product.amount > 0;
         });
       }
     }
     xhtmlList = (
-      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id={1} >
         <ProductList
           products={listProduct}
           productsChoose={listProductChoose}
@@ -93,19 +103,17 @@ class Product extends Component {
           onShowForm={this.onShowForm}
           onFind={this.onFind}
           filterList={this.onfilterList}
+          onClickEdit={this.onClickEdit}
         />
-      </div>
+      </div >
     );
 
     return xhtmlList;
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div className={classes.taskBoard} id="1">
-        {this.renderList()}
-      </div>
+      this.renderList()
     );
   }
 }
@@ -120,7 +128,8 @@ Product.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    listProduct: state.product.listProduct
+    listProduct: state.product.listProduct,
+    productEditting: state.product.productEditting
   };
 };
 const mapDispatchToProps = dispatch => {

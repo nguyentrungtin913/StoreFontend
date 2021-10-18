@@ -27,12 +27,14 @@ import * as taskTypes from "./../constants/task";
 import {
   fetchListProductTypeSuccess,
   deleteProductTypeSuccess,
-  addProductTypeSuccess
+  addProductTypeSuccess,
+  updateProductTypeSuccess,
 } from "../actions/productType";
 import {
   getListProductType,
   deleteProductType,
-  addProductType
+  addProductType,
+  updateProductType,
 } from "./../apis/productType";
 import * as productTypeTypes from "./../constants/productType";
 
@@ -42,14 +44,16 @@ import {
   addProductSuccess,
   deleteProductSuccess,
   sellSuccess,
-  buySuccess
+  buySuccess,
+  updateProductSuccess,
 } from "../actions/product";
 import {
   getListProduct,
   sell,
   deleteProduct,
   addProduct,
-  buy
+  buy,
+  updateProduct
 } from "./../apis/product";
 import * as productTypes from "./../constants/product";
 
@@ -105,6 +109,21 @@ function* addProductTypeSaga({ payload }) {
   yield put(hideLoading());
 }
 
+function* updateProductTypeSaga({ payload }) {
+  const { productType } = payload;
+  yield put(showLoading());
+  const resp = yield call(updateProductType, {
+    productType
+  });
+  if (resp) {
+    const { data } = resp;
+    yield put(updateProductTypeSuccess(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
+
 function* deleteProductTypeSaga({ payload }) {
   const { id } = payload;
   yield put(showLoading());
@@ -150,6 +169,24 @@ function* addProductSaga({ payload }) {
   yield delay(1000);
   yield put(hideLoading());
 }
+
+
+function* updateProductSaga({ payload }) {
+  const { product } = payload;
+  yield put(showLoading());
+  const resp = yield call(updateProduct, {
+    product
+  });
+  console.log(resp)
+  if (resp) {
+    const { data } = resp;
+    yield put(updateProductSuccess(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
+
 
 function* deleteProductSaga({ payload }) {
   const { id } = payload;
@@ -237,6 +274,7 @@ function* addTaskSaga({ payload }) {
   yield delay(1000);
   yield put(hideLoading());
 }
+
 
 function* updateTaskSaga({ payload }) {
   const { title, description, status } = payload;
@@ -359,12 +397,14 @@ function* rootSaga() {
   yield fork(watchFetchListProductTypeAction);
   yield takeLatest(productTypeTypes.DELETE_PRODUCT_TYPE, deleteProductTypeSaga);
   yield takeEvery(productTypeTypes.ADD_PRODUCT_TYPE, addProductTypeSaga);
+  yield takeEvery(productTypeTypes.UPDATE_PRODUCT_TYPE, updateProductTypeSaga);
   //product
   yield fork(watchFetchListProductAction);
   yield takeEvery(productTypes.SELL, addOrderSaga);
   yield takeEvery(productTypes.BUY, buyOrderSaga);
   yield takeEvery(productTypes.ADD_PRODUCT, addProductSaga);
   yield takeLatest(productTypes.DELETE_PRODUCT, deleteProductSaga);
+  yield takeEvery(productTypes.UPDATE_PRODUCT, updateProductSaga);
   //order
   yield fork(watchFetchListOrderAction);
   //orderdetail

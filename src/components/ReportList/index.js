@@ -36,7 +36,7 @@ class ReportList extends Component {
 
 
   render() {
-    let { products, filter, type } = this.props;
+    let { products, filter, type , classes} = this.props;
     let { keyword } = this.state;
     return (
       <tbody>
@@ -44,7 +44,7 @@ class ReportList extends Component {
           <td colSpan="9">
             <input
               type="text"
-              className="form-control search"
+              className={`form-control ${classes.search}`}
               value={keyword}
               name="keyword"
               placeholder="Nhập tên sản phẩm cần lọc"

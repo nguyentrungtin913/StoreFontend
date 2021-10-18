@@ -34,7 +34,7 @@ export const addProductType = productType => {
 };
 
 export const updateProductType = productType => {
-  return axiosService.put(`${API_URL}/product-type`, productType).catch(err => {
+  return axiosService.put(`${API_URL}/product-type`, productType.productType).catch(err => {
     if (err.response.data[0]) {
       toastError(err.response.data[0].clientMsg);
     }

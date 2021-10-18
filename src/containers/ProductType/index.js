@@ -28,6 +28,7 @@ class ProductType extends Component {
     });
   };
   onCloseForm = () => {
+    console.log("here")
     this.setState({
       add: false
     });
@@ -44,13 +45,12 @@ class ProductType extends Component {
     const { productTypeActionCreators } = this.props;
     const { setProductTypeEditing } = productTypeActionCreators;
     setProductTypeEditing(productType);
-    this.onShowForm();
+
   };
   renderBoard() {
     const { add } = this.state;
-    const { listProductType } = this.props;
-    let xhtmlList,
-      xhtmlAdd = null;
+    const { listProductType, productTypeEditting } = this.props;
+    let xhtmlList, xhtmlAdd = null;
     xhtmlList = (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <ProductTypeList
@@ -61,8 +61,13 @@ class ProductType extends Component {
         />
       </div>
     );
-    xhtmlAdd = <ProductTypeActionPage onCloseForm={this.onCloseForm} />;
-    if (add) {
+      // productTypeEditting={productTypeEditting}
+    xhtmlAdd = (
+      <ProductTypeActionPage
+        onCloseForm={this.onCloseForm}
+      ></ProductTypeActionPage>
+    );
+    if (add || productTypeEditting) {
       return xhtmlAdd;
     } else {
       return xhtmlList;
@@ -89,7 +94,8 @@ ProductType.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    listProductType: state.productType.listProductType
+    listProductType: state.productType.listProductType,
+    productTypeEditting: state.productType.productTypeEditting
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -1,18 +1,18 @@
 const styles = () => ({
   imageProduct: {
-    height: "100px",
-    maxWidth: "168px"
+    maxHeight: '100px',
+    maxWidth: '90%',
   },
   disable: {
-    display: "none"
+    display: 'none'
   },
   show: {
-    display: "block"
+    display: 'block'
   },
   nameProduct: {
-    width: "100px",
-    overflow: "hidden",
-    textOverflow: "ellipsis"
+    width: '100px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   }
 });
 

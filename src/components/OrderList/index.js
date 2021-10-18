@@ -9,30 +9,32 @@ class OrderList extends Component {
     const { classes, orders } = this.props;
 
     return (
-      <table className={`table table-hover ${classes.listOrder}`}>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Tên người mua</th>
-            <th>Tổng tiền</th>
-            <th>Ngày xuất</th>
-            <th>Loại hóa đơn</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order, index) => {
-            return (
-              <OrderItem
-                order={order}
-                key={order.id}
-                index={index}
-                onClickDetail={this.props.onClickDetail}
-              />
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table className={`table table-hover ${classes.listOrder} col-xs-12 col-sm-12 col-md-12 col-lg-12`}>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên người mua</th>
+              <th>Tổng tiền</th>
+              <th>Ngày xuất</th>
+              <th>Loại hóa đơn</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order, index) => {
+              return (
+                <OrderItem
+                  order={order}
+                  key={order.id}
+                  index={index}
+                  onClickDetail={this.props.onClickDetail}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

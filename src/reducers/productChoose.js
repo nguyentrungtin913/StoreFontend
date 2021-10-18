@@ -115,7 +115,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case productConstants.SELL_SUCCESS: {
-      toastSuccess("Xuất thành công");
+      toastSuccess("Xuất hóa đơn thành công");
       return {
         ...state,
         listProductChoose: state.listProductChoose.filter(
@@ -132,7 +132,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case productConstants.BUY_SUCCESS: {
-      toastSuccess("Nhập thành công");
+      toastSuccess("Nhập hóa đơn thành công");
       return {
         ...state,
         listProductChoose: state.listProductChoose.filter(

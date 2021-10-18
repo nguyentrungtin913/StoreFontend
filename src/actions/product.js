@@ -27,6 +27,35 @@ export const fetchListProductFailed = error => {
   };
 };
 
+
+export const setProductEditing = product => {
+  console.log(product)
+  return {
+    type: productConstants.SET_PRODUCT_EDITING,
+    payload: {
+      product
+    }
+  };
+};
+
+export const updateProduct = product => {
+  return {
+    type: productConstants.UPDATE_PRODUCT,
+    payload: {
+      product
+    }
+  };
+};
+
+export const updateProductSuccess = data => {
+  return {
+    type: productConstants.UPDATE_PRODUCT_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};
+
 export const deleteProduct = id => {
   return {
     type: productConstants.DELETE_PRODUCT,

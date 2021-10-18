@@ -1,6 +1,6 @@
 const styles = () => ({
   disable: {
-    display: "none"
+    display: 'none'
   }
 });
 

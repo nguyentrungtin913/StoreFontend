@@ -49,8 +49,10 @@ class Order extends Component {
   renderList() {
     let { listOrder, listOrderDetail, classes } = this.props;
     let { showDetail, dateStart, dateEnd } = this.state;
-    let xhtmlList,
-      xhtmlDetail = null;
+    let xhtmlList, xhtmlDetail = null;
+    let total = 0;
+
+
 
     if (showDetail) {
       xhtmlDetail = (
@@ -63,7 +65,7 @@ class Order extends Component {
     }
 
     if (dateStart && dateEnd) {
-      listOrder = _.filter(listOrder, function(order) {
+      listOrder = _.filter(listOrder, function (order) {
         return (
           new Date(order.orderDate).getTime() <= new Date(dateEnd).getTime() &&
           new Date(order.orderDate).getTime() >= new Date(dateStart).getTime()
@@ -71,8 +73,21 @@ class Order extends Component {
       });
     }
 
+    listOrder.forEach(element => {
+      if (element.orderType === "Xuất") {
+        total += element.orderTotal;
+      } else {
+        total -= element.orderTotal;
+      }
+    });
+
+    total = total.toLocaleString("it-IT", {
+      style: "currency",
+      currency: "VND"
+    });
+
     xhtmlList = (
-      <div>
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div className="panel panel-success">
           <div className="panel-heading">
             <h3 className="panel-title">Danh sách hóa đơn</h3>
@@ -99,10 +114,12 @@ class Order extends Component {
             </form>
           </div>
           <div className={`panel-body ${classes.text} ${classes.myPanelOrder}`}>
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <OrderList orders={listOrder} onClickDetail={this.onDetail} />
-            </div>
+            <OrderList orders={listOrder} onClickDetail={this.onDetail} />
           </div>
+        </div>
+        <div className={`${classes.total}`}>
+          <label>Tổng tiền: </label>
+          <input className={classes.textTotal} type="text" value={total}></input>
         </div>
       </div>
     );

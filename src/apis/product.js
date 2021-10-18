@@ -27,7 +27,14 @@ export const addProduct = product => {
     console.log(err.response.data);
   });
 };
-
+export const updateProduct = product => {
+  return axiosService.put(`${API_URL}/product`, product.product).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
 export const deleteProduct = productId => {
   return axiosService
     .delete(`${API_URL}/product?id=${productId}`)

@@ -1,5 +1,6 @@
 import * as productTypeConstants from "./../constants/productType";
 import { toastError, toastSuccess } from "../helpers/toastHelper";
+import _ from 'lodash';
 
 const initialState = {
   listProductType: [],
@@ -7,6 +8,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  let index = -1;
   switch (action.type) {
     case productTypeConstants.FETCH_PRODUCT_TYPE: {
       return {
@@ -21,6 +23,7 @@ const reducer = (state = initialState, action) => {
         listProductType: data
       };
     }
+
     case productTypeConstants.FETCH_PRODUCT_TYPE_FAILED: {
       const { error } = action.payload;
       toastError(error);
@@ -59,6 +62,20 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case productTypeConstants.UPDATE_PRODUCT_TYPE_SUCCESS: {
+      const { productType } = action.payload.data.data;
+      index = _.findIndex(state, (proType) => {
+        return proType.id === productType.id;
+      });
+      state[index] = productType;
+      toastSuccess("Cập nhật loại sản phẩm thành công");
+
+      return {
+        ...state,
+        listProductType: state.listProductType,
+        form: true
+      };
+    }
     case productTypeConstants.SET_PRODUCT_TYPE_EDITING: {
       const { productType } = action.payload;
       return {

@@ -1,6 +1,6 @@
 const styles = () => ({
   listOrder: {
-    textAlign: "center"
+    textAlign: 'center'
   }
 });
 

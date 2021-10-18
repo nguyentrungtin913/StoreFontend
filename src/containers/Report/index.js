@@ -10,10 +10,10 @@ import _ from "lodash";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CachedIcon from '@mui/icons-material/Cached';
 import IconButton from '@mui/material/IconButton';
 import Empty from "./../../assets/images/emptyList.png";
+import SortRoundedIcon from '@mui/icons-material/SortRounded';
 
 class Report extends Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class Report extends Component {
                 {...bindTrigger(popupState)}
                 className={` btn btn-lg btn-outline-primary m-2 ${classes.myButton}`}
               >
-                Sắp xếp <FilterAltIcon />
+                Sắp xếp <SortRoundedIcon />
               </button>
               <Menu {...bindMenu(popupState)}>
                 <MenuItem
@@ -119,6 +119,7 @@ class Report extends Component {
     this.setState({
       dateStart: "",
       dateEnd: "",
+      keyword: "",
     });
     const { reportActionsCreators } = this.props;
     const { fetchListReport } = reportActionsCreators;

@@ -1,12 +1,15 @@
 import * as productConstants from "./../constants/product";
 import { toastError, toastSuccess } from "../helpers/toastHelper";
+import _ from 'lodash';
 
 const initialState = {
   listProduct: [],
-  form: false
+  form: false,
+  productEditting: null
 };
 
 const reducer = (state = initialState, action) => {
+  let index = -1;
   switch (action.type) {
     case productConstants.FETCH_PRODUCT: {
       return {
@@ -29,6 +32,15 @@ const reducer = (state = initialState, action) => {
         listProduct: []
       };
     }
+    case productConstants.SET_PRODUCT_EDITING: {
+      const { product } = action.payload;
+      console.log(product)
+      return {
+        ...state,
+        productEditting: product
+      };
+    }
+
     case productConstants.OPEN_FORM: {
       return {
         ...state,
@@ -42,7 +54,7 @@ const reducer = (state = initialState, action) => {
     }
     case productConstants.ADD_PRODUCT_SUCCESS: {
       const { data } = action.payload;
-      toastSuccess("Thêm mới công việc thành công");
+      toastSuccess("Thêm sản phẩm thành công");
       return {
         ...state,
         listProduct: [data.data.product].concat(state.listProduct),
@@ -53,6 +65,21 @@ const reducer = (state = initialState, action) => {
       toastError("faild");
       return {
         ...state
+      };
+    }
+
+    case productConstants.UPDATE_PRODUCT_SUCCESS: {
+      const { product } = action.payload.data.data;
+      index = _.findIndex(state, (pro) => {
+        return pro.id === product.id;
+      });
+      state[index] = product;
+      toastSuccess("Cập nhật sản phẩm thành công");
+
+      return {
+        ...state,
+        listProduct: state.listProduct,
+        form: true
       };
     }
 

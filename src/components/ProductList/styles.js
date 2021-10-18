@@ -1,63 +1,69 @@
 const styles = () => ({
   listProduct: {
-    textAlign: "center",
-    fontSize: "16pt"
+    textAlign: 'center',
+    fontSize: '16pt'
   },
   listProductSell: {
-    textAlign: "center"
+    textAlign: 'center'
   },
   disable: {
-    display: "none"
+    display: 'none'
   },
   myTable: {
-    width: "100%"
+    width: '100%'
   },
   myTd: {
-    whiteSpace: "nowrap"
+    whiteSpace: 'nowrap'
   },
   myTr:{
     height: '100px',
   },
   myPanelProduct: {
-    height: "524px",
-    overflow: "scroll",
-    overflowX: "hidden"
+    height: '480px',
+    overflow: 'scroll',
+    overflowX: 'hidden'
+  },
+  resizeMyPanelProduct: {
+    height: '524px'
   },
   myPanelProductSellBody: {
-    height: "430px",
-    overflow: "scroll",
-    overflowX: "hidden",
-    fontSize: "13pt",
-    width: "100%"
+    height: '430px',
+    overflow: 'scroll',
+    overflowX: 'hidden',
+    fontSize: '13pt',
+    width: '100%'
   },
   myPanelProductSell: {
-    marginLeft: "15px"
+    marginLeft: '15px'
   },
   myInput: {
-    width: "80%",
-    float: "left",
-    textAlign: "right",
-    marginLeft: "4px",
-    marginTop: "0.5px",
-    marginBottom: "8px",
-    marginRight: "10px",
-    fontSize: "16pt",
-    height: "30px",
-    color: "black"
+    width: '80%',
+    float: 'left',
+    textAlign: 'right',
+    marginLeft: '4px',
+    marginTop: '0.5px',
+    marginBottom: '8px',
+    marginRight: '10px',
+    fontSize: '16pt',
+    height: '30px',
+    color: 'black'
   },
   show: {
-    display: "inherit"
+    display: 'inherit'
   },
   myButton: {
-    fontSize: "13pt",
-    backgroundColor: "blue",
-    color: "white"
+    fontSize: '13pt',
+    backgroundColor: 'blue',
+    color: 'white'
   },
   myMenuItem: {
-    fontSize: "1.4rem !important"
+    fontSize: '1.4rem !important'
   },
   inline: {
-    float: "left"
+    float: 'left'
+  },
+  search:{
+    fontSize: '13pt'
   }
 });
 

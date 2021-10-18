@@ -1,22 +1,32 @@
 const styles = () => ({
   date: {
-    width: "20%",
-    fontSize: "15pt",
-    margin: "-1% 3% 3% 2%",
-    display: "inline-block"
+    width: '20%',
+    fontSize: '15pt',
+    margin: '-1% 3% 3% 2%',
+    display: 'inline-block'
   },
   filter: {
-    fontSize: "15pt",
-    textAlign: "center",
-    margin: "20px 0 -30px 0"
+    fontSize: '15pt',
+    textAlign: 'center',
+    margin: '20px 0 -30px 0'
   },
   text: {
-    fontSize: "14pt"
+    fontSize: '14pt'
   },
   myPanelOrder: {
-    height: "470px",
-    overflow: "scroll",
-    overflowX: "hidden"
+    height: '430px',
+    overflow: 'scroll',
+    overflowX: 'hidden'
+  },
+  total:{
+    fontSize: '14pt',
+    textAlign: 'right',
+    color: 'black',
+    marginTop: '-10px'
+  },
+  textTotal:{
+    marginLeft: '1%',
+    textAlign: 'right',
   }
 });
 

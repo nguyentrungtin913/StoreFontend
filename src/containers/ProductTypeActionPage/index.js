@@ -14,8 +14,19 @@ class ProductTypeActionPage extends Component {
       name: "",
       newName: ""
     };
-    this.renderEditting = this.renderEditting.bind(this);
   }
+
+  // componentDidMount() {
+  //   const { productTypeEditting } = this.props;
+  //   if (productTypeEditting) {
+  //     this.setState({
+  //       id: productTypeEditting.id,
+  //       name: productTypeEditting.name
+  //     });
+
+  //   }
+  // }
+
   onChange = e => {
     var target = e.target;
     var name = target.name;
@@ -24,18 +35,19 @@ class ProductTypeActionPage extends Component {
       [name]: value
     });
   };
+
   onSave = e => {
     e.preventDefault();
-    let { id, name } = this.state;
+    let { id, name, newName } = this.state;
     const { productTypeActionCreators } = this.props;
-    const { addProductType } = productTypeActionCreators;
+    const { addProductType, updateProductType } = productTypeActionCreators;
     let productType = {};
     if (id) {
-      // productType = {
-      //     typeId: id,
-      //     typeName: newName
-      // }
-      // this.props.updateTypeProduct(productType);
+      productType = {
+        typeId: id,
+        typeName: newName
+      }
+      updateProductType(productType);
     } else {
       productType = {
         typeName: name
@@ -43,43 +55,28 @@ class ProductTypeActionPage extends Component {
       addProductType(productType);
     }
   };
+
   onCloseForm = () => {
     this.props.onCloseForm();
   };
 
-  renderEditting = () => {
-    const { productTypeEditting } = this.props;
-    if (productTypeEditting) {
-      //let { id, name } = productTypeEditting;
-      var tmp = this.state.id;
-      if (tmp !== "") {
-        this.setState({
-          id: productTypeEditting.id,
-          name: productTypeEditting
-        });
-      }
-    }
-  };
   render() {
     const { classes, form } = this.props;
-    // console.log("===========")
-    // console.log(productTypeEditting)
-    // console.log("===========")
+    console.log(form)
     if (form) {
       this.onCloseForm();
     }
 
-    this.renderEditting();
     var { id, name, newName } = this.state;
-
     var lable = id ? "Tên loại sản phẩm cũ" : "Tên loại sản phẩm";
+    var title = id ? "Sửa" : "Thêm";
     var className = id ? "" : classes.disable;
-    //() => this.renderEditting();
+
     return (
       <form onSubmit={this.onSave}>
         <div className="panel panel-primary mlr-10">
           <div className="panel-heading">
-            <h3 className="panel-title">Thêm loại sản phẩm</h3>
+            <h3 className="panel-title">{title} loại sản phẩm</h3>
           </div>
           <div className="panel-body">
             <div>
@@ -104,18 +101,15 @@ class ProductTypeActionPage extends Component {
                 onChange={this.onChange}
               />
             </div>
+
             <button
-              className="btn btn-lg btn-warning m-2"
-              onClick={this.onCloseForm}
-            >
-              Trở lại
-            </button>
-            <button type="submit" className="btn btn-lg btn-primary">
+              type="submit"
+              className="btn btn-lg btn-primary">
               Lưu
             </button>
           </div>
         </div>
-      </form>
+      </form >
     );
   }
 }
@@ -126,7 +120,6 @@ ProductTypeActionPage.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    productTypeEditting: state.productType.productTypeEditting,
     form: state.productType.form
   };
 };

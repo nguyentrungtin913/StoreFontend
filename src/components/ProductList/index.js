@@ -106,7 +106,8 @@ class ProductList extends Component {
       onClickDelete,
       onShowForm,
       type,
-      buy
+      buy,
+      onClickEdit
     } = this.props;
     let { txtName, keyword, filterList } = this.state;
     let labelName = "";
@@ -124,17 +125,19 @@ class ProductList extends Component {
     }
 
     let classFilter = "";
+    let resizePanel = "";
     let show = "";
     let hidden = classes.disable;
     if (filter) {
       classFilter = classes.disable;
       show = classes.show;
+      resizePanel = classes.resizeMyPanelProduct;
     }
-    if(productsChoose.length > 0){
+    if (productsChoose.length > 0) {
       hidden = "";
     }
     return (
-      <div>
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <button
           className={` btn btn-lg btn-outline-primary m-2 ${classes.inline} ${classFilter}`}
           onClick={onShowForm}
@@ -142,7 +145,7 @@ class ProductList extends Component {
           <h3>Thêm sản phẩm</h3>
         </button>
         {this.renderSort(classFilter)}
-        <table className={classes.myTable}>
+        <table className={`${classes.myTable} col-xs-12 col-sm-12 col-md-12 col-lg-12`}>
           <tbody>
             <tr>
               <td rowSpan={2}>
@@ -152,9 +155,9 @@ class ProductList extends Component {
                       Danh sách sản phẩm {labelName}
                     </h3>
                   </div>
-                  <div className={`panel-body  ${classes.myPanelProduct}`}>
+                  <div className={`panel-body ${classes.myPanelProduct} ${resizePanel}`}>
                     <table
-                      className={`table table-hover ${classes.listProduct}`}
+                      className={`table table-hover ${classes.listProduct} col-xs-12 col-sm-12 col-md-12 col-lg-12`}
                     >
                       <thead>
                         <tr>
@@ -174,7 +177,7 @@ class ProductList extends Component {
                           <td colSpan="9">
                             <input
                               type="text"
-                              className="form-control search"
+                              className={`form-control ${classes.search}`}
                               value={keyword}
                               name="keyword"
                               placeholder="Nhập tên sản phẩm cần lọc"
@@ -192,6 +195,7 @@ class ProductList extends Component {
                               onChoose={this.props.onChoose}
                               onClickDelete={() => onClickDelete(product)}
                               type={type}
+                              onClickEdit={() => onClickEdit(product)}
                             />
                           );
                         })}
@@ -210,9 +214,7 @@ class ProductList extends Component {
                   <div
                     className={`panel-body ${classes.myPanelProductSellBody}`}
                   >
-                    <table
-                      className={`panel-body  ${classes.listProductSell} `}
-                    >
+                    <table className={`panel-body  ${classes.listProductSell} col-xs-12 col-sm-12 col-md-12 col-lg-12`}  >
                       <thead>
                         <tr>
                           <th>Hình ảnh</th>

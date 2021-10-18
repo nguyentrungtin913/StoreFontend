@@ -1,7 +1,7 @@
-import notFound from "./../../assets/images/notFound.gif";
+import notFound from './../../assets/images/notFound.gif';
 const styles = () => ({
   backgroundImage: {
-    backgroundImage: "url(" + notFound + ")"
+    backgroundImage: 'url(' + notFound + ')'
   }
 });
 

@@ -29,6 +29,22 @@ class ProductActionPage extends Component {
     const { productTypeActionCreators } = this.props;
     const { fetchListProductType } = productTypeActionCreators;
     fetchListProductType();
+
+    const { productEditting } = this.props;
+    if (productEditting) {
+      this.setState({
+        id: productEditting.id,
+        path: productEditting.image,
+        name: productEditting.name,
+        priceImport: productEditting.priceImport,
+        priceExport: productEditting.priceExport,
+        amount: productEditting.amount,
+        amountSell: productEditting.amountSell,
+        note: productEditting.note,
+        type: productEditting.type,
+      });
+
+    }
   }
 
   createImage(file) {
@@ -71,8 +87,8 @@ class ProductActionPage extends Component {
         var img = document.getElementById("showImage");
         img.file = file;
         var reader = new FileReader();
-        reader.onload = (function(aImg) {
-          return function(e) {
+        reader.onload = (function (aImg) {
+          return function (e) {
             aImg.src = e.target.result;
           };
         })(img);
@@ -95,15 +111,22 @@ class ProductActionPage extends Component {
       type
     } = this.state;
     const { productActionCreators } = this.props;
-    const { addProduct } = productActionCreators;
+    const { addProduct, updateProduct } = productActionCreators;
 
     let product = {};
     if (id) {
-      // productType = {
-      //     typeId: id,
-      //     typeName: newName
-      // }
-      // this.props.updateTypeProduct(productType);
+      product = {
+        id: id,
+        name: name,
+        image: image,
+        priceImport: priceImport,
+        priceExport: priceExport,
+        amount: amount,
+        amountSell: amountSell,
+        note: note,
+        type: type
+      }
+      updateProduct(product);
     } else {
       product = {
         name: name,
@@ -150,7 +173,7 @@ class ProductActionPage extends Component {
     return result;
   };
   render() {
-    const { classes, listProductType, form } = this.props;
+    const { classes, listProductType, form, productEditting } = this.props;
     if (form) {
       this.onCloseForm();
     }
@@ -164,9 +187,10 @@ class ProductActionPage extends Component {
       note,
       path
     } = this.state;
+    console.log(productEditting);
     return (
       <form onSubmit={this.onSave}>
-        <div className={`panel panel-primary ${classes.mlr10} `}>
+        <div className={`panel panel-primary ${classes.myPanelActionProduct} `}>
           <div className="panel-heading">
             <h3 className="panel-title">Thêm sản phẩm</h3>
           </div>
@@ -273,6 +297,16 @@ class ProductActionPage extends Component {
                   className={`form-control ${classes.text} `}
                 />
               </div>
+            </div>
+            <div className={classes.box}>
+              <img
+                id="showImage"
+                className={classes.imagePreview}
+                src={this.showImage(path)}
+                alt="ProductImage"
+              />
+            </div>
+            <div className={classes.boxButton}>
               <button
                 className="btn btn-lg btn-warning m-2"
                 onClick={this.onCloseForm}
@@ -282,14 +316,6 @@ class ProductActionPage extends Component {
               <button type="submit" className="btn btn-lg btn-primary">
                 Lưu
               </button>
-            </div>
-            <div>
-              <img
-                id="showImage"
-                className={classes.imagePreview}
-                src={this.showImage(path)}
-                alt="ProductImage"
-              />
             </div>
           </div>
         </div>
@@ -306,7 +332,7 @@ const mapStateToProps = state => {
   return {
     productTypeEditting: state.productType.productTypeEditting,
     listProductType: state.productType.listProductType,
-    form: state.product.form
+    form: state.product.form,
   };
 };
 const mapDispatchToProps = dispatch => {
