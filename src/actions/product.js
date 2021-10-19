@@ -29,7 +29,6 @@ export const fetchListProductFailed = error => {
 
 
 export const setProductEditing = product => {
-  console.log(product)
   return {
     type: productConstants.SET_PRODUCT_EDITING,
     payload: {

@@ -63,8 +63,8 @@ import { loginAPI, logoutAPI } from "./../apis/auth";
 import * as authTypes from "./../constants/auth";
 
 //order
-import { fetchListOrderSuccess } from "../actions/order";
-import { getListOrder } from "./../apis/order";
+import { fetchListOrderSuccess, deleteOrderSuccess } from "../actions/order";
+import { getListOrder, deleteOrder } from "./../apis/order";
 import * as orderTypes from "./../constants/order";
 
 //orderDetail
@@ -72,7 +72,7 @@ import { fetchListOrderDetailSuccess } from "../actions/orderDetail";
 import { getListOrderDetail } from "./../apis/orderDetail";
 import * as orderDetailTypes from "./../constants/orderDetail";
 
-//order
+//report
 import { fetchListReportSuccess } from "../actions/report";
 import { report } from "./../apis/report";
 import * as reportTypes from "./../constants/report";
@@ -177,7 +177,6 @@ function* updateProductSaga({ payload }) {
   const resp = yield call(updateProduct, {
     product
   });
-  console.log(resp)
   if (resp) {
     const { data } = resp;
     yield put(updateProductSuccess(data));
@@ -326,6 +325,19 @@ function* watchFetchListOrderAction() {
   }
 }
 
+function* deleteOrderSaga({ payload }) {
+  const { id } = payload;
+  yield put(showLoading());
+  const resp = yield call(deleteOrder, id);
+  if (resp) {
+    const { data } = resp;
+    yield put(deleteOrderSuccess(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
+
 // orderDetail
 
 function* watchFetchListOrderDetailAction() {
@@ -407,6 +419,7 @@ function* rootSaga() {
   yield takeEvery(productTypes.UPDATE_PRODUCT, updateProductSaga);
   //order
   yield fork(watchFetchListOrderAction);
+  yield takeLatest(orderTypes.DELETE_ORDER, deleteOrderSaga);
   //orderdetail
   yield fork(watchFetchListOrderDetailAction);
   //report

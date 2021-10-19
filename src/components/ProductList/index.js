@@ -8,6 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import Empty from "./../../assets/images/emptyList.png";
 
 class ProductList extends Component {
   constructor(props) {
@@ -136,6 +137,35 @@ class ProductList extends Component {
     if (productsChoose.length > 0) {
       hidden = "";
     }
+    let xhtml;
+    if (!products.length > 0) {
+      xhtml = (
+        <tr>
+          <td colSpan={9} style={{
+            backgroundImage: `url(${Empty})`
+          }} className={classes.backgroundEmpty}><div className={classes.textEmpty}></div></td>
+        </tr>
+      )
+    } else {
+      xhtml = (
+        products.map((product, index) => {
+          return (
+            <ProductItem
+              product={product}
+              key={product.id}
+              index={index}
+              filter={filter}
+              onChoose={this.props.onChoose}
+              onClickDelete={() => onClickDelete(product)}
+              type={type}
+              onClickEdit={() => onClickEdit(product)}
+            />
+          );
+        })
+      )
+    }
+
+
     return (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <button
@@ -185,20 +215,7 @@ class ProductList extends Component {
                             />
                           </td>
                         </tr>
-                        {products.map((product, index) => {
-                          return (
-                            <ProductItem
-                              product={product}
-                              key={product.id}
-                              index={index}
-                              filter={filter}
-                              onChoose={this.props.onChoose}
-                              onClickDelete={() => onClickDelete(product)}
-                              type={type}
-                              onClickEdit={() => onClickEdit(product)}
-                            />
-                          );
-                        })}
+                        {xhtml}
                       </tbody>
                     </table>
                   </div>

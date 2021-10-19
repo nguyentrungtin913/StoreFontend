@@ -17,3 +17,14 @@ export const getListOrder = (params = {}) => {
     console.log(err.response.data);
   });
 };
+
+export const deleteOrder = orderId => {
+  return axiosService
+    .delete(`${API_URL}/order?orderId=${orderId}`)
+    .catch(err => {
+      if (err.response.data[0]) {
+        toastError(err.response.data[0].clientMsg);
+      }
+      console.log(err.response.data);
+    });
+};

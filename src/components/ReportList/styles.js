@@ -55,9 +55,6 @@ const styles = () => ({
   },
   inline: {
     float: 'left'
-  },
-  search:{
-    fontSize: '13pt'
   }
 });
 

@@ -34,8 +34,13 @@ class Product extends Component {
 
   onClickEdit = product => {
     const { productActionCreators } = this.props;
-    const { setProductEditing } = productActionCreators;
+    const { setProductEditing, openForm } = productActionCreators;
     setProductEditing(product);
+    openForm();
+    this.setState({
+      add: true
+    });
+
   }
 
   componentDidMount() {
@@ -69,7 +74,7 @@ class Product extends Component {
       xhtmlAdd = null;
     let listProductChoose = [];
 
-    if (add || productEditting) {
+    if (add) {
       xhtmlAdd = <ProductActionPage
         productEditting={productEditting}
         onCloseForm={this.onCloseForm}

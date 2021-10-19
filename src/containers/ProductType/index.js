@@ -11,7 +11,7 @@ class ProductType extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      add: false
+      add: false,
     };
   }
   componentDidMount() {
@@ -28,7 +28,6 @@ class ProductType extends Component {
     });
   };
   onCloseForm = () => {
-    console.log("here")
     this.setState({
       add: false
     });
@@ -43,13 +42,18 @@ class ProductType extends Component {
   };
   handleEditProductType = productType => {
     const { productTypeActionCreators } = this.props;
-    const { setProductTypeEditing } = productTypeActionCreators;
+    const { setProductTypeEditing, openForm } = productTypeActionCreators;
     setProductTypeEditing(productType);
+    openForm();
+    this.setState({
+      add: true
+    });
+
 
   };
   renderBoard() {
     const { add } = this.state;
-    const { listProductType, productTypeEditting } = this.props;
+    let { listProductType, productTypeEditting } = this.props;
     let xhtmlList, xhtmlAdd = null;
     xhtmlList = (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -61,13 +65,15 @@ class ProductType extends Component {
         />
       </div>
     );
-      // productTypeEditting={productTypeEditting}
+
     xhtmlAdd = (
       <ProductTypeActionPage
         onCloseForm={this.onCloseForm}
+        productTypeEditting={productTypeEditting}
       ></ProductTypeActionPage>
     );
-    if (add || productTypeEditting) {
+    if (add) {
+      productTypeEditting = {};
       return xhtmlAdd;
     } else {
       return xhtmlList;

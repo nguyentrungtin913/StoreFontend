@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
       };
     }
     case orderDetailConstants.FETCH_ORDER_DETAIL_SUCCESS: {
-      console.log(action.payload.data.ListOrderDetail);
       const data = action.payload.data.ListOrderDetail;
       return {
         ...state,

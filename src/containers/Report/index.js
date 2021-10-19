@@ -21,7 +21,7 @@ class Report extends Component {
     this.state = {
       add: false,
       keyword: "",
-      filter: 0,
+      filter: 1,
       dateStart: "",
       dateEnd: "",
       anchorEl: null,
@@ -32,7 +32,10 @@ class Report extends Component {
   componentDidMount() {
     const { reportActionsCreators } = this.props;
     const { fetchListReport } = reportActionsCreators;
-    fetchListReport();
+    let params = {
+      type: this.state.filter
+    }
+    fetchListReport(params);
   }
   onChange = e => {
     var target = e.target;
@@ -75,7 +78,6 @@ class Report extends Component {
       type: type
     }
     const { reportActionsCreators } = this.props;
-    console.log(params)
     const { fetchListReport } = reportActionsCreators;
     fetchListReport(params);
   };
@@ -96,13 +98,13 @@ class Report extends Component {
               </button>
               <Menu {...bindMenu(popupState)}>
                 <MenuItem
-                  onClick={() => this.filterList(0, popupState)}
+                  onClick={() => this.filterList(1, popupState)}
                   className={classes.myMenuItem}
                 >
                   Bán chạy
                 </MenuItem>
                 <MenuItem
-                  onClick={() => this.filterList(1, popupState)}
+                  onClick={() => this.filterList(0, popupState)}
                   className={classes.myMenuItem}
                 >
                   Bán chậm
@@ -127,19 +129,39 @@ class Report extends Component {
   }
 
   rederContent = (listProduct, classes) => {
-    let xhtml = null;
+    let xhtml, xFilter = null;
+    let { keyword } = this.state;
+    xFilter = (
+      <tr>
+        <td colSpan="9">
+          <input
+            type="text"
+            className={`form-control ${classes.search}`}
+            value={keyword}
+            name="keyword"
+            placeholder="Nhập tên sản phẩm cần lọc"
+            onChange={this.onChange}
+          />
+        </td>
+      </tr>
+    )
     if (listProduct.length > 0) {
+
       xhtml = (
-        <ReportList
-          products={listProduct}
-          onShowForm={this.onShowForm}
-          onFind={this.onFind}
-          filterList={this.onfilterList}
-        />
+        <tbody>
+          {xFilter}
+          <ReportList
+            products={listProduct}
+            onShowForm={this.onShowForm}
+            onFind={this.onFind}
+            filterList={this.onfilterList}
+          />
+        </tbody>
       )
     } else {
       xhtml = (
         <tbody >
+          {xFilter}
           <tr>
             <td colSpan={8} style={{
               backgroundImage: `url(${Empty})`

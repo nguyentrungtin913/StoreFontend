@@ -46,6 +46,14 @@ class Order extends Component {
       showDetail: false
     });
   };
+  onDelete = id => {
+    if (confirm(`Bạn có muốn hóa đơn không ?`)) { //eslint-disable-line
+      const { reportActionsCreators } = this.props;
+      const { deleteOrder } = reportActionsCreators;
+      deleteOrder(id);
+    }
+  };
+
   renderList() {
     let { listOrder, listOrderDetail, classes } = this.props;
     let { showDetail, dateStart, dateEnd } = this.state;
@@ -114,7 +122,10 @@ class Order extends Component {
             </form>
           </div>
           <div className={`panel-body ${classes.text} ${classes.myPanelOrder}`}>
-            <OrderList orders={listOrder} onClickDetail={this.onDetail} />
+            <OrderList
+              orders={listOrder}
+              onClickDetail={this.onDetail}
+              onClickDelete={this.onDelete} />
           </div>
         </div>
         <div className={`${classes.total}`}>

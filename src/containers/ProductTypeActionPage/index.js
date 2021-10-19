@@ -16,16 +16,16 @@ class ProductTypeActionPage extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   const { productTypeEditting } = this.props;
-  //   if (productTypeEditting) {
-  //     this.setState({
-  //       id: productTypeEditting.id,
-  //       name: productTypeEditting.name
-  //     });
+  componentDidMount() {
+    const { productTypeEditting } = this.props;
+    if (productTypeEditting) {
+      this.setState({
+        id: productTypeEditting.id,
+        name: productTypeEditting.name
+      });
 
-  //   }
-  // }
+    }
+  }
 
   onChange = e => {
     var target = e.target;
@@ -62,7 +62,6 @@ class ProductTypeActionPage extends Component {
 
   render() {
     const { classes, form } = this.props;
-    console.log(form)
     if (form) {
       this.onCloseForm();
     }
@@ -101,6 +100,13 @@ class ProductTypeActionPage extends Component {
                 onChange={this.onChange}
               />
             </div>
+            <button
+              type="button"
+              className="btn btn-lg btn-warning m-2"
+              onClick={this.onCloseForm}
+            >
+              Trở lại
+            </button>
 
             <button
               type="submit"

@@ -31,7 +31,10 @@ const styles = () => ({
     backgroundPosition: 'center',
     backgroundSize: '220px',
     backgroundRepeat: 'no-repeat',
-    height: '313px'
+    height: '261px'
+  },
+  search:{
+    fontSize: '13pt'
   }
 });
 

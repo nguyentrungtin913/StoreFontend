@@ -36,22 +36,9 @@ class ReportList extends Component {
 
 
   render() {
-    let { products, filter, type , classes} = this.props;
-    let { keyword } = this.state;
+    let { products, filter, type } = this.props;
     return (
-      <tbody>
-        <tr>
-          <td colSpan="9">
-            <input
-              type="text"
-              className={`form-control ${classes.search}`}
-              value={keyword}
-              name="keyword"
-              placeholder="Nhập tên sản phẩm cần lọc"
-              onChange={this.onChange}
-            />
-          </td>
-        </tr>
+      <>
         {products.map((product, index) => {
           return (
             <ReportItem
@@ -63,7 +50,7 @@ class ReportList extends Component {
             />
           );
         })}
-      </tbody>
+      </>
     );
   }
 }

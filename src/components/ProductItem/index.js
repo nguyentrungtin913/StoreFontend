@@ -6,7 +6,6 @@ import { API_URL } from "./../../constants";
 
 class ProductItem extends Component {
   onChoose = product => {
-    //console.log(product)
     this.props.onChoose(product);
   };
 

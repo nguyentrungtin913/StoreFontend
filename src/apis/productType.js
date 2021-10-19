@@ -19,10 +19,10 @@ export const getListProductType = (params = {}) => {
 };
 
 export const addProductType = productType => {
-  console.log("=====api=====");
-  console.log(`${API_URL}/product-type`);
-  console.log("data", productType.productType);
-  console.log("=====api=====");
+  // console.log("=====api=====");
+  // console.log(`${API_URL}/product-type`);
+  // console.log("data", productType.productType);
+  // console.log("=====api=====");
   return axiosService
     .post(`${API_URL}/product-type`, productType.productType)
     .catch(err => {

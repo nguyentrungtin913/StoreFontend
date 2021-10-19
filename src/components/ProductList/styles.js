@@ -64,7 +64,14 @@ const styles = () => ({
   },
   search:{
     fontSize: '13pt'
-  }
+  },
+  backgroundEmpty:{
+    backgroundPosition: 'center',
+    backgroundSize: '220px',
+    backgroundRepeat: 'no-repeat',
+    height: '311px'
+  },
+
 });
 
 export default styles;

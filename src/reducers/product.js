@@ -34,7 +34,6 @@ const reducer = (state = initialState, action) => {
     }
     case productConstants.SET_PRODUCT_EDITING: {
       const { product } = action.payload;
-      console.log(product)
       return {
         ...state,
         productEditting: product
@@ -70,10 +69,10 @@ const reducer = (state = initialState, action) => {
 
     case productConstants.UPDATE_PRODUCT_SUCCESS: {
       const { product } = action.payload.data.data;
-      index = _.findIndex(state, (pro) => {
+      index = _.findIndex(state.listProduct, (pro) => {
         return pro.id === product.id;
       });
-      state[index] = product;
+      state.listProduct[index] = product;
       toastSuccess("Cập nhật sản phẩm thành công");
 
       return {
@@ -89,7 +88,6 @@ const reducer = (state = initialState, action) => {
       };
     }
     case productConstants.DELETE_PRODUCT_SUCCESS: {
-      //console.log(action.payload.data.data.product)
       const { product } = action.payload.data.data;
       toastSuccess("Xóa sản phẩm `" + product.name + " ` thành công");
       return {

@@ -173,7 +173,7 @@ class ProductActionPage extends Component {
     return result;
   };
   render() {
-    const { classes, listProductType, form, productEditting } = this.props;
+    const { classes, listProductType, form } = this.props;
     if (form) {
       this.onCloseForm();
     }
@@ -187,7 +187,6 @@ class ProductActionPage extends Component {
       note,
       path
     } = this.state;
-    console.log(productEditting);
     return (
       <form onSubmit={this.onSave}>
         <div className={`panel panel-primary ${classes.myPanelActionProduct} `}>

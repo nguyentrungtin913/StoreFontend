@@ -29,6 +29,7 @@ class OrderList extends Component {
                   key={order.id}
                   index={index}
                   onClickDetail={this.props.onClickDetail}
+                  onClickDelete ={this.props.onClickDelete}
                 />
               );
             })}

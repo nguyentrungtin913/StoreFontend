@@ -64,10 +64,10 @@ const reducer = (state = initialState, action) => {
 
     case productTypeConstants.UPDATE_PRODUCT_TYPE_SUCCESS: {
       const { productType } = action.payload.data.data;
-      index = _.findIndex(state, (proType) => {
+      index = _.findIndex(state.listProductType, (proType) => {
         return proType.id === productType.id;
       });
-      state[index] = productType;
+      state.listProductType[index] = productType;
       toastSuccess("Cập nhật loại sản phẩm thành công");
 
       return {

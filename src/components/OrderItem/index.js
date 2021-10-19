@@ -7,13 +7,11 @@ class OrderItem extends Component {
   onDetail = id => {
     this.props.onClickDetail(id);
   };
-  onDetele = id => {
-    if (confirm(`Bạn có muốn hóa đơn không ?`)) { //eslint-disable-line
-      const { productTypeActionCreators } = this.props;
-      const { deleteProductType } = productTypeActionCreators;
-      deleteProductType(id);
-    }
+
+  onDelete = id => {
+    this.props.onClickDelete(id);
   };
+
   render() {
     let { order, index } = this.props;
     let name;
@@ -40,7 +38,7 @@ class OrderItem extends Component {
           </button>
           <button
             className={`btn btn-lg btn-outline-danger m-2`}
-            onClick={() => this.onDetele(order.orderId)}
+            onClick={() => this.onDelete(order.orderId)}
           >
             Xóa
           </button>
