@@ -15,7 +15,7 @@ const styles = () => ({
     marginLeft: "auto",
     marginRight: "auto",
     top: "40%",
-    width: 100
+    width: 150
   }
 });
 

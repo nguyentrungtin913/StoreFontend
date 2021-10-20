@@ -56,7 +56,7 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Đăng xuất</MenuItem>
       </Menu>
     );
   };
@@ -87,7 +87,7 @@ class Header extends Component {
               aria-label="Open drawer"
               onClick={this.handleToggleSidebar}
             >
-              <MenuIcon />
+              <MenuIcon fontSize="large"  />
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               {name}
@@ -102,7 +102,7 @@ class Header extends Component {
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle  fontSize="large"   />
               </IconButton>
             </div>
           </Toolbar>

@@ -199,7 +199,7 @@ class Report extends Component {
         {this.renderSort()}
         <div className={`panel panel-success`}>
           <div className="panel-heading">
-            <h3 className="panel-title">Danh sách sản phẩm bán</h3>
+            <h3 className="panel-title">Danh sách sản phẩm đã bán</h3>
           </div>
           <div className={`${classes.filter}`}>
             <form>
