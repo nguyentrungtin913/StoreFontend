@@ -10,13 +10,20 @@ import * as orderDetailActions from "./../../actions/orderDetail";
 import styles from "./styles";
 import _ from "lodash";
 
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import SortRoundedIcon from '@mui/icons-material/SortRounded';
+
+
 class Order extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showDetail: false,
       dateStart: "",
-      dateEnd: ""
+      dateEnd: "",
+      filter: 0
     };
   }
   onChange = e => {
@@ -54,14 +61,61 @@ class Order extends Component {
     }
   };
 
+  filterList = (type, popupState) => {
+    this.setState({
+      filter: type
+    });
+    popupState.close();
+  };
+
+  renderSort() {
+    let xhtml = null;
+    const { classes } = this.props;
+    xhtml = (
+      <div>
+        <PopupState variant="popover" popupId="demo-popup-menu">
+          {popupState => (
+            <React.Fragment>
+              <button
+                variant="contained"
+                {...bindTrigger(popupState)}
+                className={` btn btn-lg btn-outline-primary m-2 ${classes.myButton}`}
+              >
+                Phân loại <SortRoundedIcon />
+              </button>
+              <Menu {...bindMenu(popupState)}>
+                <MenuItem
+                  onClick={() => this.filterList(0, popupState)}
+                  className={classes.myMenuItem}
+                >
+                  Tất cả
+                </MenuItem>
+                <MenuItem
+                  onClick={() => this.filterList(1, popupState)}
+                  className={classes.myMenuItem}
+                >
+                  Nhập
+                </MenuItem>
+                <MenuItem
+                  onClick={() => this.filterList(2, popupState)}
+                  className={classes.myMenuItem}
+                >
+                  Xuất
+                </MenuItem>
+              </Menu>
+            </React.Fragment>
+          )}
+        </PopupState>
+      </div>
+    );
+    return xhtml;
+  }
   renderList() {
     let { listOrder, listOrderDetail, classes } = this.props;
-    let { showDetail, dateStart, dateEnd } = this.state;
+    let { showDetail, dateStart, dateEnd, filter } = this.state;
     let xhtmlList, xhtmlDetail = null;
     let total = 0;
-
-
-
+    let labelPanel = "";
     if (showDetail) {
       xhtmlDetail = (
         <OrderDetailList
@@ -81,6 +135,20 @@ class Order extends Component {
       });
     }
 
+    if (filter === 1) {
+      labelPanel = "( Nhập )";
+      listOrder = _.filter(listOrder, function (order) {
+        return order.orderType === 'Nhập';
+      })
+    } else if (filter === 2) {
+      labelPanel = "( Xuất )";
+      listOrder = _.filter(listOrder, function (order) {
+        return order.orderType === 'Xuất';
+      })
+    } else {
+      labelPanel = "( Tất cả )";
+    }
+
     listOrder.forEach(element => {
       if (element.orderType === "Xuất") {
         total += element.orderTotal;
@@ -98,7 +166,7 @@ class Order extends Component {
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div className="panel panel-success">
           <div className="panel-heading">
-            <h3 className="panel-title">Danh sách hóa đơn</h3>
+            <h3 className="panel-title">Danh sách hóa đơn {labelPanel}</h3>
           </div>
           <div className={`${classes.filter}`}>
             <form>
@@ -142,6 +210,7 @@ class Order extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.taskBoard} id="1">
+        {this.renderSort()}
         {this.renderList()}
       </div>
     );

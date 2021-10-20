@@ -14,7 +14,7 @@ const styles = () => ({
     fontSize: '14pt'
   },
   myPanelOrder: {
-    height: '430px',
+    height: '380px',
     overflow: 'scroll',
     overflowX: 'hidden'
   },
@@ -27,7 +27,16 @@ const styles = () => ({
   textTotal:{
     marginLeft: '1%',
     textAlign: 'right',
-  }
+  },
+  myButton: {
+    fontSize: '13pt',
+    marginLeft: '15px !important',
+    backgroundColor: 'blue',
+    color: 'white'
+  },
+  myMenuItem: {
+    fontSize: '1.4rem !important'
+  },
 });
 
 export default styles;
