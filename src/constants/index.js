@@ -10,8 +10,8 @@ import Report from "../containers/Report";
 
 
 export const API_ENDPOINT = "http://localhost:3000";
-export const API_URL = "http://myproject.io";
-//export const API_URL = 'https://backend-myproject.herokuapp.com';
+//export const API_URL = "http://myproject.io";
+export const API_URL = 'https://backend-myproject.herokuapp.com';
 
 export const STATUSES = [
   {
