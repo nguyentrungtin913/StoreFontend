@@ -63,8 +63,8 @@ import { loginAPI, logoutAPI } from "./../apis/auth";
 import * as authTypes from "./../constants/auth";
 
 //order
-import { fetchListOrderSuccess, deleteOrderSuccess } from "../actions/order";
-import { getListOrder, deleteOrder } from "./../apis/order";
+import { fetchListOrderSuccess, deleteOrderSuccess, exportOrderSuccess } from "../actions/order";
+import { getListOrder, deleteOrder, exportOrder } from "./../apis/order";
 import * as orderTypes from "./../constants/order";
 
 //orderDetail
@@ -338,6 +338,29 @@ function* deleteOrderSaga({ payload }) {
 }
 
 
+function* exportOrderSaga({ payload }) {
+  const { params } = payload;
+  yield put(showLoading());
+  const resp = yield call(exportOrder, params);
+  console.log(resp)
+
+  if (resp) {
+    const { data } = resp;
+    yield put(exportOrderSuccess(data));
+
+    const url = window.URL.createObjectURL(new Blob([data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Order.csv'); //or any other extension
+    document.body.appendChild(link);
+    link.click();
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
+
+
 // orderDetail
 
 function* watchFetchListOrderDetailAction() {
@@ -420,6 +443,7 @@ function* rootSaga() {
   //order
   yield fork(watchFetchListOrderAction);
   yield takeLatest(orderTypes.DELETE_ORDER, deleteOrderSaga);
+  yield takeEvery(orderTypes.EXPORT_ORDER, exportOrderSaga);
   //orderdetail
   yield fork(watchFetchListOrderDetailAction);
   //report

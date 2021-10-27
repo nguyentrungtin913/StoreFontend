@@ -41,14 +41,20 @@ const reducer = (state = initialState, action) => {
     }
 
     case productConstants.OPEN_FORM: {
+      let { type } = action.payload;
+      let proEditting = state.productEditting;
+      if (type) {
+        proEditting = null;
+      }
       return {
         ...state,
-        form: false
+        form: false,
+        productEditting: proEditting,
       };
     }
     case productConstants.ADD_PRODUCT: {
       return {
-        ...state
+        ...state,
       };
     }
     case productConstants.ADD_PRODUCT_SUCCESS: {

@@ -27,10 +27,10 @@ export const fetchListProductTypeFailed = error => {
   };
 };
 
-export const openForm = () => {
+export const openForm = type => {
   return {
     type: productTypeConstants.OPEN_FORM,
-    payload: {}
+    payload: {type}
   };
 };
 

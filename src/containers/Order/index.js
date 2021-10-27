@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import OrderList from "../../components/OrderList";
 import OrderDetailList from "../../components/OrderDetailList";
-import * as reportActions from "./../../actions/order";
+import * as orderActions from "./../../actions/order";
 import * as orderDetailActions from "./../../actions/orderDetail";
 import styles from "./styles";
 import _ from "lodash";
+
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -35,8 +36,8 @@ class Order extends Component {
     });
   };
   componentDidMount() {
-    const { reportActionsCreators } = this.props;
-    const { fetchListOrder } = reportActionsCreators;
+    const { orderActionsCreators } = this.props;
+    const { fetchListOrder } = orderActionsCreators;
     fetchListOrder();
   }
 
@@ -55,8 +56,8 @@ class Order extends Component {
   };
   onDelete = id => {
     if (confirm(`Bạn có muốn hóa đơn không ?`)) { //eslint-disable-line
-      const { reportActionsCreators } = this.props;
-      const { deleteOrder } = reportActionsCreators;
+      const { orderActionsCreators } = this.props;
+      const { deleteOrder } = orderActionsCreators;
       deleteOrder(id);
     }
   };
@@ -67,6 +68,19 @@ class Order extends Component {
     });
     popupState.close();
   };
+
+  onExport = ()=>{
+    let { filter, dateStart, dateEnd }= this.state;
+    let params = {
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      type: filter
+    }
+
+    const { orderActionsCreators } = this.props;
+    const { exportOrder } = orderActionsCreators;
+    exportOrder(params);
+  }
 
   renderSort() {
     let xhtml = null;
@@ -199,7 +213,14 @@ class Order extends Component {
         <div className={`${classes.total}`}>
           <label>Tổng tiền: </label>
           <input className={classes.textTotal} type="text" value={total}></input>
+          <button
+            className={`btn btn-lg btn-outline-success m-2 ${classes.export}`}
+            onClick={() => this.onExport()}
+          >
+            Xuất File
+          </button>
         </div>
+
       </div>
     );
 
@@ -219,7 +240,7 @@ class Order extends Component {
 
 Order.propTypes = {
   classes: PropTypes.object,
-  reportActionsCreators: PropTypes.shape({
+  orderActionsCreators: PropTypes.shape({
     fetchListOrder: PropTypes.func
   }),
   listOrder: PropTypes.array
@@ -233,7 +254,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    reportActionsCreators: bindActionCreators(reportActions, dispatch),
+    orderActionsCreators: bindActionCreators(orderActions, dispatch),
     orderDetailActionsCreators: bindActionCreators(orderDetailActions, dispatch)
   };
 };

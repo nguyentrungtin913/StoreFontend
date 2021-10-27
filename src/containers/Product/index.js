@@ -21,7 +21,7 @@ class Product extends Component {
   onShowForm = () => {
     const { productActionCreators } = this.props;
     const { openForm } = productActionCreators;
-    openForm();
+    openForm("add");
     this.setState({
       add: true
     });

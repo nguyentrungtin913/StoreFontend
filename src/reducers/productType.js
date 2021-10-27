@@ -34,15 +34,22 @@ const reducer = (state = initialState, action) => {
     }
 
     case productTypeConstants.OPEN_FORM: {
+      let { type } = action.payload;
+      let proTypeEditting = state.productTypeEditting;
+      if (type) {
+        proTypeEditting = null;
+      }
       return {
         ...state,
-        form: false
+        form: false,
+        productTypeEditting: proTypeEditting
       };
     }
 
     case productTypeConstants.ADD_PRODUCT_TYPE: {
       return {
         ...state,
+        productTypeEditting: null,
         form: false
       };
     }

@@ -1,19 +1,26 @@
+import { Menu, MenuItem } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
+import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuIcon from "@material-ui/icons/Menu";
 import { withStyles } from "@material-ui/styles";
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import styles from "./styles";
-import * as authActions from "./../../actions/auth";
 import { connect } from "react-redux";
-import { compose, bindActionCreators } from "redux";
 import { withRouter } from "react-router";
+import { NavLink } from "react-router-dom";
+import { bindActionCreators, compose } from "redux";
+import * as authActions from "./../../actions/auth";
+import { ADMIN_ROUTES } from "./../../constants";
+import styles from "./styles";
+
 
 const menuId = "primary-search-account-menu";
 
@@ -21,9 +28,11 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      anchorEl: null
+      anchorEl: null,
+      left: false,
     };
   }
+
 
   handleProfileMenuOpen = e => {
     this.setState({
@@ -61,13 +70,46 @@ class Header extends Component {
     );
   };
 
-  handleToggleSidebar = () => {
-    const { showSidebar, onToggleSidebar } = this.props;
-    if (onToggleSidebar) {
-      onToggleSidebar(!showSidebar);
+  toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
     }
+
+    this.setState({ [anchor]: open });
   };
 
+  list = (anchor) => {
+    const { classes } = this.props;
+    let xhtml = null;
+    xhtml = (
+      <Box
+        sx={{ width: 250 }}
+        role="presentation"
+        onClick={this.toggleDrawer(anchor, false)}
+        onKeyDown={this.toggleDrawer(anchor, false)}
+      >
+        <Divider />
+        <List>
+          {ADMIN_ROUTES.map(item => {
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                exact={item.exact}
+                className={classes.menuLink}
+                activeClassName={classes.menuLinkActive}
+              >
+                <ListItem className={classes.menuItem} button>
+                  {item.name}
+                </ListItem>
+              </NavLink>
+            );
+          })}
+        </List>
+      </Box>
+    );
+    return xhtml;
+  }
   render() {
     const { classes, name, logout } = this.props;
     if (logout === true) {
@@ -80,15 +122,24 @@ class Header extends Component {
       <div className={classes.grow}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleToggleSidebar}
-            >
-              <MenuIcon fontSize="large"  />
-            </IconButton>
+            <React.Fragment key={"left"}>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.toggleDrawer("left", true)}
+              >
+                <MenuIcon fontSize="large" />
+              </IconButton>
+              <Drawer
+                anchor={"left"}
+                open={this.state["left"]}
+                onClose={this.toggleDrawer("left", false)}
+              >
+                {this.list("left")}
+              </Drawer>
+            </React.Fragment>
             <Typography className={classes.title} variant="h6" noWrap>
               {name}
             </Typography>
@@ -102,13 +153,13 @@ class Header extends Component {
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
               >
-                <AccountCircle  fontSize="large"   />
+                <AccountCircle fontSize="large" />
               </IconButton>
             </div>
           </Toolbar>
         </AppBar>
         {this.renderMenu()}
-      </div>
+      </div >
     );
   }
 }

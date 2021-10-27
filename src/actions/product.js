@@ -127,10 +127,12 @@ export const downProduct = (id, type) => {
   };
 };
 
-export const openForm = () => {
+export const openForm = (type) => {
   return {
     type: productConstants.OPEN_FORM,
-    payload: {}
+    payload: {
+      type
+    }
   };
 };
 

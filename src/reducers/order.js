@@ -33,6 +33,12 @@ const reducer = (state = initialState, action) => {
         listOrder: state.listOrder.filter(item => item.orderId !== orderId)
       };
     }
+    case orderConstants.EXPORT_ORDER_SUCCESS:{
+      toastSuccess("Xuất file thành công");
+      return {
+        ...state,
+      };
+    }
 
     default:
       return state;

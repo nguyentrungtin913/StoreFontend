@@ -1,3 +1,5 @@
+import {WIDTH, HEIGHT} from "./../../constants";
+
 const styles = () => ({
   date: {
     width: '20%',
@@ -14,7 +16,7 @@ const styles = () => ({
     fontSize: '14pt'
   },
   myPanelOrder: {
-    height: '380px',
+    height: HEIGHT/2,
     overflow: 'scroll',
     overflowX: 'hidden'
   },
@@ -27,6 +29,7 @@ const styles = () => ({
   textTotal:{
     marginLeft: '1%',
     textAlign: 'right',
+    marginRight: '1%'
   },
   myButton: {
     fontSize: '13pt',
@@ -37,6 +40,9 @@ const styles = () => ({
   myMenuItem: {
     fontSize: '1.4rem !important'
   },
+  export:{
+    fontSize: '13pt',
+  }
 });
 
 export default styles;

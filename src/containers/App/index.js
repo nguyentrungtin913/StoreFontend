@@ -54,18 +54,32 @@ class App extends Component {
     return (
       <div className={classes.myBody}>
         <Provider store={store}>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <BrowserRouter>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <ToastContainer />
+
+
               <GlobalLoading />
               <Modal />
               <Switch>
                 {this.renderAdminRoutes()}
                 {this.renderDefaultRoutes()}
               </Switch>
+
             </ThemeProvider>
           </BrowserRouter>
+          <ToastContainer />
         </Provider>
       </div>
     );

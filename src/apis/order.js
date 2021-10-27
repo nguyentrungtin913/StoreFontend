@@ -28,3 +28,18 @@ export const deleteOrder = orderId => {
       console.log(err.response.data);
     });
 };
+
+export const exportOrder = params => {
+  console.log("=====api=====");
+  console.log(`${API_URL}/export-orders`);
+  console.log("data", params);
+  console.log("=====api=====");
+  return axiosService
+    .post(`${API_URL}/export-orders`, params)
+    .catch(err => {
+      if (err.response.data[0]) {
+        toastError(err.response.data[0].clientMsg);
+      }
+      console.log(err.response.data);
+    });
+};

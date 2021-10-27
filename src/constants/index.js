@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import LoginPage from "../containers/LoginPage";
 import SignupPage from "../containers/SignupPage";
 import NotFound from "../containers/NotFound";
@@ -7,7 +8,10 @@ import Sell from "../containers/Sell";
 import Buy from "../containers/Buy";
 import Order from "../containers/Order";
 import Report from "../containers/Report";
+import Game from "../containers/Game";
 
+export const WIDTH = screen.width;
+export const HEIGHT = screen.height;
 
 export const API_ENDPOINT = "http://localhost:3000";
 //export const API_URL = "http://myproject.io";
@@ -70,7 +74,13 @@ export const ADMIN_ROUTES = [
     path: "/admin/report",
     exact: true,
     component: Report
-  }
+  },
+  {
+    name: "Giải trí",
+    path: "/admin/play-game",
+    exact: true,
+    component: Game
+  },
 ];
 
 export const ROUTES = [

@@ -13,7 +13,8 @@ import PropTypes from "prop-types";
 import * as authActions from "./../../actions/auth";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import MediaQuery from 'react-responsive';
+import Icon1 from "./../../assets/Test/dragon1.gif";
+
 
 class LoginPage extends Component {
   constructor(props) {
@@ -55,9 +56,7 @@ class LoginPage extends Component {
     }
     return (
       <div className={classes.background}>
-        {/* <MediaQuery minWidth={1224}>
-          <p>You are a desktop or laptop</p>
-        </MediaQuery> */}
+
         <div className={classes.login}>
           <Card>
             <CardContent>

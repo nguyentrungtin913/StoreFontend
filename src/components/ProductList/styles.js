@@ -4,7 +4,8 @@ const styles = () => ({
     fontSize: '16pt'
   },
   listProductSell: {
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '100%'
   },
   disable: {
     display: 'none'
@@ -49,7 +50,7 @@ const styles = () => ({
     color: 'black'
   },
   show: {
-    display: 'inherit'
+    display: 'inline'
   },
   myButton: {
     fontSize: '13pt',

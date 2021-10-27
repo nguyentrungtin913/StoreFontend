@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
 import cn from "classnames";
 import Header from "./../../containers/Header";
-import Sidebar from "./Sidebar";
 import styles from "./styles";
 import * as uiActions from "./../../actions/ui";
 
@@ -30,10 +29,6 @@ class Dashboard extends Component {
           onToggleSidebar={this.handleToggleSidebar}
         />
         <div className={classes.wrapper}>
-          <Sidebar
-            showSidebar={showSidebar}
-            onToggleSidebar={this.handleToggleSidebar}
-          />
           <div
             className={` ${cn(classes.wrapperContent, {
               [classes.shiftLeft]: showSidebar === false

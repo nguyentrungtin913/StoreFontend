@@ -1,7 +1,7 @@
 const styles = () => ({
   imageProductSell: {
-    height: '60px',
-    maxWidth: '90px',
+    maxHeight: '80px',
+    maxWidth: '70%',
     textAlign: 'center'
   },
   MyTr: {

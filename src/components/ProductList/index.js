@@ -175,10 +175,10 @@ class ProductList extends Component {
           <h3>Thêm sản phẩm</h3>
         </button>
         {this.renderSort(classFilter)}
-        <table className={`${classes.myTable} col-xs-12 col-sm-12 col-md-12 col-lg-12`}>
+        <table className={`${classes.myTable}`}>
           <tbody>
             <tr>
-              <td rowSpan={2}>
+              <td rowSpan={2} style={{width: '65%'}}>
                 <div className={`panel panel-success`}>
                   <div className="panel-heading">
                     <h3 className="panel-title">
@@ -187,11 +187,11 @@ class ProductList extends Component {
                   </div>
                   <div className={`panel-body ${classes.myPanelProduct} ${resizePanel}`}>
                     <table
-                      className={`table table-hover ${classes.listProduct} col-xs-12 col-sm-12 col-md-12 col-lg-12`}
+                      className={`table table-hover ${classes.listProduct} `}
                     >
                       <thead>
                         <tr>
-                          <th>STT</th>
+                          <th className={classFilter}>STT</th>
                           <th>Hình ảnh</th>
                           <th className="name-product">Tên sản phẩm</th>
                           <th className={classFilter}>Giá nhập</th>
@@ -231,7 +231,7 @@ class ProductList extends Component {
                   <div
                     className={`panel-body ${classes.myPanelProductSellBody}`}
                   >
-                    <table className={`panel-body  ${classes.listProductSell} col-xs-12 col-sm-12 col-md-12 col-lg-12`}  >
+                    <table className={`panel-body  ${classes.listProductSell} `}  >
                       <thead>
                         <tr>
                           <th>Hình ảnh</th>
