@@ -20,22 +20,22 @@ class ReportItem extends Component {
 
     return (
       <tr>
-        <td>{index + 1}</td>
-        <td>
+        <td className={classes.tdMiddle}>{index + 1}</td>
+        <td className={classes.tdMiddle}>
           <img
             className={classes.imageProduct}
-            src={`${API_URL}/${product.image}`}
+            src={`${API_URL}/image/${product.image}`}
             alt=""
           />
         </td>
-        <td>
+        <td className={classes.tdMiddle}>
           <div className={`${classes.nameProduct}`}>{product.name}</div>
         </td>
-        <td>{priceImport}</td>
-        <td>{priceExport}</td>
-        <td>{product.amount}</td>
-        <td>{product.amountSell}</td>
-        <td>{product.productType.name}</td>
+        <td className={classes.tdMiddle}>{priceImport}</td>
+        <td className={classes.tdMiddle}>{priceExport}</td>
+        <td className={classes.tdMiddle}>{product.amount}</td>
+        <td className={classes.tdMiddle}>{product.amountSell}</td>
+        <td className={classes.tdMiddle}>{product.productType.name}</td>
       </tr>
     );
   }

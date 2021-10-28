@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 import { API_URL } from "./../../constants";
 import ReactTooltip from 'react-tooltip';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 class ProductItem extends Component {
   onChoose = product => {
@@ -33,34 +34,34 @@ class ProductItem extends Component {
           type="info"
         />
         <tr data-tip={product.note}>
-          <td className={classFilter}>{index + 1}</td>
-          <td>
-            <img
+          <td className={`${classFilter} ${classes.tdMiddle}`}>{index + 1}</td>
+          <td className={`${classes.tdMiddle}`}>
+            <LazyLoadImage
               className={classes.imageProduct}
-              src={`${API_URL}/${product.image}`}
-              alt=""
-            />
+              // src={`${API_URL}/${product.image}`}
+              src={`${API_URL}/image/${product.image}`}
+              alt="" />
           </td>
-          <td>
+          <td className={`${classes.tdMiddle}`}>
             <div className={`${classes.nameProduct}`}>{product.name}</div>
           </td>
-          <td className={classFilter}>{priceImport}</td>
-          <td>{priceExport}</td>
-          <td>{product.amount}</td>
-          <td className={classFilter}>{product.amountSell}</td>
-          <td className={classFilter}>{product.productType.name}</td>
-          <td data-tip="">
+          <td className={`${classFilter} ${classes.tdMiddle}`}>{priceImport}</td>
+          <td className={`${classes.tdMiddle}`}>{priceExport}</td>
+          <td className={`${classes.tdMiddle}`}>{product.amount}</td>
+          <td className={`${classFilter} ${classes.tdMiddle}`}>{product.amountSell}</td>
+          <td className={`${classFilter} ${classes.tdMiddle}`}>{product.productType.name}</td>
+          <td className={`${classes.tdMiddle}`} data-tip="">
             <button
-              className={`btn btn-lg btn-outline-warning ${classFilter} m-2`}
+              className={`${classes.buttonEdit} ${classFilter} m-2`}
               onClick={onClickEdit}
             >
-              Sửa
+              <i className="fad fa-pencil-alt"></i>
             </button>
             <button
-              className={`btn btn-lg btn-outline-danger ${classFilter} m-2`}
+              className={`${classes.buttonDelete} ${classFilter} m-2`}
               onClick={onClickDelete}
             >
-              Xóa
+              <i className="fad fa-trash-alt"></i>
             </button>
             <button
               className={`btn btn-lg btn-outline-success ${classes.disable} ${show} m-2`}

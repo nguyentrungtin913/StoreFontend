@@ -13,7 +13,7 @@ class OrderItem extends Component {
   };
 
   render() {
-    let { order, index } = this.props;
+    let { order, index, classes } = this.props;
     let name;
     if (order.orderName) {
       name = order.orderName;
@@ -24,23 +24,23 @@ class OrderItem extends Component {
     let total = new Intl.NumberFormat("de-DE").format(order.orderTotal);
     return (
       <tr>
-        <td>{index + 1}</td>
-        <td>{name}</td>
-        <td>{total}</td>
-        <td>{order.orderDate}</td>
-        <td>{order.orderType}</td>
-        <td>
+        <td className={`${classes.tdMiddle}`}>{index + 1}</td>
+        <td className={`${classes.tdMiddle}`}>{name}</td>
+        <td className={`${classes.tdMiddle}`}>{total}</td>
+        <td className={`${classes.tdMiddle}`}>{order.orderDate}</td>
+        <td className={`${classes.tdMiddle}`}>{order.orderType}</td>
+        <td className={`${classes.tdMiddle}`}>
           <button
-            className={`btn btn-lg btn-outline-success m-2`}
+            className={`${classes.buttonDetail} m-2`}
             onClick={() => this.onDetail(order.orderId)}
           >
-            Chi tiết
+            <i class="fad fa-info"></i>
           </button>
           <button
-            className={`btn btn-lg btn-outline-danger m-2`}
+            className={`${classes.buttonDelete} m-2`}
             onClick={() => this.onDelete(order.orderId)}
           >
-            Xóa
+            <i class="fad fa-trash-alt"></i>
           </button>
         </td>
       </tr>

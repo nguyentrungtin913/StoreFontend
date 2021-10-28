@@ -1,3 +1,5 @@
+import { HEIGHT } from './../../constants';
+
 const styles = () => ({
   listProduct: {
     textAlign: 'center',
@@ -20,15 +22,15 @@ const styles = () => ({
     height: '100px',
   },
   myPanelProduct: {
-    height: '480px',
+    height: HEIGHT - 177 + 'px',
     overflow: 'scroll',
     overflowX: 'hidden'
   },
   resizeMyPanelProduct: {
-    height: '524px'
+    height: HEIGHT - 133 + 'px',
   },
   myPanelProductSellBody: {
-    height: '430px',
+    height: HEIGHT - 227 + 'px',
     overflow: 'scroll',
     overflowX: 'hidden',
     fontSize: '13pt',

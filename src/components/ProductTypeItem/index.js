@@ -5,23 +5,24 @@ import styles from "./styles";
 
 class ProductTypeItem extends Component {
   render() {
-    let { productType, index, onClickDelete, onClickEdit } = this.props;
+    let { productType, index, onClickDelete, onClickEdit, classes } = this.props;
     return (
       <tr>
-        <td>{index + 1}</td>
-        <td>{productType.name}</td>
-        <td>
+        <td className={`${classes.tdMiddle}`}>{index + 1}</td>
+        <td className={`${classes.tdMiddle}`}>{productType.name}</td>
+        <td className={`${classes.tdMiddle}`}>
           <button
-            className="btn btn-lg btn-outline-warning m-2"
+            className={`${classes.buttonEdit} m-2`}
             onClick={onClickEdit}
           >
-            Sửa
+            <i class="fad fa-pencil-alt"></i>
           </button>
+
           <button
-            className="btn btn-lg btn-outline-danger m-2"
+            className={`${classes.buttonDelete} m-2`}
             onClick={onClickDelete}
           >
-            Xóa
+            <i class="fad fa-trash-alt"></i>
           </button>
         </td>
       </tr>

@@ -14,10 +14,7 @@ class GameItem extends Component {
 
   constructor(props) {
     super(props);
-    let d = new Date();
-    let time = d.getTime();
     this.state = {
-      time: time,
       start: 0,
       pause: 0,
       step: 0,
@@ -43,7 +40,7 @@ class GameItem extends Component {
     let top = 0;
     let xhtml = (
       dragons.map((e) => {
-        top += 95;
+        top += 90;
         const randomDragonTypes = dragonTypes[Math.floor(Math.random() * dragonTypes.length)];
         return (
           <div id={e} style={{ backgroundImage: `url(${randomDragonTypes})`, top: `${top}px` }} className={classes.idObject1}></div>
@@ -77,7 +74,6 @@ class GameItem extends Component {
     if (pause === 0) {
       setInterval(() => {
         this.setState({
-          time: this.state.time + 1,
           step: this.state.step + 1,
         })
         dragons.forEach((dragon, index) => {
@@ -90,7 +86,6 @@ class GameItem extends Component {
 
   moveControl(dragons) {
     let move = 0;
-    let { time } = this.state;
     dragons.forEach((dragon, index) => {
       index = document.getElementById(dragon);
       index.addEventListener("mousemove", function (e) {
@@ -100,7 +95,7 @@ class GameItem extends Component {
           index.style.top = y - 60 + "px";
           index.style.left = x - 25 + "px";
           index.style.transform = "rotate(15deg)";
-          index.style.zIndex = time;
+          index.style.zIndex = y;
         }
       });
       window.addEventListener("mousedown", function (e) {
@@ -217,6 +212,7 @@ class GameItem extends Component {
               className={`form-control ${classes.textInput} ${classes.element} m-2`}
               name="player"
               max="5"
+              min="2"
               onChange={this.onChange}
               value={player}
               disabled={disabled}

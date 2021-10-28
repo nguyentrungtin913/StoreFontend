@@ -13,6 +13,9 @@ const styles = () => ({
     width: '100px',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
+  },
+  tdMiddle:{
+    verticalAlign: 'middle !important'
   }
 });
 

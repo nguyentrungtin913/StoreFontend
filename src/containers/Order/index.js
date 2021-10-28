@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -24,9 +25,11 @@ class Order extends Component {
       showDetail: false,
       dateStart: "",
       dateEnd: "",
-      filter: 0
+      filter: 0,
     };
   }
+
+
   onChange = e => {
     var target = e.target;
     var name = target.name;
@@ -69,8 +72,8 @@ class Order extends Component {
     popupState.close();
   };
 
-  onExport = ()=>{
-    let { filter, dateStart, dateEnd }= this.state;
+  onExport = () => {
+    let { filter, dateStart, dateEnd } = this.state;
     let params = {
       dateStart: dateStart,
       dateEnd: dateEnd,
