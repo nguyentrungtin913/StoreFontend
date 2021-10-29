@@ -61,7 +61,6 @@ class GameItem extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state)
   }
 
   onSave = e => {

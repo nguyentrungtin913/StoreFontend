@@ -127,6 +127,21 @@ class Order extends Component {
     );
     return xhtml;
   }
+  renderExport = (length) => {
+    let xhtml = null;
+    let { classes } = this.props;
+    if (length > 0) {
+      xhtml = (
+        <button
+          className={`btn btn-lg btn-outline-success m-2 ${classes.export}`}
+          onClick={() => this.onExport()}
+        >
+          Xuất File
+        </button>
+      )
+    }
+    return xhtml;
+  }
   renderList() {
     let { listOrder, listOrderDetail, classes } = this.props;
     let { showDetail, dateStart, dateEnd, filter } = this.state;
@@ -180,53 +195,50 @@ class Order extends Component {
     });
 
     xhtmlList = (
-      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div className="panel panel-success">
-          <div className="panel-heading">
-            <h3 className="panel-title">Danh sách hóa đơn {labelPanel}</h3>
+      <div>
+        {this.renderSort()}
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div className="panel panel-success">
+            <div className="panel-heading">
+              <h3 className="panel-title">Danh sách hóa đơn {labelPanel}</h3>
+            </div>
+            <div className={`${classes.filter}`}>
+              <form>
+                <span>Từ</span>
+                <input
+                  type="date"
+                  name="dateStart"
+                  className={`form-control ${classes.date}`}
+                  value={dateStart}
+                  onChange={this.onChange}
+                />
+                <span>Đến</span>
+                <input
+                  type="date"
+                  name="dateEnd"
+                  className={`form-control ${classes.date}`}
+                  value={dateEnd}
+                  onChange={this.onChange}
+                />
+              </form>
+            </div>
+            <div className={`panel-body ${classes.text} ${classes.myPanelOrder}`}>
+              <OrderList
+                key={1}
+                orders={listOrder}
+                onClickDetail={this.onDetail}
+                onClickDelete={this.onDelete} />
+            </div>
           </div>
-          <div className={`${classes.filter}`}>
-            <form>
-              <span>Từ</span>
-              <input
-                type="date"
-                name="dateStart"
-                className={`form-control ${classes.date}`}
-                value={dateStart}
-                onChange={this.onChange}
-              />
+          <div className={`${classes.total}`}>
+            <label>Tổng tiền: </label>
+            <input className={classes.textTotal} type="text" value={total}></input>
+            {this.renderExport(listOrder.length)}
+          </div>
 
-              <span>Đến</span>
-              <input
-                type="date"
-                name="dateEnd"
-                className={`form-control ${classes.date}`}
-                value={dateEnd}
-                onChange={this.onChange}
-              />
-            </form>
-          </div>
-          <div className={`panel-body ${classes.text} ${classes.myPanelOrder}`}>
-            <OrderList
-              orders={listOrder}
-              onClickDetail={this.onDetail}
-              onClickDelete={this.onDelete} />
-          </div>
         </div>
-        <div className={`${classes.total}`}>
-          <label>Tổng tiền: </label>
-          <input className={classes.textTotal} type="text" value={total}></input>
-          <button
-            className={`btn btn-lg btn-outline-success m-2 ${classes.export}`}
-            onClick={() => this.onExport()}
-          >
-            Xuất File
-          </button>
-        </div>
-
       </div>
     );
-
     return xhtmlList;
   }
 
@@ -234,7 +246,6 @@ class Order extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.taskBoard} id="1">
-        {this.renderSort()}
         {this.renderList()}
       </div>
     );
@@ -248,7 +259,6 @@ Order.propTypes = {
   }),
   listOrder: PropTypes.array
 };
-
 const mapStateToProps = state => {
   return {
     listOrder: state.order.listOrder,

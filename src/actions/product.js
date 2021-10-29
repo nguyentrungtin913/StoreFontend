@@ -127,6 +127,17 @@ export const downProduct = (id, type) => {
   };
 };
 
+export const stepProduct = (id, type) => {
+  return {
+    type: productConstants.STEP_PRODUCT,
+    payload: {
+      id,
+      type
+    }
+  };
+};
+
+
 export const openForm = (type) => {
   return {
     type: productConstants.OPEN_FORM,

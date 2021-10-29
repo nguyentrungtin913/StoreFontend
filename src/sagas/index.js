@@ -157,7 +157,6 @@ function* watchFetchListProductAction() {
 
 function* addProductSaga({ payload }) {
   const { product } = payload;
-  console.log(product)
   yield put(showLoading());
   const resp = yield call(addProduct, {
     product

@@ -15,14 +15,14 @@ class ProductTypeItem extends Component {
             className={`${classes.buttonEdit} m-2`}
             onClick={onClickEdit}
           >
-            <i class="fad fa-pencil-alt"></i>
+            <i className="fad fa-pencil-alt"></i>
           </button>
 
           <button
             className={`${classes.buttonDelete} m-2`}
             onClick={onClickDelete}
           >
-            <i class="fad fa-trash-alt"></i>
+            <i className="fad fa-trash-alt"></i>
           </button>
         </td>
       </tr>

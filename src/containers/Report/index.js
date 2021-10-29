@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 /* eslint-disable no-unused-expressions */
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
@@ -33,6 +34,9 @@ class Report extends Component {
       dStart: "",
       dEnd: "",
       typePro: 0,
+      label1: "",
+      label2: "",
+      label3: "",
     };
   }
   onChange = e => {
@@ -42,14 +46,38 @@ class Report extends Component {
     this.setState({
       [name]: value
     });
-    console.log(name + " : " + value)
+    // console.log(name + " : " + value)
   };
 
   onFilter = () => {
     let { status, sort, dStart, dEnd, typePro } = this.state;
     let params;
+    let { param1, param2, param3 } = "";
+    if (parseInt(status) === 1) {
+      param1 = ' đã bán';
+    } else {
+      param1 = ' chưa bán';
+    }
+
+    if (dStart !== '' && dEnd !== '') {
+      param2 = ' \' từ ngày ' + dStart + ' đến ngày ' + dEnd + ' \'';
+    } else {
+      param2 = '';
+    }
+
+    if (parseInt(sort) === 1 && parseInt(status) === 1) {
+      param3 = ' ( bán chạy )';
+    } else if (parseInt(status) === 1) {
+      param3 = ' ( bán chậm )';
+    } else {
+      param3 = '';
+    }
+
     this.setState({
-      right: false
+      right: false,
+      label1: param1,
+      label2: param2,
+      label3: param3
     })
     if (parseInt(status) === 1) {
       params = {
@@ -59,7 +87,6 @@ class Report extends Component {
         status: 1,
         typePro: typePro
       }
-      console.log(params)
     } else {
       params = {
         dateStart: dStart,
@@ -277,7 +304,8 @@ class Report extends Component {
   }
   renderList() {
     let { listProduct, classes } = this.props;
-    let { keyword } = this.state;
+    let { keyword, label1, label2, label3 } = this.state;
+
     let xhtmlList = null;
     if (keyword) {
       listProduct = _.filter(listProduct, function (product) {
@@ -288,7 +316,7 @@ class Report extends Component {
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div className={`panel panel-success`}>
           <div className="panel-heading">
-            <h3 className="panel-title">Danh sách sản phẩm đã bán</h3>
+            <h3 className="panel-title">Danh sách sản phẩm{label1}{label2}{label3}</h3>
           </div>
           <div className={`panel-body  ${classes.myPanelProduct}`}>
             <table className={`table table-hover ${classes.listProduct}`}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import * as types from "./../constants/auth";
 import { toastSuccess } from "../helpers/toastHelper";
 

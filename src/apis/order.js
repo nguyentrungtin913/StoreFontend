@@ -30,10 +30,10 @@ export const deleteOrder = orderId => {
 };
 
 export const exportOrder = params => {
-  console.log("=====api=====");
-  console.log(`${API_URL}/export-orders`);
-  console.log("data", params);
-  console.log("=====api=====");
+  // console.log("=====api=====");
+  // console.log(`${API_URL}/export-orders`);
+  // console.log("data", params);
+  // console.log("=====api=====");
   return axiosService
     .post(`${API_URL}/export-orders`, params)
     .catch(err => {

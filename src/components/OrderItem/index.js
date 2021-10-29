@@ -34,13 +34,13 @@ class OrderItem extends Component {
             className={`${classes.buttonDetail} m-2`}
             onClick={() => this.onDetail(order.orderId)}
           >
-            <i class="fad fa-info"></i>
+            <i className="fad fa-info"></i>
           </button>
           <button
             className={`${classes.buttonDelete} m-2`}
             onClick={() => this.onDelete(order.orderId)}
           >
-            <i class="fad fa-trash-alt"></i>
+            <i className="fad fa-trash-alt"></i>
           </button>
         </td>
       </tr>

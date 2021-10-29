@@ -11,6 +11,14 @@ const styles = () => ({
     width: '100px',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
+  },
+  amount: {
+    border: 'none',
+    width: '40%',
+    textAlign: 'center'
+  },
+  size:{
+    fontSize: '14pt'
   }
 });
 
