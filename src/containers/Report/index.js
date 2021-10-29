@@ -27,7 +27,7 @@ class Report extends Component {
       add: false,
       keyword: "",
       anchorEl: null,
-      right: true,
+      right: false,
       status: 1,
       sort: 1,
       dStart: "",
