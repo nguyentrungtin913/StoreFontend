@@ -12,7 +12,7 @@ const styles = () => ({
     backgroundRepeat: 'no-repeat',
     //border: 'solid thin black',
     top: 300,
-    left: 1200,
+    right: '-180px',
   },
   board:{
     marginLeft: '35px',

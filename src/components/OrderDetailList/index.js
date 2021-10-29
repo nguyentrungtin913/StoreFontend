@@ -12,10 +12,10 @@ class OrderDetailList extends Component {
         <div>
           <div className="panel panel-success">
             <div className="panel-heading">
-              <h3 className="panel-title">Danh chi tiết hóa đơn</h3>
+              <h3 className="panel-title">Danh sách chi tiết hóa đơn</h3>
             </div>
-            <div className="panel-body">
-              <table className={`table table-hover ${classes.listProduct}`}>
+            <div className={`panel-body  ${classes.myPanelDetail}`}>
+              <table className={`table table-hover ${classes.listDetail}`}>
                 <thead>
                   <tr>
                     <th>STT</th>

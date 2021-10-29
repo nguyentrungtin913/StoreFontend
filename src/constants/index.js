@@ -11,7 +11,7 @@ import Report from "../containers/Report";
 import Game from "../containers/Game";
 
 export const WIDTH = screen.width;
-export const HEIGHT = screen.height;
+export const HEIGHT = window.innerHeight;
 
 export const API_ENDPOINT = "http://localhost:3000";
 //export const API_URL = "http://myproject.io";

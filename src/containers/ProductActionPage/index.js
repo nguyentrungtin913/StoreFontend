@@ -60,7 +60,7 @@ class ProductActionPage extends Component {
   showImage = path => {
     var resutl = null;
     if (path) {
-      resutl = API_URL + "/" + path;
+      resutl = API_URL + "/image/" + path;
     }
     return resutl;
   };

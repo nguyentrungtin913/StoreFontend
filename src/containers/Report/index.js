@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -5,15 +6,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ReportList from "../../components/ReportList";
 import * as reportActions from "./../../actions/report";
+import * as productTypeActions from "./../../actions/productType";
 import styles from "./styles";
 import _ from "lodash";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import CachedIcon from '@mui/icons-material/Cached';
-import IconButton from '@mui/material/IconButton';
 import Empty from "./../../assets/images/emptyList.png";
-import SortRoundedIcon from '@mui/icons-material/SortRounded';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 class Report extends Component {
   constructor(props) {
@@ -21,21 +26,14 @@ class Report extends Component {
     this.state = {
       add: false,
       keyword: "",
-      filter: 1,
-      dateStart: "",
-      dateEnd: "",
       anchorEl: null,
-
+      right: false,
+      status: 1,
+      sort: 1,
+      dStart: "",
+      dEnd: "",
+      typePro: 0,
     };
-  }
-
-  componentDidMount() {
-    const { reportActionsCreators } = this.props;
-    const { fetchListReport } = reportActionsCreators;
-    let params = {
-      type: this.state.filter
-    }
-    fetchListReport(params);
   }
   onChange = e => {
     var target = e.target;
@@ -44,18 +42,183 @@ class Report extends Component {
     this.setState({
       [name]: value
     });
+    console.log(name + " : " + value)
   };
+
+  onFilter = () => {
+    let { status, sort, dStart, dEnd, typePro } = this.state;
+    let params;
+    this.setState({
+      right: false
+    })
+    if (parseInt(status) === 1) {
+      params = {
+        dateStart: dStart,
+        dateEnd: dEnd,
+        type: parseInt(sort),
+        status: 1,
+        typePro: typePro
+      }
+      console.log(params)
+    } else {
+      params = {
+        dateStart: dStart,
+        dateEnd: dEnd,
+        status: 0,
+        typePro: typePro
+      }
+    }
+    const { reportActionsCreators } = this.props;
+    const { fetchListReport } = reportActionsCreators;
+    fetchListReport(params);
+  }
+  onReset = () => {
+    this.setState({
+      dStart: "",
+      dEnd: "",
+      keyword: "",
+      sort: 1,
+      right: false,
+      status: 1,
+      typePro: 0,
+    });
+    let params = {
+      dateStart: "",
+      dateEnd: "",
+      type: 1
+    }
+    const { reportActionsCreators } = this.props;
+    const { fetchListReport } = reportActionsCreators;
+    fetchListReport(params);
+  }
+
+  toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ [anchor]: open });
+  };
+  showProType = () => {
+    let { listProductType } = this.props;
+    let xhtml = null;
+    if (listProductType) {
+      xhtml = (
+        listProductType.map((element, index) => {
+          return <option key={index} value={element.id}>{element.name}</option>;
+        })
+      )
+    }
+    return xhtml;
+  }
+  list = (anchor) => (
+    <Box
+      sx={{ width: 300, fontSize: 25 }}
+      role="presentation"
+      className="m-3"
+    // onClick={this.toggleDrawer(anchor, false)}
+    // onKeyDown={this.toggleDrawer(anchor, false)}
+    >
+      <List>
+        <Typography variant="h4">
+          Trạng thái
+        </Typography>
+        <RadioGroup row aria-label="gender" onChange={this.onChange} value={this.state.status} name="status" className="m-3">
+          <FormControlLabel className={this.props.classes.textFilter} value={1} control={<Radio />} label={<Typography variant="h5" >Đã bán</Typography>} />
+          <FormControlLabel className={this.props.classes.textFilter} value={0} control={<Radio />} label={<Typography variant="h5" >Chưa bán</Typography>} />
+        </RadioGroup>
+      </List>
+      <Divider />
+      <List>
+        <Typography variant="h4">
+          Sắp xếp
+        </Typography>
+        <RadioGroup row aria-label="gender" onChange={this.onChange} name="sort" value={this.state.sort} className="m-3">
+          <FormControlLabel disabled={parseInt(this.state.status) === 1 ? '' : 'disabled'} control={<Radio value={1} />} label={<Typography variant="h5" >Bán chạy</Typography>} />
+          <FormControlLabel disabled={parseInt(this.state.status) === 1 ? '' : 'disabled'} control={<Radio value={0} />} label={<Typography variant="h5" >Bán chậm</Typography>} />
+        </RadioGroup>
+      </List>
+      <Divider />
+      <List>
+        <Typography variant="h4">
+          Phân loại
+        </Typography>
+        <select style={{ width: '95%' }} name="typePro" value={this.state.typePro} onChange={this.onChange} className={`form-control m-4 ${this.props.classes.textFilter}`}>
+          <option value={0}>-- Chọn --</option>
+          {this.showProType()}
+        </select>
+      </List>
+      <Divider />
+      <List>
+        <Typography variant="h4">
+          Lọc
+        </Typography>
+        <div className="m-3">
+          <Typography variant="h5" >
+            Từ ngày
+          </Typography>
+          <input
+            type="date"
+            name="dStart"
+            value={this.state.dStart}
+            className={`form-control m-3 ${this.props.classes.textFilter}`}
+            onChange={this.onChange}
+          />
+          <Typography variant="h5" >
+            Đến ngày
+          </Typography>
+          <input
+            type="date"
+            name="dEnd"
+            value={this.state.dEnd}
+            className={`form-control m-3 ${this.props.classes.textFilter}`}
+            onChange={this.onChange}
+          />
+        </div>
+      </List>
+      <Divider />
+      <List style={{ textAlign: 'center' }}>
+        <button type="button" onClick={this.onReset} className={`btn btn-outline-warning ${this.props.classes.textFilter} m-3`}>Mặc định</button>
+        <button type="button" onClick={this.onFilter} className={`btn btn-outline-success ${this.props.classes.textFilter} m-3`}>Lọc</button>
+      </List>
+    </Box>
+  );
+
+  renderFilter() {
+    let xhtml = null;
+    xhtml = (
+      <React.Fragment key={"right"}>
+        <button onClick={this.toggleDrawer("right", true)} className={` btn btn-lg btn-outline-primary m-2 ${this.props.classes.myButton}`}>Lọc <FilterAltIcon /> </button>
+        <Drawer
+          anchor={"right"}
+          open={this.state["right"]}
+          onClose={this.toggleDrawer("right", false)}
+        >
+          {this.list("right")}
+        </Drawer>
+      </React.Fragment>
+    )
+    return xhtml;
+  }
+  componentDidMount() {
+    const { reportActionsCreators } = this.props;
+    const { fetchListReport } = reportActionsCreators;
+
+    const { productTypeActionCreators } = this.props;
+    const { fetchListProductType } = productTypeActionCreators;
+    fetchListProductType();
+
+    let params = {
+      type: this.state.sort
+    }
+    fetchListReport(params);
+  }
+
   onFind = keyword => {
     this.setState({
       keyword: keyword
     });
   };
-  onfilterList = type => {
-    this.setState({
-      filter: type
-    });
 
-  };
   handleClick = event => {
     this.setState({
       anchorEl: event.currentTarget
@@ -66,67 +229,7 @@ class Report extends Component {
       anchorEl: null
     });
   };
-  filterList = (type, popupState) => {
-    let { dateStart, dateEnd } = this.state;
-    this.setState({
-      filter: type
-    });
-    popupState.close();
-    let params = {
-      dateStart: dateStart,
-      dateEnd: dateEnd,
-      type: type
-    }
-    const { reportActionsCreators } = this.props;
-    const { fetchListReport } = reportActionsCreators;
-    fetchListReport(params);
-  };
-  renderSort() {
-    let xhtml = null;
-    const { classes } = this.props;
-    xhtml = (
-      <div>
-        <PopupState variant="popover" popupId="demo-popup-menu">
-          {popupState => (
-            <React.Fragment>
-              <button
-                variant="contained"
-                {...bindTrigger(popupState)}
-                className={` btn btn-lg btn-outline-primary m-2 ${classes.myButton}`}
-              >
-                Sắp xếp <SortRoundedIcon />
-              </button>
-              <Menu {...bindMenu(popupState)}>
-                <MenuItem
-                  onClick={() => this.filterList(1, popupState)}
-                  className={classes.myMenuItem}
-                >
-                  Bán chạy
-                </MenuItem>
-                <MenuItem
-                  onClick={() => this.filterList(0, popupState)}
-                  className={classes.myMenuItem}
-                >
-                  Bán chậm
-                </MenuItem>
-              </Menu>
-            </React.Fragment>
-          )}
-        </PopupState>
-      </div>
-    );
-    return xhtml;
-  }
-  onReset = () => {
-    this.setState({
-      dateStart: "",
-      dateEnd: "",
-      keyword: "",
-    });
-    const { reportActionsCreators } = this.props;
-    const { fetchListReport } = reportActionsCreators;
-    fetchListReport();
-  }
+
 
   rederContent = (listProduct, classes) => {
     let xhtml, xFilter = null;
@@ -146,7 +249,6 @@ class Report extends Component {
       </tr>
     )
     if (listProduct.length > 0) {
-
       xhtml = (
         <tbody>
           {xFilter}
@@ -171,24 +273,12 @@ class Report extends Component {
 
       )
     }
-
     return xhtml;
   }
   renderList() {
     let { listProduct, classes } = this.props;
-    let { keyword, filter, dateStart, dateEnd } = this.state;
+    let { keyword } = this.state;
     let xhtmlList = null;
-    if (dateStart && dateEnd) {
-      let params = {
-        dateStart: dateStart,
-        dateEnd: dateEnd,
-        type: filter
-      }
-      const { reportActionsCreators } = this.props;
-      const { fetchListReport } = reportActionsCreators;
-      fetchListReport(params);
-    }
-
     if (keyword) {
       listProduct = _.filter(listProduct, function (product) {
         return product.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
@@ -196,34 +286,9 @@ class Report extends Component {
     }
     xhtmlList = (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        {this.renderSort()}
         <div className={`panel panel-success`}>
           <div className="panel-heading">
             <h3 className="panel-title">Danh sách sản phẩm đã bán</h3>
-          </div>
-          <div className={`${classes.filter}`}>
-            <form>
-              <span>Từ</span>
-              <input
-                type="date"
-                name="dateStart"
-                className={`form-control ${classes.date}`}
-                value={dateStart}
-                onChange={this.onChange}
-              />
-
-              <span>Đến</span>
-              <input
-                type="date"
-                name="dateEnd"
-                className={`form-control ${classes.date}`}
-                value={dateEnd}
-                onChange={this.onChange}
-              />
-              <IconButton onClick={this.onReset}>
-                <CachedIcon sx={{ fontSize: 40 }} />
-              </IconButton>
-            </form>
           </div>
           <div className={`panel-body  ${classes.myPanelProduct}`}>
             <table className={`table table-hover ${classes.listProduct}`}>
@@ -248,7 +313,6 @@ class Report extends Component {
 
       </div>
     );
-
     return xhtmlList;
   }
 
@@ -256,6 +320,7 @@ class Report extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.taskBoard} id="1">
+        {this.renderFilter()}
         {this.renderList()}
       </div>
     );
@@ -272,12 +337,14 @@ Report.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    listProduct: state.reportProduct.listProductReport
+    listProduct: state.reportProduct.listProductReport,
+    listProductType: state.productType.listProductType,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    reportActionsCreators: bindActionCreators(reportActions, dispatch)
+    reportActionsCreators: bindActionCreators(reportActions, dispatch),
+    productTypeActionCreators: bindActionCreators(productTypeActions, dispatch)
   };
 };
 

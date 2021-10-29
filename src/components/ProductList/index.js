@@ -10,6 +10,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Empty from "./../../assets/images/emptyList.png";
 
+
 class ProductList extends Component {
   constructor(props) {
     super(props);
@@ -149,17 +150,18 @@ class ProductList extends Component {
     } else {
       xhtml = (
         products.map((product, index) => {
+
           return (
-            <ProductItem
-              product={product}
-              key={product.id}
-              index={index}
-              filter={filter}
-              onChoose={this.props.onChoose}
-              onClickDelete={() => onClickDelete(product)}
-              type={type}
-              onClickEdit={() => onClickEdit(product)}
-            />
+              <ProductItem
+                product={product}
+                key={product.id}
+                index={index}
+                filter={filter}
+                onChoose={this.props.onChoose}
+                onClickDelete={() => onClickDelete(product)}
+                type={type}
+                onClickEdit={() => onClickEdit(product)}
+              />
           );
         })
       )
@@ -178,7 +180,7 @@ class ProductList extends Component {
         <table className={`${classes.myTable}`}>
           <tbody>
             <tr>
-              <td rowSpan={2} style={{width: '65%'}}>
+              <td rowSpan={2} style={{ width: '65%' }}>
                 <div className={`panel panel-success`}>
                   <div className="panel-heading">
                     <h3 className="panel-title">

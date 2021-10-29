@@ -1,3 +1,5 @@
+import { HEIGHT } from './../../constants';
+
 const styles = () => ({
   date: {
     width: '20%',
@@ -11,7 +13,7 @@ const styles = () => ({
     margin: '20px 0 -30px 0'
   },
   myPanelProduct: {
-    height: '400px',
+    height: HEIGHT - 187 + 'px',
     overflow: 'scroll',
     overflowX: 'hidden'
   },
@@ -22,18 +24,25 @@ const styles = () => ({
   myButton: {
     fontSize: '13pt',
     backgroundColor: 'blue',
+    width: '80px',
+    height: '30px',
+    paddingTop: '1px',
+    marginLeft: '15px !important',
     color: 'white'
   },
   myMenuItem: {
     fontSize: '1.4rem !important'
   },
-  backgroundEmpty:{
+  backgroundEmpty: {
     backgroundPosition: 'center',
     backgroundSize: '220px',
     backgroundRepeat: 'no-repeat',
     height: '261px'
   },
-  search:{
+  search: {
+    fontSize: '13pt'
+  },
+  textFilter: {
     fontSize: '13pt'
   }
 });

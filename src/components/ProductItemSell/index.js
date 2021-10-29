@@ -26,7 +26,7 @@ class ProductItemSell extends Component {
         <td>
           <img
             className={classes.imageProductSell}
-            src={`${API_URL}/${product.image}`}
+            src={`${API_URL}/image/${product.image}`}
             alt=""
           />
         </td>
