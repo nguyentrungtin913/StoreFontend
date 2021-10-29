@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ReportList from "../../components/ReportList";
 import * as reportActions from "./../../actions/report";
+import * as productTypeActions from "./../../actions/productType";
 import styles from "./styles";
 import _ from "lodash";
 import Empty from "./../../assets/images/emptyList.png";
@@ -26,11 +27,12 @@ class Report extends Component {
       add: false,
       keyword: "",
       anchorEl: null,
-      right: false,
+      right: true,
       status: 1,
       sort: 1,
       dStart: "",
       dEnd: "",
+      typePro: 0,
     };
   }
   onChange = e => {
@@ -44,7 +46,7 @@ class Report extends Component {
   };
 
   onFilter = () => {
-    let { status, sort, dStart, dEnd } = this.state;
+    let { status, sort, dStart, dEnd, typePro } = this.state;
     let params;
     this.setState({
       right: false
@@ -54,14 +56,16 @@ class Report extends Component {
         dateStart: dStart,
         dateEnd: dEnd,
         type: parseInt(sort),
-        status: 1
+        status: 1,
+        typePro: typePro
       }
       console.log(params)
     } else {
       params = {
         dateStart: dStart,
         dateEnd: dEnd,
-        status: 0
+        status: 0,
+        typePro: typePro
       }
     }
     const { reportActionsCreators } = this.props;
@@ -75,7 +79,8 @@ class Report extends Component {
       keyword: "",
       sort: 1,
       right: false,
-      status: 1
+      status: 1,
+      typePro: 0,
     });
     let params = {
       dateStart: "",
@@ -93,7 +98,18 @@ class Report extends Component {
     }
     this.setState({ [anchor]: open });
   };
-
+  showProType = () => {
+    let { listProductType } = this.props;
+    let xhtml = null;
+    if (listProductType) {
+      xhtml = (
+        listProductType.map((element, index) => {
+          return <option key={index} value={element.id}>{element.name}</option>;
+        })
+      )
+    }
+    return xhtml;
+  }
   list = (anchor) => (
     <Box
       sx={{ width: 300, fontSize: 25 }}
@@ -112,7 +128,6 @@ class Report extends Component {
         </RadioGroup>
       </List>
       <Divider />
-
       <List>
         <Typography variant="h4">
           Sắp xếp
@@ -121,6 +136,16 @@ class Report extends Component {
           <FormControlLabel disabled={parseInt(this.state.status) === 1 ? '' : 'disabled'} control={<Radio value={1} />} label={<Typography variant="h5" >Bán chạy</Typography>} />
           <FormControlLabel disabled={parseInt(this.state.status) === 1 ? '' : 'disabled'} control={<Radio value={0} />} label={<Typography variant="h5" >Bán chậm</Typography>} />
         </RadioGroup>
+      </List>
+      <Divider />
+      <List>
+        <Typography variant="h4">
+          Phân loại
+        </Typography>
+        <select style={{ width: '95%' }} name="typePro" value={this.state.typePro} onChange={this.onChange} className={`form-control m-4 ${this.props.classes.textFilter}`}>
+          <option value={0}>-- Chọn --</option>
+          {this.showProType()}
+        </select>
       </List>
       <Divider />
       <List>
@@ -151,7 +176,7 @@ class Report extends Component {
         </div>
       </List>
       <Divider />
-      <List style={{textAlign: 'center'}}>
+      <List style={{ textAlign: 'center' }}>
         <button type="button" onClick={this.onReset} className={`btn btn-outline-warning ${this.props.classes.textFilter} m-3`}>Mặc định</button>
         <button type="button" onClick={this.onFilter} className={`btn btn-outline-success ${this.props.classes.textFilter} m-3`}>Lọc</button>
       </List>
@@ -177,6 +202,11 @@ class Report extends Component {
   componentDidMount() {
     const { reportActionsCreators } = this.props;
     const { fetchListReport } = reportActionsCreators;
+
+    const { productTypeActionCreators } = this.props;
+    const { fetchListProductType } = productTypeActionCreators;
+    fetchListProductType();
+
     let params = {
       type: this.state.sort
     }
@@ -307,12 +337,14 @@ Report.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    listProduct: state.reportProduct.listProductReport
+    listProduct: state.reportProduct.listProductReport,
+    listProductType: state.productType.listProductType,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    reportActionsCreators: bindActionCreators(reportActions, dispatch)
+    reportActionsCreators: bindActionCreators(reportActions, dispatch),
+    productTypeActionCreators: bindActionCreators(productTypeActions, dispatch)
   };
 };
 

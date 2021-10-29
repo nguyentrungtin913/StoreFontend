@@ -9,7 +9,6 @@ document.body.style.overflowX = "hidden";
 
 // document.body.style.width = WIDTH + "px";
 document.body.style.height = HEIGHT + "px";
-console.log(HEIGHT)
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
