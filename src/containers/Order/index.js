@@ -127,6 +127,21 @@ class Order extends Component {
     );
     return xhtml;
   }
+  renderExport = (length) => {
+    let xhtml = null;
+    let { classes } = this.props;
+    if (length > 0) {
+      xhtml = (
+        <button
+          className={`btn btn-lg btn-outline-success m-2 ${classes.export}`}
+          onClick={() => this.onExport()}
+        >
+          Xuất File
+        </button>
+      )
+    }
+    return xhtml;
+  }
   renderList() {
     let { listOrder, listOrderDetail, classes } = this.props;
     let { showDetail, dateStart, dateEnd, filter } = this.state;
@@ -218,12 +233,7 @@ class Order extends Component {
           <div className={`${classes.total}`}>
             <label>Tổng tiền: </label>
             <input className={classes.textTotal} type="text" value={total}></input>
-            <button
-              className={`btn btn-lg btn-outline-success m-2 ${classes.export}`}
-              onClick={() => this.onExport()}
-            >
-              Xuất File
-            </button>
+            {this.renderExport(listOrder.length)}
           </div>
 
         </div>
