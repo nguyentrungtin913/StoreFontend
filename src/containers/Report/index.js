@@ -42,7 +42,7 @@ class Report extends Component {
     this.setState({
       [name]: value
     });
-    console.log(name + " : " + value)
+    // console.log(name + " : " + value)
   };
 
   onFilter = () => {
@@ -59,7 +59,6 @@ class Report extends Component {
         status: 1,
         typePro: typePro
       }
-      console.log(params)
     } else {
       params = {
         dateStart: dStart,

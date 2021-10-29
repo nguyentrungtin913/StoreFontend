@@ -8,7 +8,7 @@ class OrderDetailList extends Component {
   render() {
     const { classes, orderDetails } = this.props;
     return (
-      <div>
+      <div className="m-5">
         <div>
           <div className="panel panel-success">
             <div className="panel-heading">
