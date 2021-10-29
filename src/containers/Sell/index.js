@@ -49,6 +49,12 @@ class Sell extends Component {
     downProduct(id, type);
   };
 
+  onStep = id =>{
+    const { productActionCreators } = this.props;
+    const { stepProduct } = productActionCreators;
+    let type = "sell";
+    stepProduct(id, type);
+  }
   totalPrice(products) {
     var result = 0;
     if (products.length > 0) {
@@ -101,6 +107,7 @@ class Sell extends Component {
           onCancel={this.onCancel}
           onUp={this.onUp}
           onDown={this.onDown}
+          onStep={this.onStep}
           onSell={this.onSell}
           type="sell"
           totalPrice={this.totalPrice(listProductChoose)}

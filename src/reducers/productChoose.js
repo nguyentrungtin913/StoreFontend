@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case productConstants.DOWN_PRODUCT: {
-      const { id, type } = action.payload;
+      const { id } = action.payload;
       const { listProductChoose } = state;
 
       index = _.findIndex(listProductChoose, pro => {
@@ -84,14 +84,10 @@ const reducer = (state = initialState, action) => {
 
       if (index !== -1) {
         let pro = listProductChoose[index];
-        if (type === "sell") {
-          if (pro.amountSell > 1) {
-            pro.amountSell--;
-          } else {
-            toastWarning("Số lượng đã đạt giá trị tối thiểu !");
-          }
-        } else {
+        if (pro.amountSell > 1) {
           pro.amountSell--;
+        } else {
+          toastWarning("Số lượng đã đạt giá trị tối thiểu !");
         }
         const newList = [
           ...listProductChoose.slice(0, index),
@@ -103,11 +99,45 @@ const reducer = (state = initialState, action) => {
           listProductChoose: newList
         };
       }
-
       return {
         ...state
       };
     }
+
+    case productConstants.STEP_PRODUCT: {
+      const { id, type } = action.payload;
+      const { listProductChoose } = state;
+      index = _.findIndex(listProductChoose, pro => {
+        return pro.id === id;
+      });
+
+      if (index !== -1) {
+        let pro = listProductChoose[index];
+        if (type === "sell") {
+          if (pro.amountSell + 20 <= pro.amount) {
+            pro.amountSell += 20;
+          } else {
+            pro.amountSell = pro.amount;
+            toastWarning("Số lượng đã đạt giá trị tối đa !");
+          }
+        } else {
+          pro.amountSell += 20;
+        }
+        const newList = [
+          ...listProductChoose.slice(0, index),
+          pro,
+          ...listProductChoose.slice(index + 1)
+        ];
+        return {
+          ...state,
+          listProductChoose: newList
+        };
+      }
+      return {
+        ...state
+      };
+    }
+
 
     case productConstants.SELL: {
       return {

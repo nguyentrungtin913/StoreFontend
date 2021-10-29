@@ -22,6 +22,7 @@ export const CHOOSE_PRODUCT = "CHOOSE_PRODUCT";
 export const CANCEL_PRODUCT = "CANCEL_PRODUCT";
 export const UP_PRODUCT = "UP_PRODUCT";
 export const DOWN_PRODUCT = "DOWN_PRODUCT";
+export const STEP_PRODUCT = "STEP_PRODUCT";
 
 export const SELL = "SELL";
 export const SELL_SUCCESS = "SELL_SUCCESS";

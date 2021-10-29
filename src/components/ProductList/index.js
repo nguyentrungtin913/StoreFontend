@@ -166,8 +166,6 @@ class ProductList extends Component {
         })
       )
     }
-
-
     return (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <button
@@ -252,6 +250,7 @@ class ProductList extends Component {
                               onCancel={this.props.onCancel}
                               onUp={this.props.onUp}
                               onDown={this.props.onDown}
+                              onStep={this.props.onStep}
                             />
                           );
                         })}

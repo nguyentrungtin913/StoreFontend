@@ -18,7 +18,9 @@ class ProductItemSell extends Component {
   onUp = id => {
     this.props.onUp(id);
   };
-
+  onStep = id => {
+    this.props.onStep(id);
+  }
   render() {
     let { classes, product } = this.props;
     return (
@@ -43,6 +45,10 @@ class ProductItemSell extends Component {
             sx={{ fontSize: 35 }}
             onClick={() => this.onUp(product.id)}
           />
+          <i
+            className={`fad fa-arrow-to-top m-2 ${classes.size}`}
+            onClick={() => this.onStep(product.id)}
+          ></i>
         </td>
         <td>
           <button
