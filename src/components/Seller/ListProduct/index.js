@@ -59,14 +59,14 @@ class ListProduct extends Component {
         for (let j = 0; j < products.length; j++) {
           if (productTypes[i].id === products[j].type) {
             listItem.push(<ProductItem
-              key={i}
+              key={j}
               product={products[j]}
             />)
           }
         }
         content = (
           <>
-            <section className="veg_section layout_padding"  style={{ paddingTop: '0px' }}>
+            <section key={i} className="veg_section layout_padding"  style={{ paddingTop: '0px' }}>
               <div className="container">
                 <div className="heading_container heading_center" style={{ alignItems: 'self-start' }}>
                   <h2>
@@ -78,7 +78,7 @@ class ListProduct extends Component {
                 </div>
                 <div className="btn-box">
                   <a href="\">
-                    View More
+                    Xem thêm
                   </a>
                 </div>
               </div>

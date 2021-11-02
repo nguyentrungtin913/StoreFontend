@@ -7,9 +7,12 @@ import { compose } from "redux";
 import styles from "./styles";
 import { SELLER_ROUTES } from "./../../constants";
 import { NavLink } from "react-router-dom";
-import { ListItem } from "@material-ui/core";
 
 class Board extends Component {
+  openNav() {
+    document.getElementById("myNav").classList.toggle("menu_width");
+    document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
+  }
   render() {
     const { children, classes } = this.props;
     return (
@@ -21,33 +24,33 @@ class Board extends Component {
           <header className="header_section">
             <div className="container-fluid">
               <nav className="navbar navbar-expand-lg custom_nav-container">
-                <a className="navbar-brand" href="index.html">
-                  <span>
-                    Eatveg
-                  </span>
-                </a>
+                <NavLink
+                  key={'/home'}
+                  to={'/home'}
+                  exact={false}
+                  className="navbar-brand"
+                  activeClassName={classes.menuLinkActive}
+                >
+                  <span>{'Store'}</span>
+                </NavLink>
+
                 <div className="" id="">
                   <div className="container">
                     <div className=" mr-auto flex-column flex-lg-row align-items-center">
                       <ul className="navbar-nav justify-content-between ">
                         <div className="User_option">
                           <li className="">
-                            <a className="" href="">
-                              <i className="fa fa-user" aria-hidden="true"></i>
-                            </a>
-                          </li>
-                          <form className="form-inline ">
-                            <button className="btn   nav_search-btn" type="submit">
-                              <i className="fa fa-search" aria-hidden="true"></i>
+                            <button className="btn   nav_search-btn" >
+                              <i className="fad fa-shopping-cart fa-2x"></i>
                             </button>
-                          </form>
+                          </li>
                         </div>
                       </ul>
                     </div>
                   </div>
 
                   <div className="custom_menu-btn">
-                    <button onclick="openNav()">
+                    <button onClick={() => this.openNav()}>
                       <span className="s-1"> </span>
                       <span className="s-2"> </span>
                       <span className="s-3"> </span>
@@ -55,10 +58,19 @@ class Board extends Component {
                   </div>
                   <div id="myNav" className="overlay">
                     <div className="overlay-content">
-                      <a href="index.html">HOME</a>
-                      <a href="about.html">ABOUT</a>
-                      <a href="vegetables.html">VEGETABLES</a>
-                      <a href="contact.html">CONTACT US</a>
+                      {SELLER_ROUTES.map(item => {
+                        return (
+                          <NavLink
+                            key={item.path}
+                            to={item.path}
+                            exact={item.exact}
+                            className={classes.menuLink}
+                            activeClassName={classes.menuLinkActive}
+                          >
+                            {item.name}
+                          </NavLink>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -116,9 +128,7 @@ class Board extends Component {
             </div>
           </section>
         </div>
-
         {children}
-
         <section className="about_section ">
           <div className="about_bg_box">
             <img src="images/header.jpg" alt="" />
@@ -148,12 +158,12 @@ class Board extends Component {
           <div className="container">
             <div className="heading_container">
               <h2>
-               Liên hệ chúng tôi
+                Liên hệ chúng tôi
               </h2>
             </div>
             <div className="row">
               <div className="col-md-6">
-                <div className="form_container contact-form" style={{fontSize: '15pt'}}>
+                <div className="form_container contact-form" style={{ fontSize: '15pt' }}>
                   <form action="">
                     <div>
                       <input type="text" placeholder="Họ tên" />
@@ -250,7 +260,7 @@ class Board extends Component {
 
 
         <section className="container-fluid footer_section">
-          <div className="container" style={{fontSize: '13pt'}}>
+          <div className="container" style={{ fontSize: '13pt' }}>
             <div className="row ">
               <div className="col-sm-6 col-md-4 col-lg-3 footer-col">
                 <div className="footer_detail">
@@ -289,19 +299,19 @@ class Board extends Component {
                   <a href="">
                     <i className="fa fa-map-marker" aria-hidden="true"></i>
                     <span>
-                      Location
+                      Vị trí
                     </span>
                   </a>
                   <a href="">
                     <i className="fa fa-phone" aria-hidden="true"></i>
                     <span>
-                      Call : +01 123455678990
+                      Điện thoại: +84 907824913
                     </span>
                   </a>
                   <a href="">
                     <i className="fa fa-envelope" aria-hidden="true"></i>
                     <span>
-                      Email : demo@gmail.com
+                      Email : nguyentrungtin913@gmail.com
                     </span>
                   </a>
                 </div>

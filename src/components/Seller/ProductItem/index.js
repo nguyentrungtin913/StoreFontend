@@ -21,13 +21,14 @@ class ProductItem extends Component {
           </div>
           <div className="detail-box">
             <h3>{product.name}</h3>
-            <button className={classes.button}><i class="fad fa-shopping-cart fa-3x" style={{ color: 'rgb(13 49 151)' }}></i></button>
+            <button className={classes.button}><i className="fad fa-cart-arrow-down fa-3x" style={{ color: 'rgb(13 49 151)' }}></i></button>
             <div className="price_box">
               <h4 className="price_heading">
                 {priceExport}
               </h4>
             </div>
           </div>
+          <br />
         </div>
       </div>
     );

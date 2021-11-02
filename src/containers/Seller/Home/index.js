@@ -29,10 +29,10 @@ class Home extends Component {
 
   render() {
     let { listProduct, listProductTypeByRating } = this.props;
-    console.log(listProductTypeByRating)
     return (
       <>
         <ListProduct
+          key={10}
           products={listProduct}
           productTypes={listProductTypeByRating}
         />
