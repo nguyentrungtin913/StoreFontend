@@ -29,12 +29,16 @@ import {
   deleteProductTypeSuccess,
   addProductTypeSuccess,
   updateProductTypeSuccess,
+  ratingProductTypeSuccess,
+  fetchListProductTypeByRatingSuccess
 } from "../actions/productType";
 import {
   getListProductType,
   deleteProductType,
   addProductType,
   updateProductType,
+  ratingProductType,
+  getListProductTypeByRating,
 } from "./../apis/productType";
 import * as productTypeTypes from "./../constants/productType";
 
@@ -94,6 +98,21 @@ function* watchFetchListProductTypeAction() {
   }
 }
 
+function* watchFetchListProductTypeByRating() {
+  while (true) {
+    const action = yield take(productTypeTypes.FETCH_PRODUCT_TYPE_BY_RATING); // Khi FETCH_TASK được dispatch => code từ đây trở xuống sẽ chạy
+    yield put(showLoading());
+    const { params } = action.payload;
+    const resp = yield call(getListProductTypeByRating, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductTypeByRatingSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
 function* addProductTypeSaga({ payload }) {
   const { productType } = payload;
   yield put(showLoading());
@@ -118,6 +137,20 @@ function* updateProductTypeSaga({ payload }) {
   if (resp) {
     const { data } = resp;
     yield put(updateProductTypeSuccess(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
+function* ratingProductTypeSaga({ payload }) {
+  const { productType } = payload;
+  yield put(showLoading());
+  const resp = yield call(ratingProductType, {
+    productType
+  });
+  if (resp) {
+    const { data } = resp;
+    yield put(ratingProductTypeSuccess(data));
   }
   yield delay(1000);
   yield put(hideLoading());
@@ -342,8 +375,6 @@ function* exportOrderSaga({ payload }) {
   const { params } = payload;
   yield put(showLoading());
   const resp = yield call(exportOrder, params);
-  console.log(resp)
-
   if (resp) {
     const { data } = resp;
     yield put(exportOrderSuccess(data));
@@ -433,6 +464,8 @@ function* rootSaga() {
   yield takeLatest(productTypeTypes.DELETE_PRODUCT_TYPE, deleteProductTypeSaga);
   yield takeEvery(productTypeTypes.ADD_PRODUCT_TYPE, addProductTypeSaga);
   yield takeEvery(productTypeTypes.UPDATE_PRODUCT_TYPE, updateProductTypeSaga);
+  yield takeEvery(productTypeTypes.RATING_PRODUCT_TYPE, ratingProductTypeSaga);
+  yield fork(watchFetchListProductTypeByRating);
   //product
   yield fork(watchFetchListProductAction);
   yield takeEvery(productTypes.SELL, addOrderSaga);

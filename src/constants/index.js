@@ -10,6 +10,9 @@ import Order from "../containers/Order";
 import Report from "../containers/Report";
 import Game from "../containers/Game";
 
+import Home from "../containers/Seller/Home";
+
+
 export const WIDTH = screen.width;
 export const HEIGHT = window.innerHeight;
 
@@ -80,6 +83,24 @@ export const ADMIN_ROUTES = [
     path: "/admin/play-game",
     exact: true,
     component: Game
+  },
+];
+
+export const SELLER_ROUTES = [
+  {
+    name: "Trang Chủ",
+    path: "/home",
+    component: Home
+  },
+  {
+    name: "Sản phẩm",
+    path: "/product",
+    component: Home
+  },
+  {
+    name: "Liên hệ",
+    path: "/contact",
+    component: Home
   },
 ];
 

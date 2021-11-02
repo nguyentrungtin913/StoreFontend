@@ -4,8 +4,8 @@ import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
 import {HEIGHT} from'./constants';
 
-document.body.style.overflowY = "hidden";
-document.body.style.overflowX = "hidden";
+// document.body.style.overflowY = "hidden";
+// document.body.style.overflowX = "hidden";
 
 // document.body.style.width = WIDTH + "px";
 document.body.style.height = HEIGHT + "px";

@@ -18,6 +18,15 @@ export const getListProductType = (params = {}) => {
   });
 };
 
+export const getListProductTypeByRating = () => {
+  return axiosService.get(`${API_URL}/product-types-by-vote`).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
 export const addProductType = productType => {
   // console.log("=====api=====");
   // console.log(`${API_URL}/product-type`);
@@ -35,6 +44,15 @@ export const addProductType = productType => {
 
 export const updateProductType = productType => {
   return axiosService.put(`${API_URL}/product-type`, productType.productType).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
+export const ratingProductType = productType => {
+  return axiosService.put(`${API_URL}/rating-product-type`, productType.productType).catch(err => {
     if (err.response.data[0]) {
       toastError(err.response.data[0].clientMsg);
     }

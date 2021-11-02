@@ -1,5 +1,5 @@
 import * as productConstants from "./../constants/product";
-import { toastError, toastSuccess } from "../helpers/toastHelper";
+import { toastSuccess } from "../helpers/toastHelper";
 import _ from 'lodash';
 
 const initialState = {
@@ -22,14 +22,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProduct: data
-      };
-    }
-    case productConstants.FETCH_PRODUCT_FAILED: {
-      const { error } = action.payload;
-      toastError(error);
-      return {
-        ...state,
-        listProduct: []
       };
     }
     case productConstants.SET_PRODUCT_EDITING: {
@@ -66,12 +58,6 @@ const reducer = (state = initialState, action) => {
         form: true
       };
     }
-    case productConstants.ADD_PRODUCT_FAILED: {
-      toastError("faild");
-      return {
-        ...state
-      };
-    }
 
     case productConstants.UPDATE_PRODUCT_SUCCESS: {
       const { product } = action.payload.data.data;
@@ -99,13 +85,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProduct: state.listProduct.filter(item => item.id !== product.id)
-      };
-    }
-    case productConstants.DELETE_PRODUCT_FAILED: {
-      const { error } = action.payload;
-      toastError(error);
-      return {
-        ...state
       };
     }
     case productConstants.SELL_SUCCESS: {

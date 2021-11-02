@@ -47,10 +47,6 @@ export const deleteProduct = productId => {
 };
 
 export const sell = data => {
-  // console.log("=====api=====")
-  // console.log(`${API_URL}/order`)
-  //console.log(data.params)
-  // console.log("=====api=====")
   return axiosService.post(`${API_URL}/order`, data.params).catch(err => {
     if (err.response.data[0]) {
       toastError(err.response.data[0].clientMsg);
@@ -60,10 +56,6 @@ export const sell = data => {
 };
 
 export const buy = data => {
-  // console.log("=====api=====")
-  // console.log(`${API_URL}/order`)
-  //console.log(data.params)
-  // console.log("=====api=====")
   return axiosService.post(`${API_URL}/order-buy`, data.params).catch(err => {
     if (err.response.data[0]) {
       toastError(err.response.data[0].clientMsg);
@@ -71,3 +63,8 @@ export const buy = data => {
     console.log(err.response.data);
   });
 };
+
+////////////////////////////
+//seller
+//1 getListProduct
+

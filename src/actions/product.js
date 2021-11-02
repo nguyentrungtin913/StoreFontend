@@ -18,16 +18,6 @@ export const fetchListProductSuccess = data => {
   };
 };
 
-export const fetchListProductFailed = error => {
-  return {
-    type: productConstants.FETCH_PRODUCT_FAILED,
-    payload: {
-      error
-    }
-  };
-};
-
-
 export const setProductEditing = product => {
   return {
     type: productConstants.SET_PRODUCT_EDITING,
@@ -69,15 +59,6 @@ export const deleteProductSuccess = data => {
     type: productConstants.DELETE_PRODUCT_SUCCESS,
     payload: {
       data
-    }
-  };
-};
-
-export const deleteProductFailed = error => {
-  return {
-    type: productConstants.DELETE_PRODUCT_FAILED,
-    payload: {
-      error
     }
   };
 };
@@ -165,15 +146,6 @@ export const addProductSuccess = data => {
   };
 };
 
-export const addProductFailed = error => {
-  return {
-    type: productConstants.ADD_PRODUCT_FAILED,
-    payload: {
-      error
-    }
-  };
-};
-
 export const sell = params => {
   return {
     type: productConstants.SELL,
@@ -188,15 +160,6 @@ export const sellSuccess = data => {
     type: productConstants.SELL_SUCCESS,
     payload: {
       data
-    }
-  };
-};
-
-export const sellFailed = error => {
-  return {
-    type: productConstants.SELL_FAILD,
-    payload: {
-      error
     }
   };
 };

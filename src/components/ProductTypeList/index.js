@@ -13,6 +13,7 @@ class ProductTypeList extends Component {
       onClickEdit,
       onShowForm
     } = this.props;
+    console.log(productTypes)
     return (
       <div>
         <button
@@ -31,6 +32,7 @@ class ProductTypeList extends Component {
                 <tr>
                   <th>STT</th>
                   <th>Tên loại</th>
+                  <th>Ưu tiên</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
@@ -42,6 +44,7 @@ class ProductTypeList extends Component {
                       key={productType.id}
                       index={index}
                       onClickDelete={() => onClickDelete(productType)}
+                      onRating={this.props.onRating}
                       onClickEdit={() => onClickEdit(productType)}
                     />
                   );

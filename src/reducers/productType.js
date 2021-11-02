@@ -1,10 +1,11 @@
 import * as productTypeConstants from "./../constants/productType";
-import { toastError, toastSuccess } from "../helpers/toastHelper";
+import { toastSuccess } from "../helpers/toastHelper";
 import _ from 'lodash';
 
 const initialState = {
   listProductType: [],
-  productTypeEditting: null
+  productTypeEditting: null,
+  listProductTypeByRating: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,18 +19,18 @@ const reducer = (state = initialState, action) => {
     }
     case productTypeConstants.FETCH_PRODUCT_TYPE_SUCCESS: {
       const data = action.payload.data.data.ListAllProductType;
+      console.log(data)
       return {
         ...state,
         listProductType: data
       };
     }
 
-    case productTypeConstants.FETCH_PRODUCT_TYPE_FAILED: {
-      const { error } = action.payload;
-      toastError(error);
+    case productTypeConstants.FETCH_PRODUCT_TYPE_BY_RATING_SUCCESS: {
+      const data = action.payload.data.data.ListAllProductType;
       return {
         ...state,
-        listProductType: []
+        listProductTypeByRating: data
       };
     }
 
@@ -62,12 +63,6 @@ const reducer = (state = initialState, action) => {
         form: true
       };
     }
-    case productTypeConstants.ADD_PRODUCT_TYPE_FAILED: {
-      toastError("faild");
-      return {
-        ...state
-      };
-    }
 
     case productTypeConstants.UPDATE_PRODUCT_TYPE_SUCCESS: {
       const { productType } = action.payload.data.data;
@@ -81,6 +76,22 @@ const reducer = (state = initialState, action) => {
         ...state,
         listProductType: state.listProductType,
         form: true
+      };
+    }
+
+    case productTypeConstants.RATING_PRODUCT_TYPE_SUCCESS: {
+      const { productType } = action.payload.data.data;
+      console.log(productType)
+      index = _.findIndex(state.listProductType, (proType) => {
+        return proType.id === productType.id;
+      });
+      if (index !== -1) {
+        state.listProductType[index] = productType;
+        toastSuccess("Cập nhật loại sản phẩm thành công");
+      }
+      return {
+        ...state,
+        listProductType: state.listProductType,
       };
     }
     case productTypeConstants.SET_PRODUCT_TYPE_EDITING: {
@@ -102,13 +113,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProductType: state.listProductType.filter(item => item.id !== id)
-      };
-    }
-    case productTypeConstants.DELETE_PRODUCT_TYPE_FAILED: {
-      const { error } = action.payload;
-      toastError(error);
-      return {
-        ...state
       };
     }
     default:

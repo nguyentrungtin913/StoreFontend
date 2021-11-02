@@ -7,6 +7,7 @@ import ProductTypeList from "../../components/ProductTypeList";
 import * as productTypeActions from "./../../actions/productType";
 import styles from "./styles";
 import ProductTypeActionPage from "../ProductTypeActionPage";
+
 class ProductType extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +33,16 @@ class ProductType extends Component {
       add: false
     });
   };
+  onRating = (value, id) => {
+    const { productTypeActionCreators } = this.props;
+    const { ratingProductType } = productTypeActionCreators;
+    let productType = {
+      typeId: id,
+      typeVote: value
+    }
+    ratingProductType(productType);
+  }
+
   showDeleteProductType = productType => {
     const { name, id } = productType;
     if (confirm(`Bạn có muốn xóa loại sản phẩm \` ${name} \` không ?`)) { //eslint-disable-line
@@ -40,6 +51,7 @@ class ProductType extends Component {
       deleteProductType(id);
     }
   };
+
   handleEditProductType = productType => {
     const { productTypeActionCreators } = this.props;
     const { setProductTypeEditing, openForm } = productTypeActionCreators;
@@ -48,12 +60,11 @@ class ProductType extends Component {
     this.setState({
       add: true
     });
-
-
   };
   renderBoard() {
     const { add } = this.state;
     let { listProductType, productTypeEditting } = this.props;
+    console.log(listProductType)
     let xhtmlList, xhtmlAdd = null;
     xhtmlList = (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -62,10 +73,10 @@ class ProductType extends Component {
           onShowForm={this.onShowForm}
           onClickEdit={this.handleEditProductType}
           onClickDelete={this.showDeleteProductType}
+          onRating={this.onRating}
         />
       </div>
     );
-
     xhtmlAdd = (
       <ProductTypeActionPage
         onCloseForm={this.onCloseForm}
