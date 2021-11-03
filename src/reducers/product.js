@@ -5,7 +5,8 @@ import _ from 'lodash';
 const initialState = {
   listProduct: [],
   form: false,
-  productEditting: null
+  productEditting: null,
+  listProductSell: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -113,6 +114,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProduct: state.listProduct
+      };
+    }
+    ////////////////
+    case productConstants.FETCH_PRODUCT_BY_TYPE_SUCCESS: {
+      const data = action.payload.data.data.ListAllProduct;
+      return {
+        ...state,
+        listProductSell: data
       };
     }
 

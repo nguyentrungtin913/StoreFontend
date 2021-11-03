@@ -20,12 +20,12 @@ class ProductItem extends Component {
               alt="" />
           </div>
           <div className="detail-box">
-            <h3>{product.name}</h3>
+            <h2>{product.name}</h2>
             <button className={classes.button}><i className="fad fa-cart-arrow-down fa-3x" style={{ color: 'rgb(13 49 151)' }}></i></button>
             <div className="price_box">
-              <h4 className="price_heading">
+              <h3 className="price_heading">
                 {priceExport}
-              </h4>
+              </h3>
             </div>
           </div>
           <br />

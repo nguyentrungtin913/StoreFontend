@@ -36,8 +36,8 @@ class ListProduct extends Component {
               {content}
             </div>
             <div className="btn-box">
-              <a href="\">
-                View More
+              <a href="\" style={{ color: 'black', textDecoration: 'none', fontSize: '12pt' }}>
+                Xem thêm
               </a>
             </div>
           </div>
@@ -66,7 +66,7 @@ class ListProduct extends Component {
         }
         content = (
           <>
-            <section key={i} className="veg_section layout_padding"  style={{ paddingTop: '0px' }}>
+            <section key={i} className="veg_section layout_padding" style={{ paddingTop: '0px' }}>
               <div className="container">
                 <div className="heading_container heading_center" style={{ alignItems: 'self-start' }}>
                   <h2>
@@ -77,7 +77,7 @@ class ListProduct extends Component {
                   {listItem}
                 </div>
                 <div className="btn-box">
-                  <a href="\">
+                  <a href="\" style={{ color: 'black', textDecoration: 'none', fontSize: '12pt' }}>
                     Xem thêm
                   </a>
                 </div>

@@ -181,3 +181,21 @@ export const buySuccess = data => {
     }
   };
 };
+//////////////////////////////////////
+export const fetchListProductByProType = (proType) => {
+  return {
+    type: productConstants.FETCH_PRODUCT_BY_TYPE,
+    payload: {
+      proType
+    }
+  };
+};
+
+export const fetchListProductByProTypeSuccess = data => {
+  return {
+    type: productConstants.FETCH_PRODUCT_BY_TYPE_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};

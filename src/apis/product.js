@@ -67,4 +67,12 @@ export const buy = data => {
 ////////////////////////////
 //seller
 //1 getListProduct
-
+export const getListProductByProType = (proType) => {
+  let queryParams = "products-by-pro-type?proType=" + proType;
+  return axiosService.get(`${API_URL}/${queryParams}`).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};

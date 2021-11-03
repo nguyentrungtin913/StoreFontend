@@ -123,3 +123,21 @@ export const ratingProductTypeSuccess = data => {
     }
   };
 };
+
+export const findProductType = (proType) => {
+  return {
+    type: productTypeConstants.FIND_PRODUCT_TYPE,
+    payload: {
+      proType
+    }
+  };
+};
+
+export const findProductTypeSuccess = data => {
+  return {
+    type: productTypeConstants.FIND_PRODUCT_TYPE_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};

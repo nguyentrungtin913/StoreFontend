@@ -30,7 +30,8 @@ import {
   addProductTypeSuccess,
   updateProductTypeSuccess,
   ratingProductTypeSuccess,
-  fetchListProductTypeByRatingSuccess
+  fetchListProductTypeByRatingSuccess,
+  findProductTypeSuccess
 } from "../actions/productType";
 import {
   getListProductType,
@@ -39,6 +40,7 @@ import {
   updateProductType,
   ratingProductType,
   getListProductTypeByRating,
+  findProductType,
 } from "./../apis/productType";
 import * as productTypeTypes from "./../constants/productType";
 
@@ -50,6 +52,7 @@ import {
   sellSuccess,
   buySuccess,
   updateProductSuccess,
+  fetchListProductByProTypeSuccess,
 } from "../actions/product";
 import {
   getListProduct,
@@ -57,7 +60,8 @@ import {
   deleteProduct,
   addProduct,
   buy,
-  updateProduct
+  updateProduct,
+  getListProductByProType
 } from "./../apis/product";
 import * as productTypes from "./../constants/product";
 
@@ -168,7 +172,20 @@ function* deleteProductTypeSaga({ payload }) {
   yield delay(1000);
   yield put(hideLoading());
 }
-
+function* watchFindProductTypeAction() {
+  while (true) {
+    const action = yield take(productTypeTypes.FIND_PRODUCT_TYPE);
+    yield put(showLoading());
+    const { proType } = action.payload;
+    const resp = yield call(findProductType, proType);
+    if (resp) {
+      const { data } = resp;
+      yield put(findProductTypeSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
 // product-type
 
 // product
@@ -260,6 +277,22 @@ function* buyOrderSaga({ payload }) {
   }
   yield delay(1000);
   yield put(hideLoading());
+}
+//product-seller
+
+function* watchFetchListProductByProTypeAction() {
+  while (true) {
+    const action = yield take(productTypes.FETCH_PRODUCT_BY_TYPE);
+    yield put(showLoading());
+    const { proType } = action.payload;
+    const resp = yield call(getListProductByProType, proType);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductByProTypeSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
 }
 // product
 function* watchFetchListTaskAction() {
@@ -461,6 +494,7 @@ function* rootSaga() {
 
   //productType
   yield fork(watchFetchListProductTypeAction);
+  yield fork(watchFindProductTypeAction);
   yield takeLatest(productTypeTypes.DELETE_PRODUCT_TYPE, deleteProductTypeSaga);
   yield takeEvery(productTypeTypes.ADD_PRODUCT_TYPE, addProductTypeSaga);
   yield takeEvery(productTypeTypes.UPDATE_PRODUCT_TYPE, updateProductTypeSaga);
@@ -473,6 +507,9 @@ function* rootSaga() {
   yield takeEvery(productTypes.ADD_PRODUCT, addProductSaga);
   yield takeLatest(productTypes.DELETE_PRODUCT, deleteProductSaga);
   yield takeEvery(productTypes.UPDATE_PRODUCT, updateProductSaga);
+  //product-sell
+  yield fork(watchFetchListProductByProTypeAction);
+
   //order
   yield fork(watchFetchListOrderAction);
   yield takeLatest(orderTypes.DELETE_ORDER, deleteOrderSaga);

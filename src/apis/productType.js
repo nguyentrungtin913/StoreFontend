@@ -70,3 +70,14 @@ export const deleteProductType = productTypeId => {
       console.log(err.response.data);
     });
 };
+
+export const findProductType = proType => {
+  return axiosService
+    .get(`${API_URL}/product-type?typeId=${proType}`)
+    .catch(err => {
+      if (err.response.data[0]) {
+        toastError(err.response.data[0].clientMsg);
+      }
+      console.log(err.response.data);
+    });
+};

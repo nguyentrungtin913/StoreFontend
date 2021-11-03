@@ -7,9 +7,10 @@ import { compose } from "redux";
 import styles from "./styles";
 import { SELLER_ROUTES } from "./../../constants";
 import { NavLink } from "react-router-dom";
+import Menu from "./../../containers/Seller/Menu";
 
 class Board extends Component {
-  openNav() {
+  openNav = () => {
     document.getElementById("myNav").classList.toggle("menu_width");
     document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
   }
@@ -58,19 +59,37 @@ class Board extends Component {
                   </div>
                   <div id="myNav" className="overlay">
                     <div className="overlay-content">
-                      {SELLER_ROUTES.map(item => {
-                        return (
-                          <NavLink
-                            key={item.path}
-                            to={item.path}
-                            exact={item.exact}
-                            className={classes.menuLink}
-                            activeClassName={classes.menuLinkActive}
-                          >
-                            {item.name}
-                          </NavLink>
-                        );
+                      {SELLER_ROUTES.map((item) => {
+                        if (item.path !== '/product') {
+                          return (
+                            <NavLink
+                              key={item.path}
+                              to={item.path}
+                              exact={item.exact}
+                              className={classes.menuLink}
+                              activeClassName={classes.menuLinkActive}
+                            >
+                              {item.name}
+                            </NavLink>
+                          );
+                        }
                       })}
+
+                      <div className="dropdown">
+                        <NavLink
+                          key={'/home'}
+                          exact={false}
+                          className={`${classes.button}`}
+                          activeClassName={classes.menuLinkActive}
+                          type="button" id="dropdownMenuButton"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Loại sản phẩm
+                        </NavLink>
+                        <Menu />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -92,9 +111,6 @@ class Board extends Component {
                             Fresh <br />
                             Vegetables
                           </h1>
-                          <a href="" className="">
-                            buy Now
-                          </a>
                         </div>
                       </div>
                     </div>
@@ -112,9 +128,6 @@ class Board extends Component {
                             Fresh <br />
                             Vegetables
                           </h1>
-                          <a href="" className="">
-                            buy Now
-                          </a>
                         </div>
                       </div>
                     </div>
@@ -262,7 +275,7 @@ class Board extends Component {
         <section className="container-fluid footer_section">
           <div className="container" style={{ fontSize: '13pt' }}>
             <div className="row ">
-              <div className="col-sm-6 col-md-4 col-lg-3 footer-col">
+              <div className="col-sm-6 col-md-6 col-lg-6 footer-col">
                 <div className="footer_detail">
                   <a href="index.html">
                     <h4>
@@ -288,7 +301,7 @@ class Board extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-sm-6 col-md-4 col-lg-3 mx-auto footer-col">
+              <div className="col-sm-6 col-md-6 col-lg-6 mx-auto footer-col">
                 <h4>
                   Contact us
                 </h4>
@@ -316,19 +329,7 @@ class Board extends Component {
                   </a>
                 </div>
               </div>
-              <div className="col-md-4 footer-col">
-                <div className="footer_form">
-                  <h4>
-                    SIGN UP TO OUR NEWSLETTER
-                  </h4>
-                  <form action="">
-                    <input type="text" placeholder="Enter Your Email" />
-                    <button type="submit">
-                      Subscribe
-                    </button>
-                  </form>
-                </div>
-              </div>
+
             </div>
             <div className="footer-info">
               <p>

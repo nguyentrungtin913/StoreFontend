@@ -6,6 +6,7 @@ const initialState = {
   listProductType: [],
   productTypeEditting: null,
   listProductTypeByRating: [],
+  productType: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +20,6 @@ const reducer = (state = initialState, action) => {
     }
     case productTypeConstants.FETCH_PRODUCT_TYPE_SUCCESS: {
       const data = action.payload.data.data.ListAllProductType;
-      console.log(data)
       return {
         ...state,
         listProductType: data
@@ -113,6 +113,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProductType: state.listProductType.filter(item => item.id !== id)
+      };
+    }
+
+    case productTypeConstants.FIND_PRODUCT_TYPE_SUCCESS: {
+      const data = action.payload.data.data.productType;
+      return {
+        ...state,
+        productType: data
       };
     }
     default:
