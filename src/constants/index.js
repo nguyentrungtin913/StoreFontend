@@ -12,14 +12,15 @@ import Game from "../containers/Game";
 
 import Home from "../containers/Seller/Home";
 import Filter from "../containers/Seller/Filter";
+import Cart from "../containers/Seller/Cart";
 
 
 export const WIDTH = screen.width;
 export const HEIGHT = window.innerHeight;
 
 export const API_ENDPOINT = "http://localhost:3000";
-export const API_URL = "http://myproject.io";
-// export const API_URL = 'https://backend-myproject.herokuapp.com';
+//export const API_URL = "http://myproject.io";
+export const API_URL = 'https://backend-myproject.herokuapp.com';
 
 export const STATUSES = [
   {
@@ -103,6 +104,11 @@ export const SELLER_ROUTES = [
     name: "Sản phẩm",
     path: "/product",
     component: Filter
+  },
+  {
+    name: "Giỏ hàng",
+    path: "/cart",
+    component: Cart
   },
 ];
 

@@ -25,7 +25,7 @@ class Menu extends Component {
           to={'/product/' + proType.id}
           exact={true}
           className={classes.items}
-          activeClassName={classes.menuLinkActive}
+          onClick={this.props.onClose}
         >
           {proType.name}
         </NavLink>

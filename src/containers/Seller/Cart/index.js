@@ -5,21 +5,12 @@ import { connect } from "react-redux";
 import styles from "./styles";
 import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
-import ListProductByProType from "../../../components/Seller/ListProductByProType";
+import CartList from "../../../components/Seller/Cart";
 import * as productTypeActions from "./../../../actions/productType";
 
-class Filter extends Component {
+class Cart extends Component {
 
   reloadData = () => {
-    let url = window.location.href;
-    let myArr = url.split("/");
-    let proType = myArr[myArr.length - 1];
-    const { productActionCreators } = this.props;
-    const { fetchListProductByProType } = productActionCreators;
-    fetchListProductByProType(parseInt(proType));
-    const { productTypeActionCreators } = this.props;
-    const { findProductType } = productTypeActionCreators;
-    findProductType(parseInt(proType))
   }
 
   render() {
@@ -27,7 +18,7 @@ class Filter extends Component {
     let { listProductSell, productType } = this.props;
     return (
       <>
-        <ListProductByProType
+        <CartList
           key={1}
           products={listProductSell}
           productType={productType}
@@ -37,7 +28,7 @@ class Filter extends Component {
   }
 }
 
-Filter.propTypes = {
+Cart.propTypes = {
   classes: PropTypes.object,
 };
 
@@ -55,5 +46,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(Filter)
+  connect(mapStateToProps, mapDispatchToProps)(Cart)
 );

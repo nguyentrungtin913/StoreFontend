@@ -81,7 +81,6 @@ const reducer = (state = initialState, action) => {
 
     case productTypeConstants.RATING_PRODUCT_TYPE_SUCCESS: {
       const { productType } = action.payload.data.data;
-      console.log(productType)
       index = _.findIndex(state.listProductType, (proType) => {
         return proType.id === productType.id;
       });

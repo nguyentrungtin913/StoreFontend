@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
@@ -20,7 +21,7 @@ class Board extends Component {
       <>
         <div className="hero_area">
           <div className="hero_bg_box">
-            <img src="images/header.jpg" alt="" />
+            <img src="/images/header.jpg" alt="" />
           </div>
           <header className="header_section">
             <div className="container-fluid">
@@ -41,9 +42,17 @@ class Board extends Component {
                       <ul className="navbar-nav justify-content-between ">
                         <div className="User_option">
                           <li className="">
-                            <button className="btn   nav_search-btn" >
-                              <i className="fad fa-shopping-cart fa-2x"></i>
-                            </button>
+                            <NavLink
+                              key={'/cart'}
+                              to={'/cart'}
+                              exact={true}
+                              className={classes.menuLink}
+                              activeClassName={classes.menuLinkActive}
+                            >
+                              <button className="btn   nav_search-btn" >
+                                <i className="fad fa-shopping-cart fa-2x"></i>
+                              </button>
+                            </NavLink>
                           </li>
                         </div>
                       </ul>
@@ -76,19 +85,17 @@ class Board extends Component {
                       })}
 
                       <div className="dropdown">
-                        <NavLink
-                          key={'/home'}
-                          exact={false}
+                        <button
                           className={`${classes.button}`}
-                          activeClassName={classes.menuLinkActive}
-                          type="button" id="dropdownMenuButton"
+                          id="dropdownMenuButton"
                           data-toggle="dropdown"
                           aria-haspopup="true"
                           aria-expanded="false"
                         >
                           Loại sản phẩm
-                        </NavLink>
-                        <Menu />
+                        </button>
+
+                        <Menu key={"1a"} onClose={() => this.openNav()} />
                       </div>
                     </div>
                   </div>
@@ -144,7 +151,7 @@ class Board extends Component {
         {children}
         <section className="about_section ">
           <div className="about_bg_box">
-            <img src="images/header.jpg" alt="" />
+            <img src="/images/footer.jpg" alt="" />
           </div>
           <div className="container ">
             <div className="row">
