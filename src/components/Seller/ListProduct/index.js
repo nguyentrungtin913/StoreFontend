@@ -17,6 +17,7 @@ class ListProduct extends Component {
         content.push(<ProductItem
           key={i}
           product={products[i]}
+          onAddToCart={this.props.onAddToCart}
         />)
       } else {
         break;
@@ -61,6 +62,7 @@ class ListProduct extends Component {
             listItem.push(<ProductItem
               key={j}
               product={products[j]}
+              onAddToCart={this.props.onAddToCart}
             />)
           }
         }

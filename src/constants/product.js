@@ -29,3 +29,6 @@ export const BUY_SUCCESS = "BUY_SUCCESS";
 /////////////////////////////////////////////////
 export const FETCH_PRODUCT_BY_TYPE = "FETCH_PRODUCT_BY_TYPE";
 export const FETCH_PRODUCT_BY_TYPE_SUCCESS = "FETCH_PRODUCT_BY_TYPE_SUCCESS";
+
+export const FETCH_PRODUCT_BY_ID = "FETCH_PRODUCT_BY_ID";
+export const FETCH_PRODUCT_BY_ID_SUCCESS = "FETCH_PRODUCT_BY_ID_SUCCESS";

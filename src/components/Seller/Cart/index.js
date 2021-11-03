@@ -8,19 +8,13 @@ class Cart extends Component {
 
   renderNewProduct = () => {
     let { products } = this.props;
+    console.log(products)
     let content = [];
-    let count = 0;
-
     for (let i = 0; i < products.length; i++) {
-      count++;
-      if (count < 7) {
-        content.push(<ProductItem
-          key={i}
-          product={products[i]}
-        />)
-      } else {
-        break;
-      }
+      content.push(<ProductItem
+        key={i}
+        product={products[i]}
+      />)
     }
 
     let xhtml = (
@@ -33,7 +27,7 @@ class Cart extends Component {
               </h2>
             </div>
             <div className="row">
-
+              {content}
             </div>
           </div>
         </section>

@@ -53,6 +53,7 @@ import {
   buySuccess,
   updateProductSuccess,
   fetchListProductByProTypeSuccess,
+  fetchListProductByIdSuccess,
 } from "../actions/product";
 import {
   getListProduct,
@@ -61,7 +62,8 @@ import {
   addProduct,
   buy,
   updateProduct,
-  getListProductByProType
+  getListProductByProType,
+  getListProductByArrId
 } from "./../apis/product";
 import * as productTypes from "./../constants/product";
 
@@ -205,6 +207,7 @@ function* watchFetchListProductAction() {
   }
 }
 
+
 function* addProductSaga({ payload }) {
   const { product } = payload;
   yield put(showLoading());
@@ -289,6 +292,22 @@ function* watchFetchListProductByProTypeAction() {
     if (resp) {
       const { data } = resp;
       yield put(fetchListProductByProTypeSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+
+function* watchFetchListProductByIdAction() {
+  while (true) {
+    const action = yield take(productTypes.FETCH_PRODUCT_BY_ID);
+    yield put(showLoading());
+    const { params } = action.payload;
+    const resp = yield call(getListProductByArrId, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductByIdSuccess(data));
     }
     yield delay(1000);
     yield put(hideLoading());
@@ -509,6 +528,7 @@ function* rootSaga() {
   yield takeEvery(productTypes.UPDATE_PRODUCT, updateProductSaga);
   //product-sell
   yield fork(watchFetchListProductByProTypeAction);
+  yield fork(watchFetchListProductByIdAction);
 
   //order
   yield fork(watchFetchListOrderAction);

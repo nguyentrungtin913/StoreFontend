@@ -5,6 +5,11 @@ import styles from "./styles";
 import { API_URL } from "./../../../constants";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 class ProductItem extends Component {
+
+  onAddToCart = (product) => {
+    this.props.onAddToCart(product);
+  }
+
   render() {
     let { product, classes } = this.props;
     let priceExport = new Intl.NumberFormat("de-DE").format(
@@ -21,7 +26,7 @@ class ProductItem extends Component {
           </div>
           <div className="detail-box">
             <h2>{product.name}</h2>
-            <button className={classes.button}><i className="fad fa-cart-arrow-down fa-3x" style={{ color: 'rgb(13 49 151)' }}></i></button>
+            <button className={classes.button} onClick={() => this.onAddToCart(product)}><i className="fad fa-cart-arrow-down fa-3x" style={{ color: 'rgb(13 49 151)' }}></i></button>
             <div className="price_box">
               <h3 className="price_heading">
                 {priceExport}

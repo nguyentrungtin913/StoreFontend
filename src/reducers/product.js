@@ -7,6 +7,7 @@ const initialState = {
   form: false,
   productEditting: null,
   listProductSell: [],
+  listCart: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -122,6 +123,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProductSell: data
+      };
+    }
+    case productConstants.FETCH_PRODUCT_BY_ID_SUCCESS: {
+      const data = action.payload.data.data.products;
+      return {
+        ...state,
+        listCart: data
       };
     }
 

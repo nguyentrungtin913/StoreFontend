@@ -21,6 +21,9 @@ class Filter extends Component {
     const { findProductType } = productTypeActionCreators;
     findProductType(parseInt(proType))
   }
+  onAddToCart = product =>{
+    console.log(product)
+  }
 
   render() {
     this.reloadData();
@@ -31,6 +34,7 @@ class Filter extends Component {
           key={1}
           products={listProductSell}
           productType={productType}
+          onAddToCart={this.onAddToCart}
         />
       </>
     );

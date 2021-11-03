@@ -199,3 +199,21 @@ export const fetchListProductByProTypeSuccess = data => {
     }
   };
 };
+
+export const fetchListProductById = (params) => {
+  return {
+    type: productConstants.FETCH_PRODUCT_BY_ID,
+    payload: {
+      params
+    }
+  };
+};
+
+export const fetchListProductByIdSuccess = data => {
+  return {
+    type: productConstants.FETCH_PRODUCT_BY_ID_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};

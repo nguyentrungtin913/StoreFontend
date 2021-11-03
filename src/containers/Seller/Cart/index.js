@@ -7,21 +7,38 @@ import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
 import CartList from "../../../components/Seller/Cart";
 import * as productTypeActions from "./../../../actions/productType";
+import { mergeArrays, getCookie } from './../../../helpers/storeCookie';
+import { toastSuccess, toastWarning } from './../../../helpers/toastHelper';
 
 class Cart extends Component {
 
+  componentDidMount() {
+    let listProductCart = getCookie(
+      "Cart"
+    );
+    if (listProductCart) {
+      let params = {
+        arr: JSON.parse(listProductCart)
+      }
+      const { productActionCreators } = this.props;
+      const { fetchListProductById } = productActionCreators;
+      fetchListProductById(params);
+    }
+
+  }
+
   reloadData = () => {
+
   }
 
   render() {
     this.reloadData();
-    let { listProductSell, productType } = this.props;
+    let { listCart } = this.props;
     return (
       <>
         <CartList
           key={1}
-          products={listProductSell}
-          productType={productType}
+          products={listCart}
         />
       </>
     );
@@ -34,8 +51,7 @@ Cart.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    listProductSell: state.product.listProductSell,
-    productType: state.productType.productType
+    listCart: state.product.listCart,
   };
 };
 const mapDispatchToProps = dispatch => {

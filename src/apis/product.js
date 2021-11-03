@@ -76,3 +76,13 @@ export const getListProductByProType = (proType) => {
     console.log(err.response.data);
   });
 };
+export const getListProductByArrId = (params) => {
+  console.log(params)
+  let queryParams = "products-by-id";
+  return axiosService.post(`${API_URL}/${queryParams}`, params).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
