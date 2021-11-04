@@ -4,46 +4,50 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./styles";
-import ListProduct from "../../../components/Seller/ListProduct";
+import ListAllProduct from "../../../components/Seller/ListAllProduct";
 import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
-import * as productTypeActions from "./../../../actions/productType";
+import _ from "lodash";
 
-class Home extends Component {
+class ListAll extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-
+      keyword: "",
     };
   }
-
-
   componentDidMount() {
     const { productActionCreators } = this.props;
     const { fetchListProduct } = productActionCreators;
-
-    const { productTypeActionCreators } = this.props;
-    const { fetchListProductTypeByRating } = productTypeActionCreators;
-
-    fetchListProductTypeByRating();
     fetchListProduct();
   }
-
+  onFind = keyword => {
+    this.setState({
+      keyword: keyword
+    });
+  };
   render() {
-    let { listProduct, listProductTypeByRating } = this.props;
+    let { listProduct } = this.props;
+    let { keyword } = this.state;
+    if (keyword) {
+      listProduct = _.filter(listProduct, function (product) {
+        return product.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+      });
+    }
     return (
       <>
-        <ListProduct
+        <ListAllProduct
           key={10}
           products={listProduct}
-          productTypes={listProductTypeByRating}
+          onFind={this.onFind}
         />
       </>
     );
   }
 }
 
-Home.propTypes = {
+ListAll.propTypes = {
   classes: PropTypes.object,
   productActionCreators: PropTypes.shape({
     fetchListProduct: PropTypes.func
@@ -54,16 +58,14 @@ Home.propTypes = {
 const mapStateToProps = state => {
   return {
     listProduct: state.product.listProduct,
-    listProductTypeByRating: state.productType.listProductTypeByRating,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     productActionCreators: bindActionCreators(productActions, dispatch),
-    productTypeActionCreators: bindActionCreators(productTypeActions, dispatch)
   };
 };
 
 export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(Home)
+  connect(mapStateToProps, mapDispatchToProps)(ListAll)
 );

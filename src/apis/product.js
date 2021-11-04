@@ -7,7 +7,7 @@ import { toastError } from "../helpers/toastHelper";
 const url = "products";
 
 export const getListProduct = (params = {}) => {
-  let queryParams = "?with[]=productType&sortBy=id";
+  let queryParams = "?with[]=productType&sortBy=id&sortType=desc";
   if (Object.keys(params).length > 0) {
     queryParams = `?${qs.stringify(params)}`;
   }

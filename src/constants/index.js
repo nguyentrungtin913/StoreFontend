@@ -13,6 +13,7 @@ import Game from "../containers/Game";
 import Home from "../containers/Seller/Home";
 import Filter from "../containers/Seller/Filter";
 import Cart from "../containers/Seller/Cart";
+import ListAll from "../containers/Seller/ListAll";
 
 
 export const WIDTH = screen.width;
@@ -98,7 +99,7 @@ export const SELLER_ROUTES = [
   {
     name: "Tìm kiếm",
     path: "/search",
-    component: Home
+    component: ListAll
   },
   {
     name: "Sản phẩm",

@@ -93,7 +93,6 @@ class App extends Component {
               </Switch>
             </ThemeProvider>
           </BrowserRouter>
-          <ToastContainer />
         </Provider>
       </div>
     );
