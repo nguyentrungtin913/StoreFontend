@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
 import ListProductByProType from "../../../components/Seller/ListProductByProType";
 import * as productTypeActions from "./../../../actions/productType";
+import { onAddToCart } from './../../../helpers/cartHelper';
 
 class Filter extends Component {
 
@@ -21,9 +22,6 @@ class Filter extends Component {
     const { findProductType } = productTypeActionCreators;
     findProductType(parseInt(proType))
   }
-  onAddToCart = product =>{
-    console.log(product)
-  }
 
   render() {
     this.reloadData();
@@ -34,7 +32,6 @@ class Filter extends Component {
           key={1}
           products={listProductSell}
           productType={productType}
-          onAddToCart={this.onAddToCart}
         />
       </>
     );

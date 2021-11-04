@@ -302,15 +302,12 @@ function* watchFetchListProductByProTypeAction() {
 function* watchFetchListProductByIdAction() {
   while (true) {
     const action = yield take(productTypes.FETCH_PRODUCT_BY_ID);
-    yield put(showLoading());
     const { params } = action.payload;
     const resp = yield call(getListProductByArrId, params);
     if (resp) {
       const { data } = resp;
       yield put(fetchListProductByIdSuccess(data));
     }
-    yield delay(1000);
-    yield put(hideLoading());
   }
 }
 // product

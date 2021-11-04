@@ -15,7 +15,6 @@ class ListProductByProType extends Component {
       content.push(<ProductItem
         key={i}
         product={products[i]}
-        onAddToCart={this.props.onAddToCart}
       />)
     }
 

@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import ProductItem from "./../ProductItem";
+import CartItem from "./../CartItem";
 
 class Cart extends Component {
 
   renderNewProduct = () => {
     let { products } = this.props;
-    console.log(products)
     let content = [];
     for (let i = 0; i < products.length; i++) {
-      content.push(<ProductItem
+      content.push(<CartItem
         key={i}
         product={products[i]}
+        onCartRemove={this.props.onCartRemove}
+        onUpAmountProduct={this.props.onUpAmountProduct}
+        onDownAmountProduct={this.props.onDownAmountProduct}
+        onStepAmountProduct={this.props.onStepAmountProduct}
       />)
     }
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
@@ -7,8 +8,7 @@ import ListProduct from "../../../components/Seller/ListProduct";
 import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
 import * as productTypeActions from "./../../../actions/productType";
-import { mergeArrays, getCookie } from './../../../helpers/storeCookie';
-import { toastSuccess, toastWarning } from './../../../helpers/toastHelper';
+import { onAddToCart } from './../../../helpers/cartHelper';
 
 class Home extends Component {
   constructor(props) {
@@ -18,43 +18,7 @@ class Home extends Component {
     };
   }
 
-  onAddToCart = product => {
-    const d = new Date();
-    d.setTime(d.getTime() + 24 * 60 * 60 * 1000);
-    let expires = "expires=" + d.toUTCString();
-    let cart = getCookie(
-      "Cart"
-    );
 
-
-    let { id } = product;
-    let pass = 1;
-    let arr1 = [id]
-    let arr2 = [1];
-    let arr = mergeArrays(arr1, arr2);
-
-    if (cart) {
-      cart = JSON.parse(cart);
-      cart.forEach(value => {
-        let myArr = value.split(":");
-        console.log(myArr[0], id)
-        if (parseInt(myArr[0]) === id) {
-          pass = 0;
-        }
-      });
-      if (pass === 1) {
-        cart.push(arr[0]);
-        toastSuccess("Thêm vào giỏ hàng thành công !")
-      }else{
-        toastWarning("Sản phẩm đã tồn tại trong giỏ hàng !")
-      }
-    } else {
-      cart = arr;
-      toastSuccess("Thêm vào giỏ hàng thành công !")
-    }
-    document.cookie =
-      "Cart" + "=" + JSON.stringify(cart) + ";" + expires + ";path=/";
-  }
   componentDidMount() {
     const { productActionCreators } = this.props;
     const { fetchListProduct } = productActionCreators;
@@ -74,7 +38,6 @@ class Home extends Component {
           key={10}
           products={listProduct}
           productTypes={listProductTypeByRating}
-          onAddToCart={this.onAddToCart}
         />
       </>
     );

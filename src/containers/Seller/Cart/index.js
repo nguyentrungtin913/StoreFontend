@@ -7,8 +7,8 @@ import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
 import CartList from "../../../components/Seller/Cart";
 import * as productTypeActions from "./../../../actions/productType";
-import { mergeArrays, getCookie } from './../../../helpers/storeCookie';
-import { toastSuccess, toastWarning } from './../../../helpers/toastHelper';
+import { getCookie } from './../../../helpers/storeCookie';
+import { cartRemove, setAmount } from "../../../helpers/cartHelper";
 
 class Cart extends Component {
 
@@ -24,21 +24,37 @@ class Cart extends Component {
       const { fetchListProductById } = productActionCreators;
       fetchListProductById(params);
     }
-
+    console.log('next')
   }
 
-  reloadData = () => {
-
+  onCartRemove = id => {
+    cartRemove(id);
+    this.componentDidMount();
   }
-
+  onUpAmountProduct = (id, amountSell) => {
+    setAmount(id, amountSell);
+    this.componentDidMount();
+  }
+  onDownAmountProduct = (id, amountSell) => {
+    setAmount(id, amountSell);
+    this.componentDidMount();
+  }
+  onStepAmountProduct = (id, amountSell) => {
+    setAmount(id, amountSell);
+    this.componentDidMount();
+  }
   render() {
-    this.reloadData();
     let { listCart } = this.props;
+    console.log(listCart)
     return (
       <>
         <CartList
           key={1}
           products={listCart}
+          onCartRemove={this.onCartRemove}
+          onUpAmountProduct={this.onUpAmountProduct}
+          onDownAmountProduct={this.onDownAmountProduct}
+          onStepAmountProduct={this.onStepAmountProduct}
         />
       </>
     );

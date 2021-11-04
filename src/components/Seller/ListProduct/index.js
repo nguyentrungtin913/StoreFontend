@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import ProductItem from "./../ProductItem";
+import { NavLink } from "react-router-dom";
 
 class ListProduct extends Component {
 
@@ -17,7 +18,6 @@ class ListProduct extends Component {
         content.push(<ProductItem
           key={i}
           product={products[i]}
-          onAddToCart={this.props.onAddToCart}
         />)
       } else {
         break;
@@ -62,7 +62,6 @@ class ListProduct extends Component {
             listItem.push(<ProductItem
               key={j}
               product={products[j]}
-              onAddToCart={this.props.onAddToCart}
             />)
           }
         }
@@ -79,9 +78,14 @@ class ListProduct extends Component {
                   {listItem}
                 </div>
                 <div className="btn-box">
-                  <a href="\" style={{ color: 'black', textDecoration: 'none', fontSize: '12pt' }}>
+                  <NavLink
+                    key={'/product/' + productTypes[i].id}
+                    to={'/product/' + productTypes[i].id}
+                    exact={true}
+                    style={{ color: 'black', textDecoration: 'none', fontSize: '12pt' }}
+                  >
                     Xem thêm
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </section>
