@@ -217,3 +217,21 @@ export const fetchListProductByIdSuccess = data => {
     }
   };
 };
+
+export const customerBuy = (params) => {
+  return {
+    type: productConstants.CUSTOMER_BUY,
+    payload: {
+      params
+    }
+  };
+};
+
+export const customerBuySuccess = data => {
+  return {
+    type: productConstants.CUSTOMER_BUY_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};

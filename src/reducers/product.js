@@ -1,5 +1,6 @@
 import * as productConstants from "./../constants/product";
 import { toastSuccess } from "../helpers/toastHelper";
+import { destroyCookieCart } from '../helpers/cartHelper';
 import _ from 'lodash';
 
 const initialState = {
@@ -130,6 +131,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listCart: data
+      };
+    }
+    case productConstants.CUSTOMER_BUY_SUCCESS: {
+      toastSuccess("Mua hàng thành công");
+      destroyCookieCart()
+      return {
+        ...state,
       };
     }
 

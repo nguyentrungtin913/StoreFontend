@@ -7,7 +7,7 @@ import CartItem from "./../CartItem";
 class Cart extends Component {
 
   renderNewProduct = () => {
-    let { products } = this.props;
+    let { products, classes } = this.props;
     let content = [];
     for (let i = 0; i < products.length; i++) {
       content.push(<CartItem
@@ -32,6 +32,11 @@ class Cart extends Component {
             <div className="row">
               {content}
             </div>
+            <button
+              type="button"
+              className={`btn btn-success ${classes.myButton}`}
+              onClick={this.props.onBuy}
+            >Mua hàng</button>
           </div>
         </section>
       </>

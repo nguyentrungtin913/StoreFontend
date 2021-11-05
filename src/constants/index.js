@@ -9,6 +9,7 @@ import Buy from "../containers/Buy";
 import Order from "../containers/Order";
 import Report from "../containers/Report";
 import Game from "../containers/Game";
+import CartAdmin from "../containers/Cart";
 
 import Home from "../containers/Seller/Home";
 import Filter from "../containers/Seller/Filter";
@@ -16,7 +17,6 @@ import Cart from "../containers/Seller/Cart";
 import ListAll from "../containers/Seller/ListAll";
 
 
-export const WIDTH = screen.width;
 export const HEIGHT = window.innerHeight;
 
 export const API_ENDPOINT = "http://localhost:3000";
@@ -68,6 +68,12 @@ export const ADMIN_ROUTES = [
     path: "/admin/product",
     exact: true,
     component: Product
+  },
+  {
+    name: "Đơn đặt hàng",
+    path: "/admin/cart",
+    exact: true,
+    component: CartAdmin
   },
   {
     name: "Hóa đơn",

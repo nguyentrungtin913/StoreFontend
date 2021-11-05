@@ -67,7 +67,6 @@ export function setAmount(id, amountSell) {
   if (cart) {
     cart = JSON.parse(cart);
     for (let i = 0; i < cart.length; i++) {
-      console.log(cart[i])
       let myArr = (cart[i].toString()).split(":");
       if (parseInt(myArr[0]) === id) {
         let arr1 = [id]
@@ -79,4 +78,8 @@ export function setAmount(id, amountSell) {
   }
   document.cookie =
     "Cart" + "=" + JSON.stringify(cart) + ";" + expires + ";path=/";
+}
+
+export function destroyCookieCart() {
+  document.cookie = "Cart" + "=" + "[]" + ";" + -1 + ";path=/";
 }

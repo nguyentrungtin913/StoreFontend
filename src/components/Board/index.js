@@ -115,8 +115,8 @@ class Board extends Component {
                             01
                           </h5>
                           <h1>
-                            Fresh <br />
-                            Vegetables
+                            Sản Phẩm <br />
+                            Chất Lượng Cao
                           </h1>
                         </div>
                       </div>
@@ -132,8 +132,8 @@ class Board extends Component {
                             02
                           </h5>
                           <h1>
-                            Fresh <br />
-                            Vegetables
+                            Sản Phẩm <br />
+                            An Toàn
                           </h1>
                         </div>
                       </div>

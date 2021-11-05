@@ -9,7 +9,6 @@ import CartList from "../../../components/Seller/Cart";
 import * as productTypeActions from "./../../../actions/productType";
 import { getCookie } from './../../../helpers/storeCookie';
 import { cartRemove, setAmount } from "../../../helpers/cartHelper";
-
 class Cart extends Component {
 
   componentDidMount() {
@@ -24,28 +23,37 @@ class Cart extends Component {
       const { fetchListProductById } = productActionCreators;
       fetchListProductById(params);
     }
-    console.log('next')
   }
 
   onCartRemove = id => {
     cartRemove(id);
-    this.componentDidMount();
   }
   onUpAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
-    this.componentDidMount();
   }
   onDownAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
-    this.componentDidMount();
   }
   onStepAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
-    this.componentDidMount();
+  }
+  onBuy = () => {
+    let listProductCart = getCookie(
+      "Cart"
+    );
+    let params = null;
+    if (listProductCart) {
+      params = {
+        arr: JSON.parse(listProductCart)
+      }
+    }
+    const { productActionCreators } = this.props;
+    const { customerBuy } = productActionCreators;
+    customerBuy(params);
   }
   render() {
+    this.componentDidMount();
     let { listCart } = this.props;
-    console.log(listCart)
     return (
       <>
         <CartList
@@ -55,6 +63,7 @@ class Cart extends Component {
           onUpAmountProduct={this.onUpAmountProduct}
           onDownAmountProduct={this.onDownAmountProduct}
           onStepAmountProduct={this.onStepAmountProduct}
+          onBuy={this.onBuy}
         />
       </>
     );

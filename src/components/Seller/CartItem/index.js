@@ -12,7 +12,6 @@ class CartItem extends Component {
     this.props.onCartRemove(id);
   }
   onStepAmountProduct = (id, amountSell, amount) => {
-    console.log(id, amountSell, amount)
     amountSell = parseInt(amountSell) + 5;
     if (amountSell <= amount) {
       this.props.onStepAmountProduct(id, amountSell);
@@ -23,7 +22,6 @@ class CartItem extends Component {
   }
 
   onUpAmountProduct = (id, amountSell, amount) => {
-    console.log(id, amountSell, amount)
     amountSell = parseInt(amountSell) + 1;
     if (amountSell <= amount) {
       this.props.onUpAmountProduct(id, amountSell);
@@ -33,7 +31,6 @@ class CartItem extends Component {
   }
 
   onDownAmountProduct = (id, amountSell, amount) => {
-    console.log(id, amountSell, amount)
     amountSell = parseInt(amountSell) - 1;
     if (amountSell > 0) {
       this.props.onDownAmountProduct(id, amountSell);
