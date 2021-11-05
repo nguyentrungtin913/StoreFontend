@@ -13,6 +13,12 @@ const styles = () => ({
   },
   tdMiddle:{
     verticalAlign: 'middle !important'
+  },
+  imageSoldOut:{
+    position: 'absolute',
+    width: '120px',
+    left: '45%',
+    marginTop: '-15px'
   }
 });
 

@@ -8,7 +8,7 @@ import { API_URL } from "./../../constants";
 class CartTypeItem extends Component {
 
   render() {
-    let { cartDetail, index, classes } = this.props;
+    let { cartDetail, index, classes, soldOut } = this.props;
     let total = 0;
     let price = 0;
     if (cartDetail.detailAmount && cartDetail.product.priceExport) {
@@ -19,16 +19,21 @@ class CartTypeItem extends Component {
         cartDetail.product.priceExport
       );
     }
+    let imgSoldOut = '';
+    if (soldOut) {
+      imgSoldOut = <img src='/images/soldOut.png' className={classes.imageSoldOut} alt='' />;
+    }
+
     return (
       <tr>
         <td className={`${classes.tdMiddle}`}>{index + 1}</td>
         <td className={`${classes.tdMiddle}`}>
-            <LazyLoadImage
+          <LazyLoadImage
             className={classes.imageProduct}
-              src={`${API_URL}/image/${cartDetail.product.image}`}
-              alt="" />
-          </td>
-        <td className={`${classes.tdMiddle}`}>{cartDetail.product.name}</td>
+            src={`${API_URL}/image/${cartDetail.product.image}`}
+            alt="" />
+        </td>
+        <td className={`${classes.tdMiddle}`}>{cartDetail.product.name}{imgSoldOut}</td>
         <td className={`${classes.tdMiddle}`}>{cartDetail.detailAmount}</td>
         <td className={`${classes.tdMiddle}`}>{price}</td>
         <td className={`${classes.tdMiddle}`}>{total}</td>

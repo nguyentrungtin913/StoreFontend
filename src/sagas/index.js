@@ -55,6 +55,7 @@ import {
   fetchListProductByProTypeSuccess,
   fetchListProductByIdSuccess,
   customerBuySuccess,
+  fetchListProductSoldOutSuccess,
 } from "../actions/product";
 import {
   getListProduct,
@@ -65,7 +66,8 @@ import {
   updateProduct,
   getListProductByProType,
   getListProductByArrId,
-  customerBuy
+  customerBuy,
+  getListProductSoldOut
 } from "./../apis/product";
 import * as productTypes from "./../constants/product";
 
@@ -198,6 +200,7 @@ function* watchFindProductTypeAction() {
 // product-type
 
 // product
+
 function* watchFetchListProductAction() {
   while (true) {
     const action = yield take(productTypes.FETCH_PRODUCT);
@@ -288,6 +291,20 @@ function* buyOrderSaga({ payload }) {
   yield delay(1000);
   yield put(hideLoading());
 }
+
+function* watchFetchListProductSoldOutAction() {
+  while (true) {
+    yield take(productTypes.FETCH_PRODUCT_SOLD_OUT);
+    yield put(showLoading());
+    const resp = yield call(getListProductSoldOut);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductSoldOutSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
 //product-seller
 
 function* watchFetchListProductByProTypeAction() {
@@ -330,6 +347,7 @@ function* customerBuySaga() {
   }
 }
 // product
+//task
 function* watchFetchListTaskAction() {
   while (true) {
     const action = yield take(taskTypes.FETCH_TASK); // Khi FETCH_TASK được dispatch => code từ đây trở xuống sẽ chạy
@@ -586,6 +604,7 @@ function* rootSaga() {
   yield takeEvery(productTypes.ADD_PRODUCT, addProductSaga);
   yield takeLatest(productTypes.DELETE_PRODUCT, deleteProductSaga);
   yield takeEvery(productTypes.UPDATE_PRODUCT, updateProductSaga);
+  yield fork(watchFetchListProductSoldOutAction);
   //product-sell
   yield fork(watchFetchListProductByProTypeAction);
   yield fork(watchFetchListProductByIdAction);

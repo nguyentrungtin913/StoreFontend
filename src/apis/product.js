@@ -64,6 +64,16 @@ export const buy = data => {
   });
 };
 
+export const getListProductSoldOut = () => {
+
+  return axiosService.get(`${API_URL}/products-sold-out?with[]=productType`).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
 ////////////////////////////
 //seller
 //1 getListProduct

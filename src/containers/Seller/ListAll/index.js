@@ -30,6 +30,7 @@ class ListAll extends Component {
   render() {
     let { listProduct } = this.props;
     let { keyword } = this.state;
+    listProduct = listProduct.filter(item => item.amount > 0);
     if (keyword) {
       listProduct = _.filter(listProduct, function (product) {
         return product.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;

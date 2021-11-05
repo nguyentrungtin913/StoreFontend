@@ -28,7 +28,6 @@ class CartList extends Component {
               </thead>
               <tbody>
                 {carts.map((cart, index) => {
-                  console.log(cart)
                   return (
                     <CartItem
                       cart={cart}

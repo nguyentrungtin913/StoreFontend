@@ -60,7 +60,7 @@ class Report extends Component {
     }
 
     if (dStart !== '' && dEnd !== '') {
-      param2 = ' \' từ ngày ' + dStart + ' đến ngày ' + dEnd + ' \'';
+      param2 = ' \' từ ' + dStart + ' đến ' + dEnd + ' \'';
     } else {
       param2 = '';
     }

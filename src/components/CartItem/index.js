@@ -20,6 +20,7 @@ class CartItem extends Component {
     let { cart, index, classes } = this.props;
     let status = '';
     let show = '';
+    // let soldOut='';
     switch (cart.cartStatus) {
       case 0:
         status = <span style={{ color: 'red' }}>Chờ xác nhận</span>;

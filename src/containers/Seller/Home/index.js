@@ -31,6 +31,7 @@ class Home extends Component {
 
   render() {
     let { listProduct, listProductTypeByRating } = this.props;
+    listProduct = listProduct.filter(item => item.amount > 0);
     return (
       <>
         <ListProduct

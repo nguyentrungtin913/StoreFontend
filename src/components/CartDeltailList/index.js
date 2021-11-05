@@ -6,7 +6,7 @@ import CartDetailItem from "../CartDetailItem";
 
 class CartDetailList extends Component {
   render() {
-    const { classes, cartDetails } = this.props;
+    const { classes, cartDetails, productsSoldOut } = this.props;
     return (
       <div className="m-5">
         <div>
@@ -28,11 +28,13 @@ class CartDetailList extends Component {
                 </thead>
                 <tbody>
                   {cartDetails.map((cartDetail, index) => {
+                    let pro = productsSoldOut.filter(item => item.id === cartDetail.productId).length > 0 ? true : false;
                     return (
                       <CartDetailItem
                         cartDetail={cartDetail}
                         key={cartDetail.id}
                         index={index}
+                        soldOut={pro}
                       />
                     );
                   })}

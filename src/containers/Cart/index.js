@@ -7,6 +7,7 @@ import * as cartActions from "./../../actions/cart";
 import styles from "./styles";
 import CartList from "../../components/CartList";
 import CartDeltailList from "../../components/CartDeltailList";
+import * as productActions from "./../../actions/product";
 
 class Cart extends Component {
   constructor(props) {
@@ -18,7 +19,10 @@ class Cart extends Component {
   componentDidMount() {
     const { cartActionsCreators } = this.props;
     const { fetchListCart } = cartActionsCreators;
+    const { productActionCreators } = this.props;
+    const { fetchListProductSoldOut } = productActionCreators;
     fetchListCart();
+    fetchListProductSoldOut();
   }
   onDetail = (id) => {
     this.setState({
@@ -44,19 +48,18 @@ class Cart extends Component {
     this.componentDidMount()
   }
   renderContent() {
-    const { ListCart, ListCartDetail } = this.props;
+    const { ListCart, ListCartDetail, listProductSoldOut } = this.props;
     let { showDetail } = this.state;
     let xhtml = null;
     if (showDetail) {
-      console.log('detail')
       xhtml = (
         <CartDeltailList
           cartDetails={ListCartDetail}
           onShowList={this.showList}
+          productsSoldOut={listProductSoldOut}
         />
       )
     } else {
-      console.log('list')
       xhtml = (
         <CartList
           carts={ListCart}
@@ -68,7 +71,7 @@ class Cart extends Component {
     return xhtml;
   }
   render() {
-    const { classes } = this.props;
+    const { classes} = this.props;
     return (
       <div className={classes.taskBoard} id="1">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -86,12 +89,14 @@ Cart.propTypes = {
 const mapStateToProps = state => {
   return {
     ListCart: state.cart.ListCart,
-    ListCartDetail: state.cart.ListCartDetail
+    ListCartDetail: state.cart.ListCartDetail,
+    listProductSoldOut: state.product.listProductSoldOut
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    cartActionsCreators: bindActionCreators(cartActions, dispatch)
+    cartActionsCreators: bindActionCreators(cartActions, dispatch),
+    productActionCreators: bindActionCreators(productActions, dispatch)
   };
 };
 

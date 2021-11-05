@@ -9,6 +9,7 @@ const initialState = {
   productEditting: null,
   listProductSell: [],
   listCart: [],
+  listProductSoldOut: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ const reducer = (state = initialState, action) => {
         listProduct: []
       };
     }
+
     case productConstants.FETCH_PRODUCT_SUCCESS: {
       const data = action.payload.data.data.ListAllProduct;
       return {
@@ -27,6 +29,7 @@ const reducer = (state = initialState, action) => {
         listProduct: data
       };
     }
+
     case productConstants.SET_PRODUCT_EDITING: {
       const { product } = action.payload;
       return {
@@ -138,6 +141,14 @@ const reducer = (state = initialState, action) => {
       destroyCookieCart()
       return {
         ...state,
+      };
+    }
+
+    case productConstants.FETCH_PRODUCT_SOLD_OUT_SUCCESS: {
+      const data = action.payload.data.data.listProductSoldOut;
+      return {
+        ...state,
+        listProductSoldOut: data
       };
     }
 
