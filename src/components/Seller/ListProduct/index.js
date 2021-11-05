@@ -36,11 +36,11 @@ class ListProduct extends Component {
             <div className="row">
               {content}
             </div>
-            <div className="btn-box">
+            {/* <div className="btn-box">
               <a href="\" style={{ color: 'black', textDecoration: 'none', fontSize: '12pt' }}>
                 Xem thêm
               </a>
-            </div>
+            </div> */}
           </div>
         </section>
       </>

@@ -19,6 +19,7 @@ class CartDetailList extends Component {
                 <thead>
                   <tr>
                     <th>STT</th>
+                    <th>Hình ảnh</th>
                     <th>Tên sản phẩm</th>
                     <th>Số lượng</th>
                     <th>Đơn giá</th>

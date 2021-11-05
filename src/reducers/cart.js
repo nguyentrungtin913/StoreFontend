@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
       });
       if (index !== -1) {
         state.ListCart[index] = cart;
-        toastSuccess("Cập nhật đơn đặt hàng thành công thành công");
+        toastSuccess("Cập nhật đơn đặt hàng thành công !");
       }
       let data = state.ListCart;
       return {

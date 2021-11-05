@@ -3,12 +3,12 @@ import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import CartItem from "./../CartItem";
-
 class Cart extends Component {
 
   renderNewProduct = () => {
     let { products, classes } = this.props;
     let content = [];
+    let hidden = '';
     for (let i = 0; i < products.length; i++) {
       content.push(<CartItem
         key={i}
@@ -18,6 +18,10 @@ class Cart extends Component {
         onDownAmountProduct={this.props.onDownAmountProduct}
         onStepAmountProduct={this.props.onStepAmountProduct}
       />)
+    }
+    if (products.length < 1) {
+      content.push(<img src="/images/cartEmpty.png" alt="" className={classes.image} />)
+      hidden = classes.hidden;
     }
 
     let xhtml = (
@@ -34,7 +38,7 @@ class Cart extends Component {
             </div>
             <button
               type="button"
-              className={`btn btn-success ${classes.myButton}`}
+              className={`btn btn-success ${classes.myButton} ${hidden} m-5`}
               onClick={this.props.onBuy}
             >Mua hàng</button>
           </div>

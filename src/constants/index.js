@@ -20,8 +20,8 @@ import ListAll from "../containers/Seller/ListAll";
 export const HEIGHT = window.innerHeight;
 
 export const API_ENDPOINT = "http://localhost:3000";
-// export const API_URL = "http://myproject.io";
-export const API_URL = 'https://backend-myproject.herokuapp.com';
+export const API_URL = "http://myproject.io";
+// export const API_URL = 'https://backend-myproject.herokuapp.com';
 
 export const STATUSES = [
   {
@@ -58,18 +58,6 @@ export const ADMIN_ROUTES = [
     component: Buy
   },
   {
-    name: "Quản lý loại sản phẩm",
-    path: "/admin/product-type",
-    exact: true,
-    component: ProductType
-  },
-  {
-    name: "Quản lý sản phẩm",
-    path: "/admin/product",
-    exact: true,
-    component: Product
-  },
-  {
     name: "Đơn đặt hàng",
     path: "/admin/cart",
     exact: true,
@@ -86,6 +74,18 @@ export const ADMIN_ROUTES = [
     path: "/admin/report",
     exact: true,
     component: Report
+  },
+  {
+    name: "Quản lý loại sản phẩm",
+    path: "/admin/product-type",
+    exact: true,
+    component: ProductType
+  },
+  {
+    name: "Quản lý sản phẩm",
+    path: "/admin/product",
+    exact: true,
+    component: Product
   },
   {
     name: "Giải trí",

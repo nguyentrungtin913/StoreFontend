@@ -7,9 +7,12 @@ import styles from "./styles";
 class CartItem extends Component {
 
   onUpdateStatus = (id, status) => {
-    this.props.onUpdateStatus(id, status);
+    let label = (status === 1) ? ' Xác nhận ' : ' Hủy ';
+    if (confirm(`Bạn muốn \'${label}\' đơn hàng ?`)) { //eslint-disable-line
+      this.props.onUpdateStatus(id, status);
+    }
   }
-  onShow = id =>{
+  onShow = id => {
     this.props.onClickDetail(id);
   }
 

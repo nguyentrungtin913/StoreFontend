@@ -6,6 +6,13 @@ const styles = () => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end'
+  },
+  imageProduct:{
+    maxHeight: '90px',
+    maxWidth: '90%',
+  },
+  tdMiddle:{
+    verticalAlign: 'middle !important'
   }
 });
 

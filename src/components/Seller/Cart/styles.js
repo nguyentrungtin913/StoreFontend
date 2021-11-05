@@ -6,6 +6,13 @@ const styles = () => ({
   myButton:{
     float: 'right',
     fontSize: '15pt'
+  },
+  image:{
+    width: '250px',
+    margin: 'auto'
+  },
+  hidden: {
+    display: 'none'
   }
 });
 
