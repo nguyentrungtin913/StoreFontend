@@ -10,6 +10,9 @@ const styles = theme => ({
     color: 'white',
     fontSize: '22px',
     border: 'none'
+  },
+  title:{
+    textTransform: 'none !important'
   }
 });
 

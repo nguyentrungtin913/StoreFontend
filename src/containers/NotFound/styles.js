@@ -1,7 +1,12 @@
-import notFound from './../../assets/images/notFound.gif';
 const styles = () => ({
-  backgroundImage: {
-    backgroundImage: 'url(' + notFound + ')'
+  icon: {
+    width: '-webkit-fill-available'
+  },
+  text: {
+    left: '5%',
+    position: 'absolute',
+    marginTop: '9%',
+    fontWeight: 600,
   }
 });
 

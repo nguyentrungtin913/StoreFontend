@@ -32,9 +32,9 @@ class Board extends Component {
                   to={'/home'}
                   exact={false}
                   className="navbar-brand"
-                  activeClassName={classes.menuLinkActive}
+                  activeClassName={`${classes.menuLinkActive}`}
                 >
-                  <span>{'Store'}</span>
+                  <span className={classes.title}>{'PhotoCopy Bảo Nam'}</span>
                 </NavLink>
 
                 <div className="" id="">
@@ -87,13 +87,13 @@ class Board extends Component {
 
                       <div className="dropdown">
                         <button
-                          className={`${classes.button}`}
+                          className={`${classes.button} ${classes.menuLink}`}
                           id="dropdownMenuButton"
                           data-toggle="dropdown"
                           aria-haspopup="true"
                           aria-expanded="false"
                         >
-                          Loại sản phẩm
+                          Loại Sản Phẩm
                         </button>
 
                         <Menu key={"1a"} onClose={() => this.openNav()} />
@@ -220,16 +220,14 @@ class Board extends Component {
           </div>
         </section>
         <div>
-          <div class="social-button">
-            <div class="social-button-content">
-              <a href="https://www.facebook.com/profile.php?id=100010349914920" class="mes">
-                <img src="/images/iconFacebook.png" alt="facebook" style={{width: '50px'}} />
+          <div className="social-button">
+            <div className="social-button-content">
+              <a href="https://www.facebook.com/nam.ngonguyenbao.1" className="mes">
+                <img src="/images/iconFacebook.png" alt="facebook" style={{ width: '50px' }} />
                 <span>Nhắn tin Facebook</span>
               </a>
-              <a href="http://zalo.me/0858435195" class="zalo">
-
-                <img src="/images/iconZalo.png" alt="zalo" style={{width: '50px'}} />
-
+              <a href="http://zalo.me/0942323664" className="zalo">
+                <img src="/images/iconZalo.png" alt="zalo" style={{ width: '50px' }} />
                 <span>Zalo: 094.2323.664</span>
               </a>
             </div>
@@ -266,7 +264,7 @@ class Board extends Component {
               </div>
               <div className="col-sm-6 col-md-6 col-lg-6 mx-auto footer-col">
                 <h4>
-                  Contact us
+                  Liên hệ chúng tôi
                 </h4>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit
@@ -281,7 +279,7 @@ class Board extends Component {
                   <a href="">
                     <i className="fa fa-phone" aria-hidden="true"></i>
                     <span>
-                      Điện thoại: +84 907824913
+                      Điện thoại: +84 94 2323 664
                     </span>
                   </a>
                   <a href="">

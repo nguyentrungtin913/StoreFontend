@@ -95,6 +95,23 @@ export const ADMIN_ROUTES = [
   },
 ];
 
+
+export const ROUTES = [
+
+  {
+    name: "Đăng nhập",
+    path: "/login",
+    exact: true,
+    component: LoginPage
+  },
+  {
+    name: "Đăng ký",
+    path: "/signup",
+    exact: true,
+    component: SignupPage
+  },
+
+];
 export const SELLER_ROUTES = [
   {
     name: "Trang Chủ",
@@ -116,20 +133,6 @@ export const SELLER_ROUTES = [
     name: "Giỏ hàng",
     path: "/cart",
     component: Cart
-  },
-];
-
-export const ROUTES = [
-
-  {
-    name: "Đăng nhập",
-    path: "/",
-    component: LoginPage
-  },
-  {
-    name: "Đăng ký",
-    path: "/signup",
-    component: SignupPage
   },
   {
     path: "",
