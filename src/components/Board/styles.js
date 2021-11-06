@@ -1,18 +1,28 @@
 const styles = theme => ({
-  logo:{
+  logo: {
     height: '100px'
   },
-  header:{
+  header: {
     width: 'inherit !important'
   },
-  button:{
+  button: {
     backgroundColor: 'transparent',
     color: 'white',
     fontSize: '22px',
     border: 'none'
   },
-  title:{
+  title: {
     textTransform: 'none !important'
+  },
+  nav: {
+    justifyContent: 'start !important',
+  },
+  navLink: {
+    marginTop: '10px'
+  },
+  container: {
+    paddingRight: '0 !important',
+    paddingLeft: '0 !important',
   }
 });
 

@@ -25,14 +25,13 @@ class Board extends Component {
             <img src="/images/header.jpg" alt="" />
           </div>
           <header className="header_section">
-            <div className="container-fluid">
-              <nav className="navbar navbar-expand-lg custom_nav-container">
+            <div className={`container-fluid ${classes.container}`}>
+              <nav className={`navbar navbar-expand-lg custom_nav-container ${classes.nav}`}>
                 <NavLink
                   key={'/home'}
                   to={'/home'}
                   exact={false}
-                  className="navbar-brand"
-                  activeClassName={`${classes.menuLinkActive}`}
+                  className={`navbar-brand ${classes.navLink}`}
                 >
                   <span className={classes.title}>{'PhotoCopy Bảo Nam'}</span>
                 </NavLink>
