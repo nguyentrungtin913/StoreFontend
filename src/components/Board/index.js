@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
@@ -132,8 +133,8 @@ class Board extends Component {
                             02
                           </h5>
                           <h1>
-                            Sản Phẩm <br />
-                            An Toàn
+                            Mẫu Mã <br />
+                            Đa Dạng
                           </h1>
                         </div>
                       </div>
@@ -159,16 +160,13 @@ class Board extends Component {
                 <div className="detail-box">
                   <div className="heading_container">
                     <h2>
-                      We Provide <br />
-                      Fresh Vegetables
+                      Chúng tôi cung cấp <br />
+                      Sản phẩm mới, Đa dạng mẫu mã
                     </h2>
                   </div>
                   <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad ex, sequi amet similique necessitatibus quas minus repudiandae quae culpa optio ipsum quibusdam praesentium saepe qui dolore voluptate iure sit aut.
                   </p>
-                  <a href="" className="mt_20">
-                    Read More
-                  </a>
                 </div>
               </div>
             </div>
@@ -208,77 +206,35 @@ class Board extends Component {
               <div className="col-md-6">
                 <div className="map_container">
                   <div className="map">
-                    <div id="googleMap"></div>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d583.3049358612583!2d105.37392038674413!3d10.422190208548916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1636164639662!5m2!1svi!2s"
+                      width="600"
+                      height="450"
+                      style={{ border: 0 }}
+                      allowfullscreen=""
+                      loading="lazy"></iframe>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        <div>
+          <div class="social-button">
+            <div class="social-button-content">
+              <a href="https://www.facebook.com/profile.php?id=100010349914920" class="mes">
+                <img src="/images/iconFacebook.png" alt="facebook" style={{width: '50px'}} />
+                <span>Nhắn tin Facebook</span>
+              </a>
+              <a href="http://zalo.me/0858435195" class="zalo">
 
+                <img src="/images/iconZalo.png" alt="zalo" style={{width: '50px'}} />
 
-        <section className="client_section layout_padding-bottom">
-          <div className="container">
-            <div className="heading_container heading_center">
-              <h2>
-                What Says Our Customers
-              </h2>
-            </div>
-            <div className="col-md-9 col-lg-7 mx-auto px-0">
-              <div className="box">
-                <div className="b-1">
-                  <div className="client_id">
-                    <div className="img-box">
-                      <img src="images/client-1.jpg" alt="" />
-                    </div>
-                    <div className="name">
-                      <h5>
-                        Maya Jonas
-                      </h5>
-                      <h6>
-                        Housewife
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="client_detail">
-                  <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when
-                    looking at its layout. The point of using Lorem
-                  </p>
-                </div>
-              </div>
-              <div className="box">
-                <div className="client_id">
-                  <div className="img-box">
-                    <img src="images/client-2.jpg" alt="" />
-                  </div>
-                  <div className="name">
-                    <h5>
-                      Helen Law
-                    </h5>
-                    <h6>
-                      Housewife
-                    </h6>
-                  </div>
-                </div>
-                <div className="client_detail">
-                  <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when
-                    looking at its layout. The point of using Lorem
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="btn-box">
-              <a href="">
-                View More
+                <span>Zalo: 094.2323.664</span>
               </a>
             </div>
           </div>
-        </section>
-
-
+        </div>
         <section className="container-fluid footer_section">
           <div className="container" style={{ fontSize: '13pt' }}>
             <div className="row ">
@@ -316,7 +272,7 @@ class Board extends Component {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit
                 </p>
                 <div className="contact_nav">
-                  <a href="">
+                  <a href="https://goo.gl/maps/61iU8gd7S7uQ3HYYA">
                     <i className="fa fa-map-marker" aria-hidden="true"></i>
                     <span>
                       Vị trí

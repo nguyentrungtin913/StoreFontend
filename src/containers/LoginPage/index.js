@@ -22,7 +22,6 @@ class LoginPage extends Component {
       txtPassword: "123456"
     };
   }
-
   onChange = e => {
     var target = e.target;
     var name = target.name;
@@ -54,7 +53,6 @@ class LoginPage extends Component {
     }
     return (
       <div className={classes.background}>
-
         <div className={classes.login}>
           <Card>
             <CardContent>
