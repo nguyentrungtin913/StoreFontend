@@ -172,7 +172,6 @@ class GameItem extends Component {
         if (move === 'left') {
           left -= x;
         } else if (move === 'right') {
-          console.log(this.getStyle(index, 'background-image'))
           this.setState({
             pause: 1,
             start: 0,

@@ -11,13 +11,8 @@ import { getCookie } from './../../../helpers/storeCookie';
 import { cartRemove, setAmount } from "../../../helpers/cartHelper";
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 class Cart extends Component {
 
   constructor(props) {
@@ -43,6 +38,7 @@ class Cart extends Component {
       fetchListProductById(params);
     }
   }
+
   onChange = e => {
     var target = e.target;
     var name = target.name;
@@ -51,11 +47,13 @@ class Cart extends Component {
       [name]: value
     });
   };
+
   handleClickOpen = () => {
     this.setState({
       open: true
     });
   };
+
   onSave = e => {
     this.handleClose();
     e.preventDefault();
@@ -83,11 +81,15 @@ class Cart extends Component {
     });
   };
   renderDialog() {
-    const { classes } = this.props;
+    const { classes, listCart } = this.props;
     let { name, phone } = this.state;
     let xhtml = null;
+    let total = 0;
+    listCart.forEach(e => {
+      total += (e.priceExport * parseInt(e.amountSell));
+    });
+    total = new Intl.NumberFormat("de-DE").format(total);
     xhtml = (
-
       <Dialog
         open={this.state.open}
         aria-labelledby="alert-dialog-title"
@@ -116,6 +118,18 @@ class Cart extends Component {
               onChange={this.onChange}
               required="required"
             />
+            <h2 className={`${classes.label}`}>Số lượng mặt hàng</h2>
+            <input
+              type="text"
+              className={`form-control ${classes.textBox}`}
+              value={listCart.length}
+            />
+            <h2 className={`${classes.label}`}>Tổng tiền</h2>
+            <input
+              type="text"
+              className={`form-control ${classes.textBox}`}
+              value={total}
+            />
           </DialogContent>
           <DialogActions>
             <button onClick={this.handleClose} className={`btn btn-lg btn-warning ${classes.button}`}>Hủy</button>
@@ -130,21 +144,26 @@ class Cart extends Component {
 
   onCartRemove = id => {
     cartRemove(id);
+    this.componentDidMount();
   }
   onUpAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
+    this.componentDidMount();
   }
   onDownAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
+    this.componentDidMount();
   }
   onStepAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
+    this.componentDidMount();
   }
   onBuy = () => {
     this.handleClickOpen();
+    this.componentDidMount();
   }
   render() {
-    this.componentDidMount();
+
     let { listCart } = this.props;
     return (
       <>

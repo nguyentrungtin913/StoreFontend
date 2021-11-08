@@ -7,7 +7,6 @@ import { bindActionCreators } from "redux";
 import * as productActions from "./../../../actions/product";
 import ListProductByProType from "../../../components/Seller/ListProductByProType";
 import * as productTypeActions from "./../../../actions/productType";
-import { onAddToCart } from './../../../helpers/cartHelper';
 
 class Filter extends Component {
 

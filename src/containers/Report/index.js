@@ -46,7 +46,6 @@ class Report extends Component {
     this.setState({
       [name]: value
     });
-    // console.log(name + " : " + value)
   };
 
   onFilter = () => {

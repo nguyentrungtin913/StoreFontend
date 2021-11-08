@@ -64,7 +64,6 @@ class ProductType extends Component {
   renderBoard() {
     const { add } = this.state;
     let { listProductType, productTypeEditting } = this.props;
-    console.log(listProductType)
     let xhtmlList, xhtmlAdd = null;
     xhtmlList = (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -93,6 +92,7 @@ class ProductType extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <div className={classes.taskBoard} id="1">
         {this.renderBoard()}

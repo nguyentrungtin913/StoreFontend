@@ -44,6 +44,7 @@ export const STATUS_CODE = {
   UPDATED: 200
 };
 
+
 export const ADMIN_ROUTES = [
   {
     name: "Bán hàng",
@@ -96,22 +97,7 @@ export const ADMIN_ROUTES = [
 ];
 
 
-export const ROUTES = [
 
-  {
-    name: "Đăng nhập",
-    path: "/login",
-    exact: true,
-    component: LoginPage
-  },
-  {
-    name: "Đăng ký",
-    path: "/signup",
-    exact: true,
-    component: SignupPage
-  },
-
-];
 export const SELLER_ROUTES = [
   {
     name: "Trang Chủ",
@@ -133,10 +119,27 @@ export const SELLER_ROUTES = [
     name: "Giỏ hàng",
     path: "/cart",
     component: Cart
+  }
+];
+
+
+export const ROUTES = [
+  {
+    name: "Đăng nhập",
+    path: "/admin/login",
+    exact: true,
+    component: LoginPage
+  },
+  {
+    name: "Đăng ký",
+    path: "/admin/signup",
+    exact: true,
+    component: SignupPage
   },
   {
     path: "",
     exact: false,
     component: NotFound
   }
+
 ];

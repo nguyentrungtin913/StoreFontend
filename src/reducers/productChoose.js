@@ -137,8 +137,6 @@ const reducer = (state = initialState, action) => {
         ...state
       };
     }
-
-
     case productConstants.SELL: {
       return {
         ...state

@@ -10,6 +10,7 @@ class ProductTypeItem extends Component {
   }
   render() {
     let { productType, index, onClickDelete, onClickEdit, classes } = this.props;
+
     return (
       <tr>
         <td className={`${classes.tdMiddle}`}>{index + 1}</td>

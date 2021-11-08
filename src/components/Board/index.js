@@ -149,75 +149,6 @@ class Board extends Component {
           </section>
         </div>
         {children}
-        <section className="about_section ">
-          <div className="about_bg_box">
-            <img src="/images/footer.jpg" alt="" />
-          </div>
-          <div className="container ">
-            <div className="row">
-              <div className="col-md-6 ml-auto ">
-                <div className="detail-box">
-                  <div className="heading_container">
-                    <h2>
-                      Chúng tôi cung cấp <br />
-                      Sản phẩm mới, Đa dạng mẫu mã
-                    </h2>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad ex, sequi amet similique necessitatibus quas minus repudiandae quae culpa optio ipsum quibusdam praesentium saepe qui dolore voluptate iure sit aut.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="contact_section layout_padding">
-          <div className="container">
-            <div className="heading_container">
-              <h2>
-                Liên hệ chúng tôi
-              </h2>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form_container contact-form" style={{ fontSize: '15pt' }}>
-                  <form action="">
-                    <div>
-                      <input type="text" placeholder="Họ tên" />
-                    </div>
-                    <div>
-                      <input type="text" placeholder="Số điện thoại" />
-                    </div>
-                    <div>
-                      <input type="email" placeholder="Email" />
-                    </div>
-                    <div>
-                      <input type="text" className="message-box" placeholder="Nội dung" />
-                    </div>
-                    <div className="btn_box">
-                      <button>
-                        Gửi
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="map_container">
-                  <div className="map">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d583.3049358612583!2d105.37392038674413!3d10.422190208548916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1636164639662!5m2!1svi!2s"
-                      width="600"
-                      height="450"
-                      style={{ border: 0 }}
-                      allowfullscreen=""
-                      loading="lazy"></iframe>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         <div>
           <div className="social-button">
             <div className="social-button-content">
@@ -234,33 +165,7 @@ class Board extends Component {
         </div>
         <section className="container-fluid footer_section">
           <div className="container" style={{ fontSize: '13pt' }}>
-            <div className="row ">
-              <div className="col-sm-6 col-md-6 col-lg-6 footer-col">
-                <div className="footer_detail">
-                  <a href="index.html">
-                    <h4>
-                      Eatveg
-                    </h4>
-                  </a>
-                  <p>
-                    Soluta odit exercitationem rerum aperiam eos consectetur impedit delectus qui reiciendis, distinctio, asperiores fuga labore a? Magni natus.
-                  </p>
-                  <div className="social_box">
-                    <a href="">
-                      <i className="fa fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-twitter" aria-hidden="true"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-instagram" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div className="row m-2">
               <div className="col-sm-6 col-md-6 col-lg-6 mx-auto footer-col">
                 <h4>
                   Liên hệ chúng tôi
@@ -289,13 +194,24 @@ class Board extends Component {
                   </a>
                 </div>
               </div>
-
+              <div className="col-sm-6 col-md-6 col-lg-6 footer-col">
+                <div className="footer_detail">
+                  <div className="map_container">
+                    <div className="map">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d583.3049358612583!2d105.37392038674413!3d10.422190208548916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1636164639662!5m2!1svi!2s"
+                        width="100%"
+                        height="400"
+                        style={{ border: 0 }}
+                        allowfullscreen=""
+                        loading="lazy"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="footer-info">
-              <p>
-                &copy; <span id="displayYear"></span> All Rights Reserved By
-                <a href="https://html.design/">Free Html Templates</a>
-              </p>
+
             </div>
           </div>
         </section>

@@ -26,15 +26,13 @@ const reducer = (state = initialState, action) => {
         state.ListCart[index] = cart;
         toastSuccess("Cập nhật đơn đặt hàng thành công !");
       }
-      let data = state.ListCart;
       return {
         ...state,
-        ListCart: data
+        ListCart:  state.ListCart.filter(item => true),
       };
     }
     case cartConstants.FIND_CART_SUCCESS: {
       const data = action.payload.data.data.cartDetails;
-      console.log(action)
       return {
         ...state,
         ListCartDetail: data

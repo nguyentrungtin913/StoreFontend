@@ -137,7 +137,6 @@ Buy.propTypes = {
 };
 
 const mapStateToProps = state => {
-  //console.log(state.productChoose.listProductChoose)
   return {
     listProduct: state.product.listProduct,
     listProductChoose: state.productChoose.listProductChoose

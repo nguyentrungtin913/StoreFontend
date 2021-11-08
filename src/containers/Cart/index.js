@@ -20,9 +20,11 @@ class Cart extends Component {
     const { cartActionsCreators } = this.props;
     const { fetchListCart } = cartActionsCreators;
     const { productActionCreators } = this.props;
-    const { fetchListProductSoldOut } = productActionCreators;
+    const { fetchListProductSoldOut, fetchListProduct } = productActionCreators;
+
     fetchListCart();
     fetchListProductSoldOut();
+    fetchListProduct();
   }
   onDetail = (id) => {
     this.setState({
@@ -45,18 +47,20 @@ class Cart extends Component {
       cartStatus: status
     }
     updateCartStatus(params);
-    this.componentDidMount()
+    this.componentDidMount();
   }
   renderContent() {
-    const { ListCart, ListCartDetail, listProductSoldOut } = this.props;
+    const { ListCart, ListCartDetail, listProductSoldOut, listProduct } = this.props;
     let { showDetail } = this.state;
     let xhtml = null;
+    console.log(listProduct)
     if (showDetail) {
       xhtml = (
         <CartDeltailList
           cartDetails={ListCartDetail}
           onShowList={this.showList}
           productsSoldOut={listProductSoldOut}
+          products={listProduct}
         />
       )
     } else {
@@ -71,7 +75,7 @@ class Cart extends Component {
     return xhtml;
   }
   render() {
-    const { classes} = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.taskBoard} id="1">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -90,7 +94,8 @@ const mapStateToProps = state => {
   return {
     ListCart: state.cart.ListCart,
     ListCartDetail: state.cart.ListCartDetail,
-    listProductSoldOut: state.product.listProductSoldOut
+    listProductSoldOut: state.product.listProductSoldOut,
+    listProduct: state.product.listProduct,
   };
 };
 const mapDispatchToProps = dispatch => {

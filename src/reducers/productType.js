@@ -79,10 +79,15 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case productTypeConstants.RATING_PRODUCT_TYPE: {
+      return {
+        ...state
+      };
+    }
     case productTypeConstants.RATING_PRODUCT_TYPE_SUCCESS: {
       const { productType } = action.payload.data.data;
       index = _.findIndex(state.listProductType, (proType) => {
-        return proType.id === productType.id;
+        return parseInt(proType.id) === parseInt(productType.id);
       });
       if (index !== -1) {
         state.listProductType[index] = productType;
@@ -90,7 +95,7 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        listProductType: state.listProductType,
+        listProductType: state.listProductType.filter(item => true),
       };
     }
     case productTypeConstants.SET_PRODUCT_TYPE_EDITING: {

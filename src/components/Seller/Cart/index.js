@@ -24,6 +24,11 @@ class Cart extends Component {
       hidden = classes.hidden;
     }
 
+    let total = 0;
+    products.forEach(e => {
+      total += (e.priceExport * parseInt(e.amountSell));
+    });
+    total = new Intl.NumberFormat("de-DE").format(total);
     let xhtml = (
       <>
         <section className="veg_section layout_padding" style={{ paddingTop: '0px' }}>
@@ -36,11 +41,21 @@ class Cart extends Component {
             <div className="row">
               {content}
             </div>
-            <button
-              type="button"
-              className={`btn btn-success ${classes.myButton} ${hidden} m-5`}
-              onClick={this.props.onBuy}
-            >Mua hàng</button>
+            <div>
+              <button
+                type="button"
+                style={{ marginTop: '50px' }}
+                className={`btn btn-success ${classes.myButton} ${hidden} `}
+                onClick={this.props.onBuy}
+              >Mua hàng</button>
+              <input
+                type="text"
+                value={total}
+                style={{ marginTop: '50px', marginRight: '20px', width: '190px', textAlign: 'right' }}
+                className={`form-control ${classes.myButton} ${hidden}`}
+              />
+
+            </div>
           </div>
         </section>
       </>

@@ -13,7 +13,6 @@ class ProductTypeList extends Component {
       onClickEdit,
       onShowForm
     } = this.props;
-    console.log(productTypes)
     return (
       <div>
         <button
@@ -37,7 +36,8 @@ class ProductTypeList extends Component {
                 </tr>
               </thead>
               <tbody>
-                {productTypes.map((productType, index) => {
+                {
+                productTypes.map((productType, index) => {
                   return (
                     <ProductTypeItem
                       productType={productType}

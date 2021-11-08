@@ -8,7 +8,7 @@ import { API_URL } from "./../../constants";
 class CartTypeItem extends Component {
 
   render() {
-    let { cartDetail, index, classes, soldOut } = this.props;
+    let { cartDetail, index, classes, soldOut, insufficient } = this.props;
     let total = 0;
     let price = 0;
     if (cartDetail.detailAmount && cartDetail.product.priceExport) {
@@ -22,6 +22,8 @@ class CartTypeItem extends Component {
     let imgSoldOut = '';
     if (soldOut) {
       imgSoldOut = <img src='/images/soldOut.png' className={classes.imageSoldOut} alt='' />;
+    } else if (insufficient) {
+      imgSoldOut = <img src='/images/insufficient.png' className={classes.imageSoldOut} alt='' />;
     }
 
     return (

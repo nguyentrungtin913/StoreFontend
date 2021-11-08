@@ -37,7 +37,6 @@ export const updateCartStatusSuccess = data => {
 };
 
 export const findCart = (id) => {
-  console.log(id)
   return {
     type: cartConstants.FIND_CART,
     payload: {

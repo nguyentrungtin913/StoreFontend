@@ -6,7 +6,7 @@ import CartDetailItem from "../CartDetailItem";
 
 class CartDetailList extends Component {
   render() {
-    const { classes, cartDetails, productsSoldOut } = this.props;
+    const { classes, cartDetails, productsSoldOut, products } = this.props;
     return (
       <div className="m-5">
         <div>
@@ -29,12 +29,23 @@ class CartDetailList extends Component {
                 <tbody>
                   {cartDetails.map((cartDetail, index) => {
                     let pro = productsSoldOut.filter(item => item.id === cartDetail.productId).length > 0 ? true : false;
+                    let insufficient = false;
+                    for (let i = 0; i < products.length; i++) {
+                      if (products[i].id === cartDetail.productId) {
+                        if (products[i].amount < cartDetail.detailAmount) {
+                          insufficient = true;
+                        }
+                        break;
+                      }
+
+                    }
                     return (
                       <CartDetailItem
                         cartDetail={cartDetail}
                         key={cartDetail.id}
                         index={index}
                         soldOut={pro}
+                        insufficient={insufficient}
                       />
                     );
                   })}

@@ -237,7 +237,6 @@ export const customerBuySuccess = data => {
 };
 
 export const fetchListProductSoldOut = () => {
-  console.log('next')
   return {
     type: productConstants.FETCH_PRODUCT_SOLD_OUT,
     payload: {
