@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 
 class OrderItem extends Component {
-  onDetail = id => {
-    this.props.onClickDetail(id);
+  onDetail = (id, buy) => {
+    this.props.onClickDetail(id, buy);
   };
 
   onDelete = id => {
@@ -13,7 +13,7 @@ class OrderItem extends Component {
   };
 
   render() {
-    let { order, index, classes } = this.props;
+    let { order, index, classes, buy } = this.props;
     let name;
     if (order.orderName) {
       name = order.orderName;
@@ -32,7 +32,7 @@ class OrderItem extends Component {
         <td className={`${classes.tdMiddle}`}>
           <button
             className={`${classes.buttonDetail} m-2`}
-            onClick={() => this.onDetail(order.orderId)}
+            onClick={() => this.onDetail(order.orderId, buy)}
           >
             <i className="fad fa-info"></i>
           </button>

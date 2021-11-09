@@ -9,6 +9,9 @@ const styles = () => ({
   show: {
     display: 'block'
   },
+  hidden: {
+    display: 'none'
+  },
   nameProduct: {
     width: '100px',
     overflow: 'hidden',

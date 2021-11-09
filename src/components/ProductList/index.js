@@ -122,8 +122,15 @@ class ProductList extends Component {
     }
 
     let labelButton = "Xuất";
+    let classForPriceExport = "";
+    let classForPriceImport = "";
     if (buy) {
       labelButton = "Nhập kho";
+      classForPriceExport = classes.hidden;
+      classForPriceImport = "";
+    }else if(buy === 0){
+      classForPriceExport = "";
+      classForPriceImport = classes.hidden;
     }
 
     let classFilter = "";
@@ -152,16 +159,17 @@ class ProductList extends Component {
         products.map((product, index) => {
 
           return (
-              <ProductItem
-                product={product}
-                key={product.id}
-                index={index}
-                filter={filter}
-                onChoose={this.props.onChoose}
-                onClickDelete={() => onClickDelete(product)}
-                type={type}
-                onClickEdit={() => onClickEdit(product)}
-              />
+            <ProductItem
+              product={product}
+              key={product.id}
+              index={index}
+              filter={filter}
+              onChoose={this.props.onChoose}
+              onClickDelete={() => onClickDelete(product)}
+              type={type}
+              onClickEdit={() => onClickEdit(product)}
+              buy={buy}
+            />
           );
         })
       )
@@ -194,8 +202,8 @@ class ProductList extends Component {
                           <th className={classFilter}>STT</th>
                           <th>Hình ảnh</th>
                           <th className="name-product">Tên sản phẩm</th>
-                          <th className={classFilter}>Giá nhập</th>
-                          <th>Giá bán</th>
+                          <th className={classForPriceImport}>Giá nhập</th>
+                          <th className={classForPriceExport}>Giá xuất</th>
                           <th>Số lượng còn lại</th>
                           <th className={classFilter}>Số lượng đã bán</th>
                           <th className={classFilter}>Loại</th>

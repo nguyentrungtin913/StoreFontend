@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
 
     case cartConstants.REMOVE_CARTS_SUCCESS: {
       const data = action.payload.data.data.carts;
-      let ListCart = [];
+      let ListCart = state.ListCart;
       data.forEach(e => {
         ListCart = state.ListCart.filter(item => item.cartId !== e.cartId)
       });

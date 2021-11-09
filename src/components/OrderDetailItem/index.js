@@ -8,13 +8,17 @@ class ProductTypeItem extends Component {
     this.props.onClickDetail(id);
   };
   render() {
-    let { orderDetail, index } = this.props;
-    let total = new Intl.NumberFormat("de-DE").format(
-      orderDetail.detailAmount * orderDetail.product.priceExport
-    );
-    let price = new Intl.NumberFormat("de-DE").format(
-      orderDetail.product.priceExport
-    );
+    let { orderDetail, index, buy } = this.props;
+    let total = 0;
+    let price = 0;
+    if (buy === 1) {
+      price = new Intl.NumberFormat("de-DE").format(orderDetail.product.priceImport);
+      total = new Intl.NumberFormat("de-DE").format(orderDetail.detailAmount * orderDetail.product.priceImport);
+    } else {
+      price = new Intl.NumberFormat("de-DE").format(orderDetail.product.priceExport);
+      total = new Intl.NumberFormat("de-DE").format(orderDetail.detailAmount * orderDetail.product.priceExport);
+    }
+
     return (
       <tr>
         <td>{index + 1}</td>

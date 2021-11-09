@@ -59,7 +59,7 @@ class Buy extends Component {
     var result = 0;
     if (products.length > 0) {
       products.forEach(product => {
-        result += product.priceExport * product.amountSell;
+        result += product.priceImport * product.amountSell;
       });
     }
     result = result.toLocaleString("it-IT", {

@@ -589,6 +589,7 @@ function* removeCartsAction() {
     yield take(cartTypes.REMOVE_CARTS);
     yield put(showLoading());
     const resp = yield call(removeCarts);
+    console.log(resp)
     if (resp) {
       const { data } = resp;
       yield put(removeCartsSuccess(data));
