@@ -73,7 +73,6 @@ class Cart extends Component {
     const { productActionCreators } = this.props;
     const { customerBuy } = productActionCreators;
     customerBuy(params);
-
   }
   handleClose = (value) => {
     this.setState({
@@ -144,26 +143,21 @@ class Cart extends Component {
 
   onCartRemove = id => {
     cartRemove(id);
-    this.componentDidMount();
   }
   onUpAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
-    this.componentDidMount();
   }
   onDownAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
-    this.componentDidMount();
   }
   onStepAmountProduct = (id, amountSell) => {
     setAmount(id, amountSell);
-    this.componentDidMount();
   }
   onBuy = () => {
     this.handleClickOpen();
-    this.componentDidMount();
   }
   render() {
-
+    this.componentDidMount();
     let { listCart } = this.props;
     return (
       <>
