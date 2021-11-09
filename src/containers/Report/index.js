@@ -46,7 +46,6 @@ class Report extends Component {
     this.setState({
       [name]: value
     });
-    // console.log(name + " : " + value)
   };
 
   onFilter = () => {
@@ -60,7 +59,7 @@ class Report extends Component {
     }
 
     if (dStart !== '' && dEnd !== '') {
-      param2 = ' \' từ ngày ' + dStart + ' đến ngày ' + dEnd + ' \'';
+      param2 = ' \' từ ' + dStart + ' đến ' + dEnd + ' \'';
     } else {
       param2 = '';
     }

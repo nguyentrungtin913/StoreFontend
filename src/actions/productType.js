@@ -18,11 +18,20 @@ export const fetchListProductTypeSuccess = data => {
   };
 };
 
-export const fetchListProductTypeFailed = error => {
+export const fetchListProductTypeByRating = () => {
   return {
-    type: productTypeConstants.FETCH_PRODUCT_TYPE_FAILED,
+    type: productTypeConstants.FETCH_PRODUCT_TYPE_BY_RATING,
     payload: {
-      error
+
+    }
+  };
+};
+
+export const fetchListProductTypeByRatingSuccess = data => {
+  return {
+    type: productTypeConstants.FETCH_PRODUCT_TYPE_BY_RATING_SUCCESS,
+    payload: {
+      data
     }
   };
 };
@@ -48,15 +57,6 @@ export const addProductTypeSuccess = data => {
     type: productTypeConstants.ADD_PRODUCT_TYPE_SUCCESS,
     payload: {
       data
-    }
-  };
-};
-
-export const addProductTypeFailed = error => {
-  return {
-    type: productTypeConstants.ADD_PRODUCT_TYPE_FAILED,
-    payload: {
-      error
     }
   };
 };
@@ -88,15 +88,6 @@ export const updateProductTypeSuccess = data => {
   };
 };
 
-export const updateProductTypeFailed = error => {
-  return {
-    type: productTypeConstants.UPDATE_PRODUCT_TYPE_FAILED,
-    payload: {
-      error
-    }
-  };
-};
-
 export const deleteProductType = id => {
   return {
     type: productTypeConstants.DELETE_PRODUCT_TYPE,
@@ -115,11 +106,38 @@ export const deleteProductTypeSuccess = data => {
   };
 };
 
-export const deleteProductTypeFailed = error => {
+export const ratingProductType = (productType) => {
   return {
-    type: productTypeConstants.DELETE_PRODUCT_TYPE_FAILED,
+    type: productTypeConstants.RATING_PRODUCT_TYPE,
     payload: {
-      error
+      productType
+    }
+  };
+};
+
+export const ratingProductTypeSuccess = data => {
+  return {
+    type: productTypeConstants.RATING_PRODUCT_TYPE_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};
+
+export const findProductType = (proType) => {
+  return {
+    type: productTypeConstants.FIND_PRODUCT_TYPE,
+    payload: {
+      proType
+    }
+  };
+};
+
+export const findProductTypeSuccess = data => {
+  return {
+    type: productTypeConstants.FIND_PRODUCT_TYPE_SUCCESS,
+    payload: {
+      data
     }
   };
 };

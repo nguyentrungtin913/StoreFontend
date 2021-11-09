@@ -8,7 +8,8 @@ const styles = () => ({
   },
   imagePreview: {
     margin: '80px 0 0 70px',
-    width: '300px'
+    maxWidth: '300px',
+    maxHeight: '350px'
   },
   text: {
     fontSize: '13pt'

@@ -19,7 +19,7 @@ export const toastSuccess = mess => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    progress: undefined
+    progress: undefined,
   });
 };
 

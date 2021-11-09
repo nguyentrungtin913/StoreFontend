@@ -10,6 +10,7 @@ import authReducer from "./auth";
 import orderReducer from "./order";
 import orderDetailReducer from "./orderDetail";
 import reportProductReducer from "./report";
+import cartReducer from "./cart";
 
 const rootReducer = combineReducers({
   task: taskReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   order: orderReducer,
   orderDetail: orderDetailReducer,
   reportProduct: reportProductReducer,
+  cart: cartReducer,
 });
 
 export default rootReducer;

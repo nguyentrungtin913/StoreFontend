@@ -29,12 +29,18 @@ import {
   deleteProductTypeSuccess,
   addProductTypeSuccess,
   updateProductTypeSuccess,
+  ratingProductTypeSuccess,
+  fetchListProductTypeByRatingSuccess,
+  findProductTypeSuccess
 } from "../actions/productType";
 import {
   getListProductType,
   deleteProductType,
   addProductType,
   updateProductType,
+  ratingProductType,
+  getListProductTypeByRating,
+  findProductType,
 } from "./../apis/productType";
 import * as productTypeTypes from "./../constants/productType";
 
@@ -46,6 +52,10 @@ import {
   sellSuccess,
   buySuccess,
   updateProductSuccess,
+  fetchListProductByProTypeSuccess,
+  fetchListProductByIdSuccess,
+  customerBuySuccess,
+  fetchListProductSoldOutSuccess,
 } from "../actions/product";
 import {
   getListProduct,
@@ -53,7 +63,11 @@ import {
   deleteProduct,
   addProduct,
   buy,
-  updateProduct
+  updateProduct,
+  getListProductByProType,
+  getListProductByArrId,
+  customerBuy,
+  getListProductSoldOut
 } from "./../apis/product";
 import * as productTypes from "./../constants/product";
 
@@ -76,6 +90,11 @@ import * as orderDetailTypes from "./../constants/orderDetail";
 import { fetchListReportSuccess } from "../actions/report";
 import { report } from "./../apis/report";
 import * as reportTypes from "./../constants/report";
+
+//cart
+import { fetchListCartSuccess, updateCartStatusSuccess, findCartSuccess, removeCartsSuccess } from "../actions/cart";
+import { getListCart, updateCartStatus, findCart, removeCarts } from "./../apis/cart";
+import * as cartTypes from "./../constants/cart";
 /////////////////////////////////////////////////////////////
 
 // product-type
@@ -88,6 +107,21 @@ function* watchFetchListProductTypeAction() {
     if (resp) {
       const { data } = resp;
       yield put(fetchListProductTypeSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+function* watchFetchListProductTypeByRating() {
+  while (true) {
+    const action = yield take(productTypeTypes.FETCH_PRODUCT_TYPE_BY_RATING); // Khi FETCH_TASK được dispatch => code từ đây trở xuống sẽ chạy
+    yield put(showLoading());
+    const { params } = action.payload;
+    const resp = yield call(getListProductTypeByRating, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductTypeByRatingSuccess(data));
     }
     yield delay(1000);
     yield put(hideLoading());
@@ -123,6 +157,20 @@ function* updateProductTypeSaga({ payload }) {
   yield put(hideLoading());
 }
 
+function* ratingProductTypeSaga({ payload }) {
+  const { productType } = payload;
+  yield put(showLoading());
+  const resp = yield call(ratingProductType, {
+    productType
+  });
+  if (resp) {
+    const { data } = resp;
+    yield put(ratingProductTypeSuccess(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
 
 function* deleteProductTypeSaga({ payload }) {
   const { id } = payload;
@@ -135,10 +183,24 @@ function* deleteProductTypeSaga({ payload }) {
   yield delay(1000);
   yield put(hideLoading());
 }
-
+function* watchFindProductTypeAction() {
+  while (true) {
+    const action = yield take(productTypeTypes.FIND_PRODUCT_TYPE);
+    yield put(showLoading());
+    const { proType } = action.payload;
+    const resp = yield call(findProductType, proType);
+    if (resp) {
+      const { data } = resp;
+      yield put(findProductTypeSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
 // product-type
 
 // product
+
 function* watchFetchListProductAction() {
   while (true) {
     const action = yield take(productTypes.FETCH_PRODUCT);
@@ -154,6 +216,7 @@ function* watchFetchListProductAction() {
     yield put(hideLoading());
   }
 }
+
 
 function* addProductSaga({ payload }) {
   const { product } = payload;
@@ -228,7 +291,63 @@ function* buyOrderSaga({ payload }) {
   yield delay(1000);
   yield put(hideLoading());
 }
+
+function* watchFetchListProductSoldOutAction() {
+  while (true) {
+    yield take(productTypes.FETCH_PRODUCT_SOLD_OUT);
+    yield put(showLoading());
+    const resp = yield call(getListProductSoldOut);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductSoldOutSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+//product-seller
+
+function* watchFetchListProductByProTypeAction() {
+  while (true) {
+    const action = yield take(productTypes.FETCH_PRODUCT_BY_TYPE);
+    yield put(showLoading());
+    const { proType } = action.payload;
+    const resp = yield call(getListProductByProType, proType);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductByProTypeSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+
+function* watchFetchListProductByIdAction() {
+  while (true) {
+    const action = yield take(productTypes.FETCH_PRODUCT_BY_ID);
+    const { params } = action.payload;
+    const resp = yield call(getListProductByArrId, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListProductByIdSuccess(data));
+    }
+  }
+}
+
+function* customerBuySaga() {
+  while (true) {
+    const action = yield take(productTypes.CUSTOMER_BUY);
+    const { params } = action.payload;
+    const resp = yield call(customerBuy, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(customerBuySuccess(data));
+    }
+  }
+}
 // product
+//task
 function* watchFetchListTaskAction() {
   while (true) {
     const action = yield take(taskTypes.FETCH_TASK); // Khi FETCH_TASK được dispatch => code từ đây trở xuống sẽ chạy
@@ -342,8 +461,6 @@ function* exportOrderSaga({ payload }) {
   const { params } = payload;
   yield put(showLoading());
   const resp = yield call(exportOrder, params);
-  console.log(resp)
-
   if (resp) {
     const { data } = resp;
     yield put(exportOrderSuccess(data));
@@ -421,18 +538,82 @@ function* logoutSaga({ payload }) {
   yield put(hideLoading());
 }
 
+//cart
+function* watchFetchListCartAction() {
+  while (true) {
+    const action = yield take(cartTypes.FETCH_CART);
+    yield put(showLoading());
+    const { params } = action.payload;
+    const resp = yield call(getListCart, params);
+    if (resp) {
+      const { data } = resp;
+      yield put(fetchListCartSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+function* updateCartStatusSaga({ payload }) {
+  const { params } = payload;
+  yield put(showLoading());
+  const resp = yield call(updateCartStatus, params);
+  if (resp) {
+    const { data } = resp;
+    yield put(updateCartStatusSuccess(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
+
+function* watchFindCartAction() {
+  while (true) {
+    const action = yield take(cartTypes.FIND_CART);
+    yield put(showLoading());
+    const { id } = action.payload;
+    const resp = yield call(findCart, id);
+    if (resp) {
+      const { data } = resp;
+      yield put(findCartSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+
+
+function* removeCartsAction() {
+  while (true) {
+    yield take(cartTypes.REMOVE_CARTS);
+    yield put(showLoading());
+    const resp = yield call(removeCarts);
+    console.log(resp)
+    if (resp) {
+      const { data } = resp;
+      yield put(removeCartsSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
+
 function* rootSaga() {
   yield fork(watchFetchListTaskAction);
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);
   yield takeLatest(taskTypes.UPDATE_TASK, updateTaskSaga);
   yield takeLatest(taskTypes.DELETE_TASK, deleteTaskSaga);
-
   //productType
   yield fork(watchFetchListProductTypeAction);
+  yield fork(watchFindProductTypeAction);
   yield takeLatest(productTypeTypes.DELETE_PRODUCT_TYPE, deleteProductTypeSaga);
   yield takeEvery(productTypeTypes.ADD_PRODUCT_TYPE, addProductTypeSaga);
   yield takeEvery(productTypeTypes.UPDATE_PRODUCT_TYPE, updateProductTypeSaga);
+  yield takeEvery(productTypeTypes.RATING_PRODUCT_TYPE, ratingProductTypeSaga);
+  yield fork(watchFetchListProductTypeByRating);
   //product
   yield fork(watchFetchListProductAction);
   yield takeEvery(productTypes.SELL, addOrderSaga);
@@ -440,6 +621,11 @@ function* rootSaga() {
   yield takeEvery(productTypes.ADD_PRODUCT, addProductSaga);
   yield takeLatest(productTypes.DELETE_PRODUCT, deleteProductSaga);
   yield takeEvery(productTypes.UPDATE_PRODUCT, updateProductSaga);
+  yield fork(watchFetchListProductSoldOutAction);
+  //product-sell
+  yield fork(watchFetchListProductByProTypeAction);
+  yield fork(watchFetchListProductByIdAction);
+  yield fork(customerBuySaga);
   //order
   yield fork(watchFetchListOrderAction);
   yield takeLatest(orderTypes.DELETE_ORDER, deleteOrderSaga);
@@ -451,6 +637,11 @@ function* rootSaga() {
   //auth
   yield takeEvery(authTypes.LOGIN, loginSaga);
   yield takeEvery(authTypes.LOGOUT, logoutSaga);
+  //cart
+  yield fork(watchFetchListCartAction);
+  yield takeEvery(cartTypes.UPDATE_CART, updateCartStatusSaga);
+  yield fork(watchFindCartAction);
+  yield fork(removeCartsAction);
 }
 
 export default rootSaga;

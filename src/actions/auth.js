@@ -17,15 +17,6 @@ export const loginSuccess = data => {
   };
 };
 
-export const loginFailed = error => {
-  return {
-    type: authTypes.LOGIN_FAILED,
-    payload: {
-      error
-    }
-  };
-};
-
 export const logout = () => {
   return {
     type: authTypes.LOGOUT,
@@ -42,11 +33,3 @@ export const logoutSuccess = data => {
   };
 };
 
-export const logoutFailed = error => {
-  return {
-    type: authTypes.LOGOUT_FAILED,
-    payload: {
-      error
-    }
-  };
-};

@@ -27,12 +27,6 @@ const reducer = (state = initialState, action) => {
         logout: false
       };
     }
-    case types.LOGIN_FAILED: {
-      return {
-        ...state
-      };
-    }
-
     case types.LOGOUT: {
       return {
         ...state,

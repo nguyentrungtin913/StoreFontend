@@ -18,7 +18,7 @@ const styles = () => ({
   myTd: {
     whiteSpace: 'nowrap'
   },
-  myTr:{
+  myTr: {
     height: '100px',
   },
   myPanelProduct: {
@@ -52,7 +52,10 @@ const styles = () => ({
     color: 'black'
   },
   show: {
-    display: 'inline'
+    display: 'revert !important'
+  },
+  hidden: {
+    display: 'none'
   },
   myButton: {
     fontSize: '13pt',
@@ -65,10 +68,10 @@ const styles = () => ({
   inline: {
     float: 'left'
   },
-  search:{
+  search: {
     fontSize: '13pt'
   },
-  backgroundEmpty:{
+  backgroundEmpty: {
     backgroundPosition: 'center',
     backgroundSize: '220px',
     backgroundRepeat: 'no-repeat',

@@ -9,11 +9,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import AdminLayoutRoute from "../../commons/Layout/AdminLayoutRoute";
 import GlobalLoading from "../../components/GlobalLoading";
 import Modal from "../../components/Modal";
-import { ADMIN_ROUTES, ROUTES } from "../../constants";
+import { ADMIN_ROUTES, SELLER_ROUTES, ROUTES } from "../../constants";
 import configureStore from "../../redux/configureStore";
 import theme from "./../../commons/Theme";
 import styles from "./styles.js";
 import DefaultLayoutRoute from "../../commons/Layout/DefaultLayoutRoute";
+import SellerLayoutRoute from "../../commons/Layout/SellerLayoutRoute";
 
 const store = configureStore();
 
@@ -49,6 +50,21 @@ class App extends Component {
     });
     return xhtml;
   }
+  renderSellerRoutes() {
+    let xhtml = null;
+    xhtml = SELLER_ROUTES.map(route => {
+      return (
+        <SellerLayoutRoute
+          key={route.path}
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+          name={route.name}
+        />
+      );
+    });
+    return xhtml;
+  }
   render() {
     let { classes } = this.props;
     return (
@@ -68,18 +84,15 @@ class App extends Component {
           <BrowserRouter>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-
-
               <GlobalLoading />
               <Modal />
               <Switch>
                 {this.renderAdminRoutes()}
+                {this.renderSellerRoutes()}
                 {this.renderDefaultRoutes()}
               </Switch>
-
             </ThemeProvider>
           </BrowserRouter>
-          <ToastContainer />
         </Provider>
       </div>
     );

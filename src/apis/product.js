@@ -7,7 +7,7 @@ import { toastError } from "../helpers/toastHelper";
 const url = "products";
 
 export const getListProduct = (params = {}) => {
-  let queryParams = "?with[]=productType&sortBy=id";
+  let queryParams = "?with[]=productType&sortBy=id&sortType=desc";
   if (Object.keys(params).length > 0) {
     queryParams = `?${qs.stringify(params)}`;
   }
@@ -47,10 +47,6 @@ export const deleteProduct = productId => {
 };
 
 export const sell = data => {
-  // console.log("=====api=====")
-  // console.log(`${API_URL}/order`)
-  //console.log(data.params)
-  // console.log("=====api=====")
   return axiosService.post(`${API_URL}/order`, data.params).catch(err => {
     if (err.response.data[0]) {
       toastError(err.response.data[0].clientMsg);
@@ -60,11 +56,50 @@ export const sell = data => {
 };
 
 export const buy = data => {
-  // console.log("=====api=====")
-  // console.log(`${API_URL}/order`)
-  //console.log(data.params)
-  // console.log("=====api=====")
   return axiosService.post(`${API_URL}/order-buy`, data.params).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
+export const getListProductSoldOut = () => {
+
+  return axiosService.get(`${API_URL}/products-sold-out?with[]=productType`).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
+////////////////////////////
+//seller
+//1 getListProduct
+export const getListProductByProType = (proType) => {
+  let queryParams = "products-by-pro-type?proType=" + proType;
+  return axiosService.get(`${API_URL}/${queryParams}`).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
+export const getListProductByArrId = (params) => {
+  let queryParams = "products-by-id";
+  return axiosService.post(`${API_URL}/${queryParams}`, params).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
+export const customerBuy = (params) => {
+  let queryParams = "customer-buy";
+  return axiosService.post(`${API_URL}/${queryParams}`, params).catch(err => {
     if (err.response.data[0]) {
       toastError(err.response.data[0].clientMsg);
     }

@@ -12,7 +12,7 @@ class ProductItem extends Component {
   };
 
   render() {
-    let { classes, product, index, filter, onClickDelete, type, onClickEdit } = this.props;
+    let { classes, product, index, filter, onClickDelete, type, onClickEdit, buy } = this.props;
     let classFilter = "";
     let show = "";
     let priceImport = new Intl.NumberFormat("de-DE").format(
@@ -21,6 +21,17 @@ class ProductItem extends Component {
     let priceExport = new Intl.NumberFormat("de-DE").format(
       product.priceExport
     );
+
+    let classForPriceExport = "";
+    let classForPriceImport = "";
+    if (buy) {
+      classForPriceExport = classes.hidden;
+      classForPriceImport = "";
+    }else if(buy === 0){
+      classForPriceExport = "";
+      classForPriceImport = classes.hidden;
+    }
+
     if (filter) {
       classFilter = classes.disable;
       show = classes.show;
@@ -45,8 +56,8 @@ class ProductItem extends Component {
           <td className={`${classes.tdMiddle}`}>
             <div className={`${classes.nameProduct}`}>{product.name}</div>
           </td>
-          <td className={`${classFilter} ${classes.tdMiddle}`}>{priceImport}</td>
-          <td className={`${classes.tdMiddle}`}>{priceExport}</td>
+          <td className={`${classForPriceImport} ${classes.tdMiddle}`}>{priceImport}</td>
+          <td className={`${classForPriceExport} ${classes.tdMiddle}`}>{priceExport}</td>
           <td className={`${classes.tdMiddle}`}>{product.amount}</td>
           <td className={`${classFilter} ${classes.tdMiddle}`}>{product.amountSell}</td>
           <td className={`${classFilter} ${classes.tdMiddle}`}>{product.productType.name}</td>

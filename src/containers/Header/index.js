@@ -115,7 +115,7 @@ class Header extends Component {
     if (logout === true) {
       const { history } = this.props;
       if (history) {
-        history.push("/login");
+        history.push("/admin/login");
       }
     }
     return (

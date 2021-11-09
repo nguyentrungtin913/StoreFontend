@@ -43,7 +43,6 @@ class ProductActionPage extends Component {
         note: productEditting.note,
         type: productEditting.type,
       });
-
     }
   }
 

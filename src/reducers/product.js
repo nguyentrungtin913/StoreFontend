@@ -1,11 +1,15 @@
 import * as productConstants from "./../constants/product";
-import { toastError, toastSuccess } from "../helpers/toastHelper";
+import { toastSuccess } from "../helpers/toastHelper";
+import { destroyCookieCart } from '../helpers/cartHelper';
 import _ from 'lodash';
 
 const initialState = {
   listProduct: [],
   form: false,
-  productEditting: null
+  productEditting: null,
+  listProductSell: [],
+  listCart: [],
+  listProductSoldOut: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +21,7 @@ const reducer = (state = initialState, action) => {
         listProduct: []
       };
     }
+
     case productConstants.FETCH_PRODUCT_SUCCESS: {
       const data = action.payload.data.data.ListAllProduct;
       return {
@@ -24,14 +29,7 @@ const reducer = (state = initialState, action) => {
         listProduct: data
       };
     }
-    case productConstants.FETCH_PRODUCT_FAILED: {
-      const { error } = action.payload;
-      toastError(error);
-      return {
-        ...state,
-        listProduct: []
-      };
-    }
+
     case productConstants.SET_PRODUCT_EDITING: {
       const { product } = action.payload;
       return {
@@ -66,12 +64,6 @@ const reducer = (state = initialState, action) => {
         form: true
       };
     }
-    case productConstants.ADD_PRODUCT_FAILED: {
-      toastError("faild");
-      return {
-        ...state
-      };
-    }
 
     case productConstants.UPDATE_PRODUCT_SUCCESS: {
       const { product } = action.payload.data.data;
@@ -101,13 +93,6 @@ const reducer = (state = initialState, action) => {
         listProduct: state.listProduct.filter(item => item.id !== product.id)
       };
     }
-    case productConstants.DELETE_PRODUCT_FAILED: {
-      const { error } = action.payload;
-      toastError(error);
-      return {
-        ...state
-      };
-    }
     case productConstants.SELL_SUCCESS: {
       const { data } = action.payload;
       data.forEach(sell => {
@@ -134,6 +119,36 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProduct: state.listProduct
+      };
+    }
+    ////////////////
+    case productConstants.FETCH_PRODUCT_BY_TYPE_SUCCESS: {
+      const data = action.payload.data.data.ListAllProduct;
+      return {
+        ...state,
+        listProductSell: data
+      };
+    }
+    case productConstants.FETCH_PRODUCT_BY_ID_SUCCESS: {
+      const data = action.payload.data.data.products;
+      return {
+        ...state,
+        listCart: data
+      };
+    }
+    case productConstants.CUSTOMER_BUY_SUCCESS: {
+      toastSuccess("Mua hàng thành công");
+      destroyCookieCart()
+      return {
+        ...state,
+      };
+    }
+
+    case productConstants.FETCH_PRODUCT_SOLD_OUT_SUCCESS: {
+      const data = action.payload.data.data.listProductSoldOut;
+      return {
+        ...state,
+        listProductSoldOut: data
       };
     }
 

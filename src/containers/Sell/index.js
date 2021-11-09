@@ -102,6 +102,7 @@ class Sell extends Component {
           products={listProduct}
           productsChoose={listProductChoose}
           filter={1}
+          buy={0}
           onFind={this.onFind}
           onChoose={this.onChoose}
           onCancel={this.onCancel}

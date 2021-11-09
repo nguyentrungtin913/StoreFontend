@@ -32,6 +32,7 @@ class OrderDetailList extends Component {
                         orderDetail={orderDetail}
                         key={orderDetail.id}
                         index={index}
+                        buy={this.props.buy}
                       />
                     );
                   })}

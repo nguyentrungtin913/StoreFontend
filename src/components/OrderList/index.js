@@ -12,6 +12,10 @@ class OrderList extends Component {
     if (orders.length > 0) {
       xhtml = (
         orders.map((order, index) => {
+          let buy = 0;
+          if(order.orderType === 'Nhập'){
+            buy = 1;
+          }
           return (
             <OrderItem
               order={order}
@@ -19,6 +23,7 @@ class OrderList extends Component {
               index={index}
               onClickDetail={this.props.onClickDetail}
               onClickDelete={this.props.onClickDelete}
+              buy={buy}
             />
           );
         })

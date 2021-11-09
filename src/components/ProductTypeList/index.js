@@ -31,17 +31,20 @@ class ProductTypeList extends Component {
                 <tr>
                   <th>STT</th>
                   <th>Tên loại</th>
+                  <th>Ưu tiên</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
               <tbody>
-                {productTypes.map((productType, index) => {
+                {
+                productTypes.map((productType, index) => {
                   return (
                     <ProductTypeItem
                       productType={productType}
                       key={productType.id}
                       index={index}
                       onClickDelete={() => onClickDelete(productType)}
+                      onRating={this.props.onRating}
                       onClickEdit={() => onClickEdit(productType)}
                     />
                   );

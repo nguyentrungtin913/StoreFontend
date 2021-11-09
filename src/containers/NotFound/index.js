@@ -6,8 +6,8 @@ class TaskBoard extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.backgroundImage}>
-        <h2>404: Page Not Found</h2>
+      <div>
+        <h2 className={classes.text}>404: Page Not Found</h2>
         <img src={NotFound} alt="loading" className={classes.icon} />
       </div>
     );

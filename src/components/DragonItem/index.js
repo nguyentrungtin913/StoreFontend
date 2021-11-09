@@ -7,20 +7,20 @@ import IconLeft1 from "./../../assets/Test/dragonLeft1.gif";
 import IconLeft2 from "./../../assets/Test/dragonLeft2.gif";
 import IconLeft3 from "./../../assets/Test/dragonLeft3.gif";
 
-import IconStandLeft0 from "./../../assets/Test/dragonLeft0.png";
-import IconStandLeft1 from "./../../assets/Test/dragonLeft1.png";
-import IconStandLeft2 from "./../../assets/Test/dragonLeft2.png";
-import IconStandLeft3 from "./../../assets/Test/dragonLeft3.png";
+// import IconStandLeft0 from "./../../assets/Test/dragonLeft0.png";
+// import IconStandLeft1 from "./../../assets/Test/dragonLeft1.png";
+// import IconStandLeft2 from "./../../assets/Test/dragonLeft2.png";
+// import IconStandLeft3 from "./../../assets/Test/dragonLeft3.png";
 
 import IconRight0 from "./../../assets/Test/dragonRight0.gif";
 import IconRight1 from "./../../assets/Test/dragonRight1.gif";
 import IconRight2 from "./../../assets/Test/dragonRight2.gif";
 import IconRight3 from "./../../assets/Test/dragonRight3.gif";
 
-import IconStandRight0 from "./../../assets/Test/dragonRight0.png";
-import IconStandRight1 from "./../../assets/Test/dragonRight1.png";
-import IconStandRight2 from "./../../assets/Test/dragonRight2.png";
-import IconStandRight3 from "./../../assets/Test/dragonRight3.png";
+// import IconStandRight0 from "./../../assets/Test/dragonRight0.png";
+// import IconStandRight1 from "./../../assets/Test/dragonRight1.png";
+// import IconStandRight2 from "./../../assets/Test/dragonRight2.png";
+// import IconStandRight3 from "./../../assets/Test/dragonRight3.png";
 
 let x = 0;
 let y = 0;
@@ -34,9 +34,9 @@ let actionDragon = [];
 const length = 4;
 
 const dragonTypesLeft = [IconLeft0, IconLeft1, IconLeft2, IconLeft3];
-const dragonTypesStandLeft = [IconStandLeft0, IconStandLeft1, IconStandLeft2, IconStandLeft3];
+// const dragonTypesStandLeft = [IconStandLeft0, IconStandLeft1, IconStandLeft2, IconStandLeft3];
 const dragonTypesRight = [IconRight0, IconRight1, IconRight2, IconRight3];
-const dragonTypesStandRight = [IconStandRight0, IconStandRight1, IconStandRight2, IconStandRight3];
+// const dragonTypesStandRight = [IconStandRight0, IconStandRight1, IconStandRight2, IconStandRight3];
 
 class DragonItem extends Component {
 
@@ -150,7 +150,6 @@ class DragonItem extends Component {
       window.addEventListener("mouseup", function (e) {
         index.style.transform = "rotate(0deg)";
         actionDragon[id].pause = 0;
-        console.log(actionDragon[id])
       });
 
     });
@@ -198,7 +197,6 @@ class DragonItem extends Component {
       if (pause === 0) {
         let left = this.getStyle(index, 'left').replace(/[^0-9]/g, '') - 1;
         let top = this.getStyle(index, 'top').replace(/[^0-9]/g, '') - 1;
-        console.log(still)
         if (still < 2) {
           let distance = Math.floor((Math.random() * 150) + 150);
           direction = Math.floor((Math.random() * 8) + 1);

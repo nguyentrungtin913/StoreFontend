@@ -9,8 +9,14 @@ import Buy from "../containers/Buy";
 import Order from "../containers/Order";
 import Report from "../containers/Report";
 import Game from "../containers/Game";
+import CartAdmin from "../containers/Cart";
 
-export const WIDTH = screen.width;
+import Home from "../containers/Seller/Home";
+import Filter from "../containers/Seller/Filter";
+import Cart from "../containers/Seller/Cart";
+import ListAll from "../containers/Seller/ListAll";
+
+
 export const HEIGHT = window.innerHeight;
 
 export const API_ENDPOINT = "http://localhost:3000";
@@ -38,6 +44,7 @@ export const STATUS_CODE = {
   UPDATED: 200
 };
 
+
 export const ADMIN_ROUTES = [
   {
     name: "Bán hàng",
@@ -52,16 +59,10 @@ export const ADMIN_ROUTES = [
     component: Buy
   },
   {
-    name: "Quản lý loại sản phẩm",
-    path: "/admin/product-type",
+    name: "Đơn đặt hàng",
+    path: "/admin/cart",
     exact: true,
-    component: ProductType
-  },
-  {
-    name: "Quản lý sản phẩm",
-    path: "/admin/product",
-    exact: true,
-    component: Product
+    component: CartAdmin
   },
   {
     name: "Hóa đơn",
@@ -76,6 +77,18 @@ export const ADMIN_ROUTES = [
     component: Report
   },
   {
+    name: "Quản lý loại sản phẩm",
+    path: "/admin/product-type",
+    exact: true,
+    component: ProductType
+  },
+  {
+    name: "Quản lý sản phẩm",
+    path: "/admin/product",
+    exact: true,
+    component: Product
+  },
+  {
     name: "Giải trí",
     path: "/admin/play-game",
     exact: true,
@@ -83,15 +96,44 @@ export const ADMIN_ROUTES = [
   },
 ];
 
+
+
+export const SELLER_ROUTES = [
+  {
+    name: "Trang Chủ",
+    path: "/home",
+    component: Home
+  },
+
+  {
+    name: "Tìm kiếm",
+    path: "/search",
+    component: ListAll
+  },
+  {
+    name: "Sản phẩm",
+    path: "/product",
+    component: Filter
+  },
+  {
+    name: "Giỏ hàng",
+    path: "/cart",
+    component: Cart
+  }
+];
+
+
 export const ROUTES = [
   {
     name: "Đăng nhập",
-    path: "/",
+    path: "/admin/login",
+    exact: true,
     component: LoginPage
   },
   {
     name: "Đăng ký",
-    path: "/signup",
+    path: "/admin/signup",
+    exact: true,
     component: SignupPage
   },
   {
@@ -99,4 +141,5 @@ export const ROUTES = [
     exact: false,
     component: NotFound
   }
+
 ];

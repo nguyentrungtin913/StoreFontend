@@ -26,6 +26,7 @@ class Order extends Component {
       dateStart: "",
       dateEnd: "",
       filter: 0,
+      buy: 0
     };
   }
 
@@ -44,9 +45,10 @@ class Order extends Component {
     fetchListOrder();
   }
 
-  onDetail = id => {
+  onDetail = (id, buy) => {
     this.setState({
-      showDetail: true
+      showDetail: true,
+      buy: buy
     });
     const { orderDetailActionsCreators } = this.props;
     const { fetchListOrderDetail } = orderDetailActionsCreators;
@@ -153,6 +155,7 @@ class Order extends Component {
         <OrderDetailList
           showList={this.onShowList}
           orderDetails={listOrderDetail}
+          buy={this.state.buy}
         />
       );
       return xhtmlDetail;

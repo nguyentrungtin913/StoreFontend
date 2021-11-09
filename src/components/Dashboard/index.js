@@ -7,7 +7,7 @@ import cn from "classnames";
 import Header from "./../../containers/Header";
 import styles from "./styles";
 import * as uiActions from "./../../actions/ui";
-
+import { HEIGHT } from "./../../constants";
 class Dashboard extends Component {
   handleToggleSidebar = value => {
     const { uiActionCreators } = this.props;
@@ -28,7 +28,7 @@ class Dashboard extends Component {
           showSidebar={showSidebar}
           onToggleSidebar={this.handleToggleSidebar}
         />
-        <div className={classes.wrapper}>
+        <div className={classes.wrapper} style={{ overflowY: 'hidden', height: (HEIGHT - 64) + 'px' }}>
           <div
             className={` ${cn(classes.wrapperContent, {
               [classes.shiftLeft]: showSidebar === false
