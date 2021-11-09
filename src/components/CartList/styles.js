@@ -6,7 +6,7 @@ const styles = () => ({
     fontSize: '16pt'
   },
   myPanelProductType: {
-    height: HEIGHT - 150 + 'px',
+    height: HEIGHT - 170 + 'px',
     overflow: 'scroll',
     overflowX: 'hidden'
   }

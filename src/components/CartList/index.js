@@ -6,6 +6,12 @@ import CartItem from "../CartItem";
 
 class CartList extends Component {
 
+  onClear = () => {
+    if (confirm(`Bạn có muốn xóa các đơn hàng đã được xữ lý không ?`)) { //eslint-disable-line
+      this.props.onClear();
+    }
+  }
+
   render() {
     const { classes, carts } = this.props;
     return (
@@ -42,6 +48,12 @@ class CartList extends Component {
             </table>
           </div>
         </div>
+        <button
+          type="button"
+          style={{float: 'right'}}
+          className="btn btn-lg btn-outline-danger"
+          onClick={() => this.onClear()}
+        >Xóa đơn hàng đã xữ lý</button>
       </div>
     );
   }

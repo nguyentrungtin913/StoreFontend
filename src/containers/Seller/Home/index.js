@@ -35,7 +35,7 @@ class Home extends Component {
     return (
       <>
         <ListProduct
-          key={10}
+          key={listProduct.length}
           products={listProduct}
           productTypes={listProductTypeByRating}
         />

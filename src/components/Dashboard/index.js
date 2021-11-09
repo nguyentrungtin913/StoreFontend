@@ -28,7 +28,7 @@ class Dashboard extends Component {
           showSidebar={showSidebar}
           onToggleSidebar={this.handleToggleSidebar}
         />
-        <div className={classes.wrapper} style={{ overflowY: 'hidden', height: HEIGHT - 64 + 'px' }}>
+        <div className={classes.wrapper} style={{ overflowY: 'hidden', height: (HEIGHT - 64) + 'px' }}>
           <div
             className={` ${cn(classes.wrapperContent, {
               [classes.shiftLeft]: showSidebar === false

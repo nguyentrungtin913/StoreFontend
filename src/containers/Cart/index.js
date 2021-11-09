@@ -26,6 +26,11 @@ class Cart extends Component {
     fetchListProductSoldOut();
     fetchListProduct();
   }
+  onClear = () => {
+    const { cartActionsCreators } = this.props;
+    const { removeCarts } = cartActionsCreators;
+    removeCarts();
+  }
   onDetail = (id) => {
     this.setState({
       showDetail: true
@@ -53,10 +58,10 @@ class Cart extends Component {
     const { ListCart, ListCartDetail, listProductSoldOut, listProduct } = this.props;
     let { showDetail } = this.state;
     let xhtml = null;
-    console.log(listProduct)
     if (showDetail) {
       xhtml = (
         <CartDeltailList
+          key={ListCartDetail.length}
           cartDetails={ListCartDetail}
           onShowList={this.showList}
           productsSoldOut={listProductSoldOut}
@@ -66,9 +71,11 @@ class Cart extends Component {
     } else {
       xhtml = (
         <CartList
+          key={ListCart.length}
           carts={ListCart}
           onUpdateStatus={this.onUpdateStatus}
           onClickDetail={this.onDetail}
+          onClear={this.onClear}
         />
       )
     }

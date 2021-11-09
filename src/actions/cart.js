@@ -53,3 +53,20 @@ export const findCartSuccess = data => {
     }
   };
 };
+
+export const removeCarts = () => {
+  return {
+    type: cartConstants.REMOVE_CARTS,
+    payload: {
+    }
+  };
+};
+
+export const removeCartsSuccess = data => {
+  return {
+    type: cartConstants.REMOVE_CARTS_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};

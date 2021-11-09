@@ -34,3 +34,14 @@ export const findCart = (id) => {
       console.log(err.response.data);
     });
 };
+
+export const removeCarts = () => {
+  return axiosService
+    .get(`${API_URL}/carts-delete`)
+    .catch(err => {
+      if (err.response.data[0]) {
+        toastError(err.response.data[0].clientMsg);
+      }
+      console.log(err.response.data);
+    });
+};

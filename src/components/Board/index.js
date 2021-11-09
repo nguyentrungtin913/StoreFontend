@@ -203,7 +203,7 @@ class Board extends Component {
                         width="100%"
                         height="400"
                         style={{ border: 0 }}
-                        allowfullscreen=""
+                        allowFullScreen=""
                         loading="lazy"></iframe>
                     </div>
                   </div>

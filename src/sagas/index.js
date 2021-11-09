@@ -92,8 +92,8 @@ import { report } from "./../apis/report";
 import * as reportTypes from "./../constants/report";
 
 //cart
-import { fetchListCartSuccess, updateCartStatusSuccess, findCartSuccess } from "../actions/cart";
-import { getListCart, updateCartStatus, findCart } from "./../apis/cart";
+import { fetchListCartSuccess, updateCartStatusSuccess, findCartSuccess, removeCartsSuccess } from "../actions/cart";
+import { getListCart, updateCartStatus, findCart, removeCarts } from "./../apis/cart";
 import * as cartTypes from "./../constants/cart";
 /////////////////////////////////////////////////////////////
 
@@ -558,7 +558,6 @@ function* updateCartStatusSaga({ payload }) {
   const { params } = payload;
   yield put(showLoading());
   const resp = yield call(updateCartStatus, params);
-  console.log(resp)
   if (resp) {
     const { data } = resp;
     yield put(updateCartStatusSuccess(data));
@@ -582,6 +581,23 @@ function* watchFindCartAction() {
     yield put(hideLoading());
   }
 }
+
+
+
+function* removeCartsAction() {
+  while (true) {
+    yield take(cartTypes.REMOVE_CARTS);
+    yield put(showLoading());
+    const resp = yield call(removeCarts);
+    if (resp) {
+      const { data } = resp;
+      yield put(removeCartsSuccess(data));
+    }
+    yield delay(1000);
+    yield put(hideLoading());
+  }
+}
+
 
 function* rootSaga() {
   yield fork(watchFetchListTaskAction);
@@ -624,6 +640,7 @@ function* rootSaga() {
   yield fork(watchFetchListCartAction);
   yield takeEvery(cartTypes.UPDATE_CART, updateCartStatusSaga);
   yield fork(watchFindCartAction);
+  yield fork(removeCartsAction);
 }
 
 export default rootSaga;
