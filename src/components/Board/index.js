@@ -196,7 +196,7 @@ class Board extends Component {
                   <div className="map_container">
                     <div className="map">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d583.3049358612583!2d105.37392038674413!3d10.422190208548916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1636164639662!5m2!1svi!2s"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1166.6124884276278!2d105.37385475231903!3d10.421491489680736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a0d83c26d355f%3A0x6c08ea7797a70826!2sVPP-Photo%20B%E1%BA%A3o%20Nam!5e0!3m2!1svi!2s!4v1636529768488!5m2!1svi!2s"
                         width="100%"
                         height="400"
                         style={{ border: 0 }}
