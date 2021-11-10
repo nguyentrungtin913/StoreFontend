@@ -18,8 +18,8 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      txtUsername: "photocopybaonam",
-      txtPassword: "123456"
+      txtUsername: "",
+      txtPassword: ""
     };
   }
   onChange = e => {
