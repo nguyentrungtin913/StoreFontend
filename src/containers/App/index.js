@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AdminLayoutRoute from "../../commons/Layout/AdminLayoutRoute";
 import GlobalLoading from "../../components/GlobalLoading";
-import Modal from "../../components/Modal";
 import { ADMIN_ROUTES, SELLER_ROUTES, ROUTES } from "../../constants";
 import configureStore from "../../redux/configureStore";
 import theme from "./../../commons/Theme";
@@ -85,7 +84,6 @@ class App extends Component {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <GlobalLoading />
-              <Modal />
               <Switch>
                 {this.renderAdminRoutes()}
                 {this.renderSellerRoutes()}

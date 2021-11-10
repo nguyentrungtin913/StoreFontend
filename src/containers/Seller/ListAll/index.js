@@ -19,8 +19,8 @@ class ListAll extends Component {
   }
   componentDidMount() {
     const { productActionCreators } = this.props;
-    const { fetchListProduct } = productActionCreators;
-    fetchListProduct();
+    const { fetchListProductCustomer } = productActionCreators;
+    fetchListProductCustomer();
   }
   onFind = keyword => {
     this.setState({

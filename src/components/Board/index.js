@@ -170,9 +170,6 @@ class Board extends Component {
                 <h4>
                   Liên hệ chúng tôi
                 </h4>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit
-                </p>
                 <div className="contact_nav">
                   <a href="https://goo.gl/maps/61iU8gd7S7uQ3HYYA">
                     <i className="fa fa-map-marker" aria-hidden="true"></i>

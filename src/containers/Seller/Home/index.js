@@ -20,13 +20,13 @@ class Home extends Component {
 
   componentDidMount() {
     const { productActionCreators } = this.props;
-    const { fetchListProduct } = productActionCreators;
+    const { fetchListProductCustomer } = productActionCreators;
 
     const { productTypeActionCreators } = this.props;
     const { fetchListProductTypeByRating } = productTypeActionCreators;
 
     fetchListProductTypeByRating();
-    fetchListProduct();
+    fetchListProductCustomer();
   }
 
   render() {

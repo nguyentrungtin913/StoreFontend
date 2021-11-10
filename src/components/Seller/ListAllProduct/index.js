@@ -45,7 +45,7 @@ class ListAllProduct extends Component {
               <input
                 type="text"
                 name="keyword"
-                class={`form-control ${classes.text} m-2`}
+                className={`form-control ${classes.text} m-2`}
                 value={keyword}
                 onChange={this.onChange}
                 placeholder="Nhập tên sản phẩm cần tìm"

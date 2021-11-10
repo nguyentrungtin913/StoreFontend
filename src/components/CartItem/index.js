@@ -20,7 +20,8 @@ class CartItem extends Component {
     let { cart, index, classes } = this.props;
     let status = '';
     let show = '';
-    // let soldOut='';
+    let total = new Intl.NumberFormat("de-DE").format(cart.cartTotal);
+
     switch (cart.cartStatus) {
       case 0:
         status = <span style={{ color: 'red' }}>Chờ xác nhận</span>;
@@ -38,7 +39,7 @@ class CartItem extends Component {
         <td className={`${classes.tdMiddle}`}>{index + 1}</td>
         <td className={`${classes.tdMiddle}`}>{cart.cartName}</td>
         <td className={`${classes.tdMiddle}`}>{cart.cartPhone}</td>
-        <td className={`${classes.tdMiddle}`}>{cart.cartTotal}</td>
+        <td className={`${classes.tdMiddle}`}>{total}</td>
         <td className={`${classes.tdMiddle}`}>
           {status}
         </td>
