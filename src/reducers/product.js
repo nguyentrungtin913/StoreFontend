@@ -152,6 +152,21 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case productConstants.FETCH_PRODUCT_CUSTOMER: {
+      return {
+        ...state,
+        listProduct: []
+      };
+    }
+
+    case productConstants.FETCH_PRODUCT_CUSTOMER_SUCCESS: {
+      const data = action.payload.data.data.ListAllProduct;
+      return {
+        ...state,
+        listProduct: data
+      };
+    }
+
     default:
       return state;
   }

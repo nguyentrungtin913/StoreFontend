@@ -76,7 +76,17 @@ export const getListProductSoldOut = () => {
 
 ////////////////////////////
 //seller
-//1 getListProduct
+export const getListProductCustomer = (params = {}) => {
+  let queryParams = "products-customer?with[]=productType&sortBy=id&sortType=desc";
+
+  return axiosService.get(`${API_URL}/${queryParams}`).catch(err => {
+    if (err.response.data[0]) {
+      toastError(err.response.data[0].clientMsg);
+    }
+    console.log(err.response.data);
+  });
+};
+
 export const getListProductByProType = (proType) => {
   let queryParams = "products-by-pro-type?proType=" + proType;
   return axiosService.get(`${API_URL}/${queryParams}`).catch(err => {

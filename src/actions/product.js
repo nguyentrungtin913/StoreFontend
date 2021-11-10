@@ -253,3 +253,20 @@ export const fetchListProductSoldOutSuccess = data => {
   };
 };
 
+export const fetchListProductCustomer = (params = {}) => {
+  return {
+    type: productConstants.FETCH_PRODUCT_CUSTOMER,
+    payload: {
+      params
+    }
+  };
+};
+
+export const fetchListProductCustomerSuccess = data => {
+  return {
+    type: productConstants.FETCH_PRODUCT_CUSTOMER_SUCCESS,
+    payload: {
+      data
+    }
+  };
+};
