@@ -186,7 +186,7 @@ class Board extends Component {
                   <a href="">
                     <i className="fa fa-envelope" aria-hidden="true"></i>
                     <span>
-                      Email : nguyentrungtin913@gmail.com
+                      Email : photocopybaonam@gmail.com
                     </span>
                   </a>
                 </div>
