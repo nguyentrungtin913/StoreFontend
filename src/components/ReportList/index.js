@@ -57,7 +57,6 @@ class ReportList extends Component {
 
 ReportList.propTypes = {
   classes: PropTypes.object,
-  products: PropTypes.array
 };
 
 export default withStyles(styles)(ReportList);

@@ -50,10 +50,6 @@ class ListAll extends Component {
 
 ListAll.propTypes = {
   classes: PropTypes.object,
-  productActionCreators: PropTypes.shape({
-    fetchListProduct: PropTypes.func
-  }),
-  listProduc: PropTypes.array
 };
 
 const mapStateToProps = state => {

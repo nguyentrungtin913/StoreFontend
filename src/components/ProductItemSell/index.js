@@ -65,7 +65,6 @@ class ProductItemSell extends Component {
 
 ProductItemSell.propTypes = {
   classes: PropTypes.object,
-  product: PropTypes.object
 };
 
 export default withStyles(styles)(ProductItemSell);

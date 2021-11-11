@@ -129,11 +129,6 @@ class Buy extends Component {
 
 Buy.propTypes = {
   classes: PropTypes.object,
-  productActionCreators: PropTypes.shape({
-    fetchListProduct: PropTypes.func
-  }),
-  listProduc: PropTypes.array,
-  listProductChoose: PropTypes.array
 };
 
 const mapStateToProps = state => {

@@ -43,7 +43,6 @@ class ReportItem extends Component {
 
 ReportItem.propTypes = {
   classes: PropTypes.object,
-  product: PropTypes.object
 };
 
 export default withStyles(styles)(ReportItem);

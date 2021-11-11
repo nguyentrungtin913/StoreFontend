@@ -103,10 +103,6 @@ class ProductType extends Component {
 
 ProductType.propTypes = {
   classes: PropTypes.object,
-  productTypeActionCreators: PropTypes.shape({
-    fetchListProductType: PropTypes.func
-  }),
-  listProductType: PropTypes.array
 };
 
 const mapStateToProps = state => {

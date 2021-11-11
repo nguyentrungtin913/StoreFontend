@@ -45,10 +45,6 @@ class Menu extends Component {
 
 Menu.propTypes = {
   classes: PropTypes.object,
-  productTypeActionCreators: PropTypes.shape({
-    fetchListProductType: PropTypes.func
-  }),
-  listProductType: PropTypes.array
 };
 
 const mapStateToProps = state => {

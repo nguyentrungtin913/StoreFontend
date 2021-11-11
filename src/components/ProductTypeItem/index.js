@@ -42,7 +42,6 @@ class ProductTypeItem extends Component {
 
 ProductTypeItem.propTypes = {
   classes: PropTypes.object,
-  productType: PropTypes.object
 };
 
 export default withStyles(styles)(ProductTypeItem);

@@ -49,7 +49,7 @@ class Board extends Component {
                               className={classes.menuLink}
                               activeClassName={classes.menuLinkActive}
                             >
-                              <button className="btn   nav_search-btn" >
+                              <button className="btn nav_search-btn" >
                                 <i className="fad fa-shopping-cart fa-2x"></i>
                               </button>
                             </NavLink>
@@ -171,7 +171,7 @@ class Board extends Component {
                   Liên hệ chúng tôi
                 </h4>
                 <div className="contact_nav">
-                  <a href="https://goo.gl/maps/61iU8gd7S7uQ3HYYA">
+                  <a href="https://goo.gl/maps/VhX1o6S9dziDVdLk7">
                     <i className="fa fa-map-marker" aria-hidden="true"></i>
                     <span>
                       Vị trí

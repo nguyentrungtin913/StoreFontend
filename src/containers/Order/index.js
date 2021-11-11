@@ -257,10 +257,6 @@ class Order extends Component {
 
 Order.propTypes = {
   classes: PropTypes.object,
-  orderActionsCreators: PropTypes.shape({
-    fetchListOrder: PropTypes.func
-  }),
-  listOrder: PropTypes.array
 };
 const mapStateToProps = state => {
   return {

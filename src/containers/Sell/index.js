@@ -130,11 +130,6 @@ class Sell extends Component {
 
 Sell.propTypes = {
   classes: PropTypes.object,
-  productActionCreators: PropTypes.shape({
-    fetchListProduct: PropTypes.func
-  }),
-  listProduc: PropTypes.array,
-  listProductChoose: PropTypes.array
 };
 
 const mapStateToProps = state => {

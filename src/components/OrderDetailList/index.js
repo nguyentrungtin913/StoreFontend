@@ -54,7 +54,6 @@ class OrderDetailList extends Component {
 
 OrderDetailList.propTypes = {
   classes: PropTypes.object,
-  orders: PropTypes.array
 };
 
 export default withStyles(styles)(OrderDetailList);

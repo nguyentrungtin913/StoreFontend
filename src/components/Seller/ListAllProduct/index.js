@@ -61,8 +61,6 @@ class ListAllProduct extends Component {
     )
     return xhtml;
   }
-
-
   render() {
     return (
       <>

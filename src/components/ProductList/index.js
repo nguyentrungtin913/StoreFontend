@@ -320,7 +320,6 @@ class ProductList extends Component {
 
 ProductList.propTypes = {
   classes: PropTypes.object,
-  products: PropTypes.array
 };
 
 export default withStyles(styles)(ProductList);
