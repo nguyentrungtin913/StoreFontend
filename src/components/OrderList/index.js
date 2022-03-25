@@ -61,7 +61,6 @@ class OrderList extends Component {
 
 OrderList.propTypes = {
   classes: PropTypes.object,
-  orders: PropTypes.array
 };
 
 export default withStyles(styles)(OrderList);

@@ -89,7 +89,6 @@ class ProductItem extends Component {
 
 ProductItem.propTypes = {
   classes: PropTypes.object,
-  product: PropTypes.object
 };
 
 export default withStyles(styles)(ProductItem);

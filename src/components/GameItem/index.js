@@ -236,7 +236,6 @@ class GameItem extends Component {
 
 GameItem.propTypes = {
   classes: PropTypes.object,
-  order: PropTypes.object
 };
 
 export default withStyles(styles)(GameItem);

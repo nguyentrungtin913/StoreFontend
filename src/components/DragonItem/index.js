@@ -342,7 +342,6 @@ class DragonItem extends Component {
 
 DragonItem.propTypes = {
   classes: PropTypes.object,
-  order: PropTypes.object
 };
 
 export default withStyles(styles)(DragonItem);

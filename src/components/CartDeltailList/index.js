@@ -67,7 +67,6 @@ class CartDetailList extends Component {
 
 CartDetailList.propTypes = {
   classes: PropTypes.object,
-  orders: PropTypes.array
 };
 
 export default withStyles(styles)(CartDetailList);

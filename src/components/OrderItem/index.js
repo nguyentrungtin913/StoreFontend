@@ -50,7 +50,6 @@ class OrderItem extends Component {
 
 OrderItem.propTypes = {
   classes: PropTypes.object,
-  order: PropTypes.object
 };
 
 export default withStyles(styles)(OrderItem);
