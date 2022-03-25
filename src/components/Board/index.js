@@ -10,6 +10,7 @@ import styles from "./styles";
 import { SELLER_ROUTES } from "./../../constants";
 import { NavLink } from "react-router-dom";
 import Menu from "./../../containers/Seller/Menu";
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 class Board extends Component {
   openNav = () => {
@@ -150,6 +151,10 @@ class Board extends Component {
         </div>
         {children}
         <div>
+        <MessengerCustomerChat
+              pageId="107289548598414"
+              appId="5069251393131599"
+            />
           <div className="social-button">
             <div className="social-button-content">
               <a href="https://www.facebook.com/nam.ngonguyenbao.1" className="mes">
